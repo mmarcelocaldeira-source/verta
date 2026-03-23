@@ -8,7 +8,6 @@
         name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
-    <!-- Using RockFi CSS as base -->
     <link
         href="https://cdn.prod.website-files.com/6895a11a67e50a85e0b93804/css/rockfixmekaa.webflow.shared.8bd7c0a5a.min.css"
         rel="stylesheet" type="text/css">
@@ -18,20 +17,13 @@
 
     <style>
         :root {
-            /* Rockfi Tokens Integration */
             --color-bg: #f9f7f3;
-            /* --satin-linen--50 */
             --color-text-primary: #242424;
-            /* --cod-gray--900 */
             --color-text-secondary: #5d5d5d;
-            /* --cod-gray--600 */
             --color-accent: #7F99F5;
             --color-neutral-accent: #3a3a2d;
-            /* --clay-creek--900 */
-
             --font-serif: "Reckless Rockfi", serif;
             --font-sans: "Suisseintl", sans-serif;
-
             --transition-premium: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
@@ -43,7 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* Typography overrides for authority */
         h1 {
             font-family: var(--font-serif);
             font-weight: 400;
@@ -81,12 +72,11 @@
             margin-bottom: 3rem;
         }
 
-        /* Layout */
         .hero_section {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 0 5%;
+            padding: 140px 5% 60px;
             position: relative;
             overflow: hidden;
         }
@@ -96,103 +86,69 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 80px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
             align-items: center;
         }
 
-        /* Visual Concept: Hypnotic Geometric System (Refined Sizes) */
-        /* Visual Concept: Complexity Management (Same Scale, Permanent Entropy) */
+        /* ── Visual Container: SVG Convergence ── */
         .visual_container {
             position: relative;
             height: 600px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at center, rgba(249, 247, 243, 0) 0%, rgba(237, 237, 237, 0.4) 100%);
-            overflow: hidden;
+            overflow: visible;
         }
 
-        .geometric_focus {
-            position: relative;
-            width: 450px;
-            height: 450px;
+        .verta-svg-wrap {
+            width: 100%;
+            height: 100%;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
-        .line_frame {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            /* All squares same size as requested */
-            width: 320px;
-            height: 320px;
-            border: 1.5px solid rgba(0, 0, 0, 0.28);
-            /* Balanced visibility */
-            background: transparent;
-            transform-origin: center;
-            will-change: transform;
-            /* No base rotation in CSS, GSAP will handle all */
+        .verta-svg-wrap svg {
+            width: 100%;
+            height: 100%;
+            max-width: 720px;
         }
 
-        /* Interaction between layers: different opacities to see the 'mess' clearly */
-        .frame-1 {
-            z-index: 3;
-            opacity: 0.85;
+        .verta-node-label {
+            font-family: "Suisseintl", "Inter", sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            fill: #5d5d5d;
         }
 
-        .frame-2 {
-            z-index: 2;
-            opacity: 0.60;
+        .verta-center-label {
+            font-family: "Suisseintl", "Inter", sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            fill: #242424;
         }
 
-        .frame-3 {
-            z-index: 1;
-            opacity: 0.40;
+        .verta-tagline {
+            font-family: "Suisseintl", "Inter", sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            fill: #9a9a9a;
         }
 
-        .focus_core {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 36px;
-            height: 36px;
-            background: white;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
-            z-index: 10;
-            transform: translate(-50%, -50%);
-            will-change: transform;
-        }
-
-        /* Branding Dot (Verta signature) */
-        .focus_core::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 4px;
-            height: 4px;
-            background: var(--color-accent);
-            border-radius: 50%;
-        }
-
-        /* ── Word Cycler ────────────────────────────────────── */
-
-        /* WRAPPER: clips the list, holds the fades. NEVER moves. */
+        /* ── Word Cycler ── */
         .list-rotate-wrapper {
             margin: 1.5rem 0 2.5rem;
             position: relative;
-            /* anchor for ::before/::after */
             overflow: hidden;
-            /* <<< THE CLIP IS HERE */
             max-height: 9em;
-            /* visible window */
         }
 
-        /* Fade gradients on the wrapper, not the ul */
         .list-rotate-wrapper::before,
         .list-rotate-wrapper::after {
             content: "";
@@ -214,13 +170,11 @@
             background: linear-gradient(to top, var(--color-bg) 10%, transparent 100%);
         }
 
-        /* RAIL: the ul that GSAP translates. No clip. No max-height. */
         [data-list-rotate] {
             list-style: none;
             padding: 0;
             margin: 0;
             position: relative;
-            /* needed for li::before absolute positioning */
             will-change: transform;
         }
 
@@ -236,7 +190,6 @@
             transition: opacity 640ms ease, padding-left 640ms ease;
         }
 
-        /* Dot slides in from the left */
         [data-list-rotate] li::before {
             content: "";
             position: absolute;
@@ -261,39 +214,86 @@
             opacity: 1;
         }
 
-        /* Suppress transitions during silent teleport */
         [data-list-rotate] li.no-transition {
             transition: none !important;
         }
 
-        /* Responsive */
+        /* ── Nav ── */
         @media (max-width: 991px) {
             .hero_container {
                 padding-top: 100px;
             }
+
+            .hide-mobile {
+                display: none !important;
+            }
         }
 
-        /* Navigation Minimal (inspired by Rockfi) */
         .nav_minimal {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            padding: 40px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 40px 0;
             z-index: 100;
         }
 
-        .logo_verta {
-            font-family: var(--font-serif);
-            font-size: 24px;
-            color: var(--color-text-primary);
-            text-decoration: none;
+        .nav_container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
         }
 
-        /* CTAs */
+        .nav_right {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .nav_links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav_link {
+            font-family: var(--font-sans);
+            font-size: 13.5px;
+            font-weight: 450;
+            color: #5d5d5d;
+            text-decoration: none;
+            transition: color 0.35s ease;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav_link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #242424;
+            transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav_link:hover {
+            color: #242424;
+        }
+
+        .nav_link:hover::after {
+            width: 100%;
+        }
+
+        .nav_actions {
+            display: flex;
+            align-items: center;
+        }
+
         .cta_group {
             display: flex;
             align-items: center;
@@ -301,68 +301,58 @@
         }
 
         .btn_verta {
-            padding: 18px 36px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
             background-color: var(--color-text-primary);
-            color: white;
+            color: #fff;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 4px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            border-radius: 2px;
+            transition: background-color 0.25s ease, opacity 0.25s ease;
         }
 
         .btn_verta:hover {
             background-color: #000;
-            transform: translateY(-2px);
         }
 
-        .btn_secondary {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            text-decoration: none;
-            position: relative;
-            padding-bottom: 4px;
+        .btn_verta svg path {
+            opacity: 1;
+            transition: opacity 0.3s ease;
         }
 
-        .btn_secondary::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--color-accent);
-            transition: width 0.4s ease;
+        .btn_verta:hover .dot-1 {
+            transition-delay: 0s;
+            opacity: 0;
         }
 
-        .btn_secondary:hover::after {
-            width: 100%;
+        .btn_verta:hover .dot-2 {
+            transition-delay: 0.15s;
+            opacity: 0;
         }
 
-        /* Animations */
-        @keyframes drift {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(30px, 40px) scale(1.1);
-            }
+        .btn_verta:hover .dot-3 {
+            transition-delay: 0.3s;
+            opacity: 0;
         }
 
-        @keyframes core-pulse {
-
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-
-            50% {
-                transform: translate(-50%, -50%) scale(1.05);
-            }
+        .btn_verta .dot-3 {
+            transition-delay: 0s;
         }
 
+        .btn_verta .dot-2 {
+            transition-delay: 0.15s;
+        }
+
+        .btn_verta .dot-1 {
+            transition-delay: 0.3s;
+        }
+
+        /* ── Reveal ── */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -385,6 +375,10 @@
             animation-delay: 0.8s;
         }
 
+        .delay-5 {
+            animation-delay: 1.0s;
+        }
+
         @keyframes reveal-anim {
             to {
                 opacity: 1;
@@ -392,7 +386,6 @@
             }
         }
 
-        /* Mobile adjustments */
         @media (max-width: 991px) {
             .hero_container {
                 grid-template-columns: 1fr;
@@ -414,7 +407,7 @@
             }
 
             .visual_container {
-                height: 400px;
+                height: 360px;
             }
         }
     </style>
@@ -423,117 +416,305 @@
 <body>
 
     <nav class="nav_minimal">
-        <a href="#" class="logo_verta">
-            <img src="./assets/images/verta-logo.svg" alt="Verta"
-                style="height: 38px; width: auto; display: block; border-radius: 0 !important; object-fit: contain; transform: none !important;">
-        </a>
+        <div class="nav_container">
+            <a href="#" class="logo_verta">
+                <img src="./assets/images/verta-logo.svg" alt="Verta"
+                    style="height: 26px; width: auto; display: block; border-radius: 0 !important; object-fit: contain; transform: none !important;">
+            </a>
+            <div class="nav_right">
+                <div class="nav_links hide-mobile">
+                    <a href="#" class="nav_link">Plataforma</a>
+                    <a href="#" class="nav_link">Como Funciona</a>
+                    <a href="#" class="nav_link">Empresa</a>
+                    <a href="#" class="nav_link">Blog</a>
+                </div>
+                <div class="nav_actions">
+                    <a href="#" class="btn_verta">
+                        <div>Agendar conversa estratégica</div>
+                        <div style="width:16px;height:16px;flex-shrink:0;">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="dot-1"
+                                    d="M8.005 0.766C7.279 0.766 6.69 1.355 6.69 2.081C6.69 2.808 7.279 3.396 8.005 3.396C8.732 3.396 9.32 2.081 9.32 2.081C9.32 1.355 8.732 0.766 8.005 0.766Z"
+                                    fill="currentColor" />
+                                <path class="dot-2"
+                                    d="M13.919 6.682C13.193 6.682 12.604 7.271 12.604 7.997C12.604 8.724 13.193 9.313 13.919 9.313C14.646 9.313 15.234 8.724 15.234 7.997C15.234 7.271 14.646 6.682 13.919 6.682Z"
+                                    fill="currentColor" />
+                                <path class="dot-3"
+                                    d="M8.005 12.602C7.279 12.602 6.69 13.191 6.69 13.917C6.69 14.644 7.279 15.232 8.005 15.232C8.732 15.232 9.32 14.644 9.32 13.917C9.32 13.191 8.732 12.602 8.005 12.602Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </nav>
 
     <section class="hero_section">
         <div class="hero_container">
 
             <div class="hero_content">
-                <div class="eyebrow reveal delay-1">Governança de Risco Tecnológico</div>
+                <div class="eyebrow reveal delay-1">Infraestrutura de decisão para governança de riscos digitais.</div>
 
                 <h1 class="reveal delay-2">
-                    O risco não é técnico.<br>
-                    É uma decisão estratégica.
+                    O humano decide.<br>
+                    A Verta qualifica.
                 </h1>
 
                 <div class="list-rotate-wrapper reveal delay-3">
                     <ul data-list-rotate id="cycler_rail">
-                        <li>Decisões Executivas</li>
-                        <li class="--active">Decisões de Conselho</li>
-                        <li>Supervisão e Auditoria</li>
-                        <li>Estratégia e Futuro</li>
+                        <li>Conselheiros</li>
+                        <li class="--active">C-Level</li>
+                        <li>Líderes de Risco</li>
+                        <li>Investidores</li>
                     </ul>
                 </div>
 
                 <p class="hero_paragraph reveal delay-4">
-                    A Verta transforma o risco técnico em contexto executivo, viabilizando melhores decisões no conselho
-                    e C-level.
+                    Transformamos risco digital em contexto estratégico mensurável, conectando impacto financeiro,
+                    regulatório e reputacional para decisões mais conscientes no board e no C-Level.
                 </p>
 
                 <div class="cta_group reveal delay-5">
-                    <a href="#" class="btn_verta">Veja como funciona</a>
-                    <a href="#" class="btn_secondary">Explore a plataforma</a>
+                    <a href="#" class="btn_verta">
+                        <div>Agendar conversa estratégica</div>
+                        <div style="width:16px;height:16px;flex-shrink:0;">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="dot-1"
+                                    d="M8.005 0.766C7.279 0.766 6.69 1.355 6.69 2.081C6.69 2.808 7.279 3.396 8.005 3.396C8.732 3.396 9.32 2.808 9.32 2.081C9.32 1.355 8.732 0.766 8.005 0.766Z"
+                                    fill="currentColor" />
+                                <path class="dot-2"
+                                    d="M13.919 6.682C13.193 6.682 12.604 7.271 12.604 7.997C12.604 8.724 13.193 9.313 13.919 9.313C14.646 9.313 15.234 8.724 15.234 7.997C15.234 7.271 14.646 6.682 13.919 6.682Z"
+                                    fill="currentColor" />
+                                <path class="dot-3"
+                                    d="M8.005 12.602C7.279 12.602 6.69 13.191 6.69 13.917C6.69 14.644 7.279 15.232 8.005 15.232C8.732 15.232 9.32 14.644 9.32 13.917C9.32 13.191 8.732 12.602 8.005 12.602Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </a>
                 </div>
             </div>
 
+            <!-- ── SVG Convergence Animation ── -->
             <div class="visual_container reveal delay-3">
-                <div class="geometric_focus">
-                    <!-- Outlined background squares -->
-                    <div class="line_frame frame-3"></div>
-                    <div class="line_frame frame-2"></div>
-                    <div class="line_frame frame-1"></div>
-
-                    <!-- Central core -->
-                    <div class="focus_core"></div>
+                <div class="verta-svg-wrap">
+                    <svg id="verta-conv-svg" viewBox="-20 -20 660 540" xmlns="http://www.w3.org/2000/svg">
+                        <g id="vc-lines"></g>
+                        <g id="vc-nodes"></g>
+                        <g id="vc-center"></g>
+                        <g id="vc-particles"></g>
+                    </svg>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- GSAP for 'Managed Entropy' motion -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const centerBase = { xPercent: -50, yPercent: -50 };
 
-            // 1. Permanent Breathing (The Vital Core)
-            gsap.to(".focus_core", {
-                scale: 1.08,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-
-            // 2. Initial State — ângulos suaves e distintos
-            const angles = [12, -10, 5];
-            gsap.set(".frame-1", { ...centerBase, rotation: angles[0] });
-            gsap.set(".frame-2", { ...centerBase, rotation: angles[1] });
-            gsap.set(".frame-3", { ...centerBase, rotation: angles[2] });
-
-            // 3. Rotação elegante — um de cada vez, direções opostas, passos pequenos
-            const frames = [".frame-1", ".frame-2", ".frame-3"];
-
-            // Cada frame tem sua direção: 1 = horário, -1 = anti-horário
-            const dirs = [1, -1, 1];
-
-            function animateNext(idx) {
-                // Pequeno passo: 7 a 11 graus
-                const step = 7 + Math.random() * 4;
-                angles[idx] += step * dirs[idx];
-
-                // Se derivou longe demais, inverte suavemente na próxima vez
-                if (Math.abs(angles[idx]) > 50) dirs[idx] *= -1;
-
-                gsap.to(frames[idx], {
-                    ...centerBase,
-                    rotation: angles[idx],
-                    duration: 10 + Math.random() * 3, // 10–13s: muito calmo
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        // Pausa de 0.2s antes do próximo quadrado se mover
-                        setTimeout(() => animateNext((idx + 1) % 3), 200);
-                    }
-                });
-            }
-
-            animateNext(0);
-
-            // ── Word Carousel — rail translation, sem drift ───────────────
+            // ── Convergence SVG Animation ──────────────────────────────────
             (function () {
-                const rail      = document.getElementById("cycler_rail");
+                const linesG = document.getElementById('vc-lines');
+                const nodesG = document.getElementById('vc-nodes');
+                const centerG = document.getElementById('vc-center');
+                const particlesG = document.getElementById('vc-particles');
+
+                if (!linesG) return;
+
+                const cx = 280, cy = 240;
+
+                const ACCENT = '#7F99F5';
+                const ACCENT_LIGHT = '#B8C8FA';
+                const ACCENT_SOFT = '#DCE4FE';
+                const DOT_IDLE = '#C9D6FD';
+
+                const nodes = [
+                    { id: 'risco', label: 'Risco Digital', angle: -90, r: 165 },
+                    { id: 'financeiro', label: 'Impacto Financeiro', angle: -30, r: 165 },
+                    { id: 'regulatorio', label: 'Contexto Regulatório', angle: 30, r: 165 },
+                    { id: 'mercado', label: 'Sinais de Mercado', angle: 90, r: 165 },
+                    { id: 'reputacao', label: 'Reputação', angle: 150, r: 165 },
+                    { id: 'esg', label: 'ESG & Compliance', angle: 210, r: 165 },
+                ];
+
+                function toRad(d) { return d * Math.PI / 180; }
+                function nodePos(n) {
+                    return {
+                        x: cx + n.r * Math.cos(toRad(n.angle)),
+                        y: cy + n.r * Math.sin(toRad(n.angle))
+                    };
+                }
+                function lerp(a, b, t) { return a + (b - a) * t; }
+                function easeIO(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+                function lerpColor(h1, h2, t) {
+                    const p = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+                    const [r1, g1, b1] = p(h1), [r2, g2, b2] = p(h2);
+                    return '#' + [lerp(r1, r2, t), lerp(g1, g2, t), lerp(b1, b2, t)]
+                        .map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
+                }
+
+                const particles = [];
+                const nodeStates = nodes.map(() => ({ glow: 0 }));
+
+                nodes.forEach((n, i) => {
+                    const pos = nodePos(n);
+
+                    // Line
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', pos.x); line.setAttribute('y1', pos.y);
+                    line.setAttribute('x2', cx); line.setAttribute('y2', cy);
+                    line.setAttribute('stroke', '#e5e5e5');
+                    line.setAttribute('stroke-width', '0.7');
+                    line.setAttribute('stroke-dasharray', '3 6');
+                    line.setAttribute('opacity', '0.5');
+                    line.id = 'vc-line-' + n.id;
+                    linesG.appendChild(line);
+
+                    // Node group
+                    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    g.id = 'vc-node-' + n.id;
+
+                    // Single minimal dot
+                    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    dot.setAttribute('cx', pos.x); dot.setAttribute('cy', pos.y);
+                    dot.setAttribute('r', '4');
+                    dot.setAttribute('fill', DOT_IDLE);
+                    dot.id = 'vc-dot-' + n.id;
+
+                    // Label positioning
+                    let lx = pos.x, ly = pos.y, anchor = 'middle';
+                    const off = 24, a = n.angle;
+                    if (a > -60 && a < 60) { lx = pos.x + off; anchor = 'start'; }
+                    else if (a >= 60 && a < 120) { ly = pos.y + off; }
+                    else if (a >= 120 || a <= -120) { lx = pos.x - off; anchor = 'end'; }
+                    else { ly = pos.y - off; }
+
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', lx); text.setAttribute('y', ly);
+                    text.setAttribute('text-anchor', anchor);
+                    text.setAttribute('dominant-baseline', 'central');
+                    text.setAttribute('class', 'verta-node-label');
+                    text.setAttribute('opacity', '0.45');
+                    text.id = 'vc-text-' + n.id;
+                    text.textContent = n.label;
+
+                    g.appendChild(dot);
+                    g.appendChild(text);
+                    nodesG.appendChild(g);
+
+                    // Particle
+                    const p = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    p.setAttribute('r', '2.2');
+                    p.setAttribute('fill', ACCENT);
+                    p.setAttribute('opacity', '0');
+                    particlesG.appendChild(p);
+
+                    particles.push({ el: p, pos: nodePos(n), t: i / nodes.length });
+                });
+
+                // Central element
+                const centerOuter = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                centerOuter.setAttribute('cx', cx); centerOuter.setAttribute('cy', cy);
+                centerOuter.setAttribute('r', '22');
+                centerOuter.setAttribute('fill', ACCENT_SOFT);
+                centerG.appendChild(centerOuter);
+
+                const centerCore = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                centerCore.setAttribute('cx', cx); centerCore.setAttribute('cy', cy);
+                centerCore.setAttribute('r', '7');
+                centerCore.setAttribute('fill', ACCENT);
+                centerG.appendChild(centerCore);
+
+                const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                centerText.setAttribute('x', cx); centerText.setAttribute('y', cy + 52);
+                centerText.setAttribute('text-anchor', 'middle');
+                centerText.setAttribute('class', 'verta-center-label');
+                centerText.style.fontSize = "14px";
+                centerText.style.fontWeight = "700";
+                centerText.textContent = 'DECISÃO';
+                centerG.appendChild(centerText);
+
+                const tagline1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                tagline1.setAttribute('x', cx); tagline1.setAttribute('y', cy + 72);
+                tagline1.setAttribute('text-anchor', 'middle');
+                tagline1.setAttribute('class', 'verta-tagline');
+                tagline1.style.fontSize = "11px";
+                tagline1.style.letterSpacing = "0.12em";
+                tagline1.style.textTransform = "uppercase";
+                tagline1.textContent = 'convergência';
+                centerG.appendChild(tagline1);
+
+                const tagline2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                tagline2.setAttribute('x', cx); tagline2.setAttribute('y', cy + 88);
+                tagline2.setAttribute('text-anchor', 'middle');
+                tagline2.setAttribute('class', 'verta-tagline');
+                tagline2.style.fontSize = "11px";
+                tagline2.style.letterSpacing = "0.12em";
+                tagline2.style.textTransform = "uppercase";
+                tagline2.textContent = 'estratégica';
+                centerG.appendChild(tagline2);
+
+                let activeNode = 0, switchTimer = 0;
+                const SWITCH_INTERVAL = 220;
+                const LERP_SPEED = 0.02;
+
+                function animate() {
+                    switchTimer++;
+                    if (switchTimer >= SWITCH_INTERVAL) {
+                        switchTimer = 0;
+                        activeNode = (activeNode + 1) % nodes.length;
+                    }
+
+                    nodes.forEach((n, i) => {
+                        const state = nodeStates[i];
+                        state.glow = lerp(state.glow, i === activeNode ? 1 : 0, LERP_SPEED);
+                        const gv = state.glow;
+
+                        const dot = document.getElementById('vc-dot-' + n.id);
+                        const text = document.getElementById('vc-text-' + n.id);
+                        const line = document.getElementById('vc-line-' + n.id);
+
+                        if (dot) { dot.setAttribute('fill', lerpColor(DOT_IDLE, ACCENT, gv)); dot.setAttribute('r', lerp(4, 5.5, gv)); }
+                        if (text) { text.setAttribute('opacity', lerp(0.45, 1, gv)); }
+                        if (line) {
+                            line.setAttribute('stroke', lerpColor('#e5e5e5', ACCENT_LIGHT, gv));
+                            line.setAttribute('opacity', lerp(0.4, 0.9, gv));
+                            line.setAttribute('stroke-width', lerp(0.7, 1.3, gv));
+                        }
+                    });
+
+                    particles.forEach(p => {
+                        p.t = (p.t + 0.0028) % 1;
+                        const e = easeIO(p.t);
+                        p.el.setAttribute('cx', lerp(p.pos.x, cx, e));
+                        p.el.setAttribute('cy', lerp(p.pos.y, cy, e));
+                        const fade = p.t < 0.15 ? p.t / 0.15 : p.t > 0.85 ? (1 - p.t) / 0.15 : 1;
+                        p.el.setAttribute('opacity', fade * 0.5);
+                    });
+
+                    // Subtle breathing
+                    const breathe = 1 + 0.04 * Math.sin(Date.now() * 0.0012);
+                    centerOuter.setAttribute('r', 22 * breathe);
+                    centerCore.setAttribute('r', 7 * breathe);
+
+                    requestAnimationFrame(animate);
+                }
+
+                setTimeout(() => animate(), 300);
+            })();
+
+            // ── Word Carousel ──────────────────────────────────────────────
+            (function () {
+                const rail = document.getElementById("cycler_rail");
                 if (!rail) return;
 
-                const wrapper   = rail.parentElement;
+                const wrapper = rail.parentElement;
                 const origItems = Array.from(rail.querySelectorAll("li"));
-                const N         = origItems.length;
 
-                // 20 cópias → 80 itens → ~4 min de looping sem reset visível
                 for (let c = 1; c < 20; c++) {
                     origItems.forEach(orig => {
                         const clone = orig.cloneNode(true);
@@ -542,49 +723,40 @@
                     });
                 }
 
-                const allItems  = Array.from(rail.querySelectorAll("li"));
-                const setActive = idx =>
-                    allItems.forEach((li, i) => li.classList.toggle("--active", i === idx));
+                const allItems = Array.from(rail.querySelectorAll("li"));
+                const setActive = idx => allItems.forEach((li, i) => li.classList.toggle("--active", i === idx));
 
                 const init = () => {
-                    // Medir DEPOIS das fontes carregarem → dimensões correctas
-                    const wrapH  = wrapper.getBoundingClientRect().height || 200;
-                    const itemH  = allItems[0].getBoundingClientRect().height || 32;
+                    const wrapH = wrapper.getBoundingClientRect().height || 200;
+                    const itemH = allItems[0].getBoundingClientRect().height || 32;
                     const center = (wrapH - itemH) / 2;
-
-                    // Medir offsetTop real de cada item (o browser acumula correctamente)
-                    // → nenhuma multiplicação em JS, nenhum drift possível
-                    const tops  = allItems.map(li => li.offsetTop);
-                    const getY  = idx => center - tops[idx];
+                    const tops = allItems.map(li => li.offsetTop);
+                    const getY = idx => center - tops[idx];
 
                     let focusIdx = 1;
                     gsap.set(rail, { y: getY(focusIdx) });
                     setActive(focusIdx);
 
                     setInterval(() => {
-                        // Reset silencioso único após ~4 min (raro, imperceptível)
                         if (focusIdx >= allItems.length - 1) {
                             allItems.forEach(li => li.classList.add("no-transition"));
                             focusIdx = 1;
                             gsap.set(rail, { y: getY(focusIdx) });
                             setActive(focusIdx);
-                            setTimeout(() =>
-                                allItems.forEach(li => li.classList.remove("no-transition")), 120);
+                            setTimeout(() => allItems.forEach(li => li.classList.remove("no-transition")), 120);
                             return;
                         }
                         focusIdx++;
                         gsap.to(rail, {
-                            y:        getY(focusIdx),
+                            y: getY(focusIdx),
                             duration: 1.1,
-                            ease:     "power4.inOut",
-                            onStart:  () => setActive(focusIdx)
+                            ease: "power4.inOut",
+                            onStart: () => setActive(focusIdx)
                         });
                     }, 3200);
                 };
 
-                // fonts.ready garante que itemH reflecte a fonte real carregada
-                (document.fonts ? document.fonts.ready : Promise.resolve())
-                    .then(init).catch(init);
+                (document.fonts ? document.fonts.ready : Promise.resolve()).then(init).catch(init);
             })();
 
         });
