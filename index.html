@@ -410,6 +410,303 @@
                 height: 360px;
             }
         }
+
+        /* ── Linha Divisória Fragmentada ── */
+        .divider-sticky-wrap {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            z-index: 50;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .divider-container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            position: relative;
+        }
+
+        #dividerCanvas {
+            width: 100%;
+            height: 100%;
+            transform: translateY(20px);
+        }
+
+        /* ── Segunda Dobra: Scroll Stacking ── */
+        .section-diagnostico {
+            background-color: var(--color-bg);
+            position: relative;
+            padding: 0 5%;
+        }
+
+        #diagnostico-content {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Intro block — aparece antes do stacking */
+        .diag-intro {
+            padding: 140px 5% 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section-diagnostico.is-visible .diag-intro {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-label {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-label::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .diag-headline {
+            font-family: var(--font-serif);
+            font-size: clamp(32px, 3.8vw, 58px);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--color-text-primary);
+            max-width: 680px;
+        }
+
+        /* ── Segunda Dobra: Header horizontal ── */
+        .diag-header {
+            padding: 120px 0 72px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 60px;
+            align-items: end;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .section-diagnostico.is-visible .diag-header {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .diag-header-left {
+            /* Ocupa apenas a 1a coluna do novo grid de 2 */
+        }
+
+        .diag-header-title {
+            font-family: var(--font-serif);
+            font-size: clamp(28px, 2.8vw, 44px);
+            font-weight: 400;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            color: var(--color-text-primary);
+            margin: 0;
+        }
+
+        .diag-header-right {
+            /* Ocupa apenas a 2a coluna */
+            display: flex;
+            align-items: flex-start;
+            padding-top: 8px;
+        }
+
+        .diag-header-desc {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--color-text-secondary);
+            max-width: 100%;
+            margin: 0;
+            padding-left: 24px;
+            border-left: 1px solid #ddd;
+        }
+
+        /* ── Cards grid 3 colunas ── */
+        .diag-cards-section {
+            padding: 0 0 40px;
+        }
+
+        .diag-cards-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #e8e5df;
+            border: 1px solid #e8e5df;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .risk-card {
+            background: var(--color-bg);
+            padding: 48px 44px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 280px;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .risk-card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .risk-card:nth-child(2) {
+            transition-delay: 0.22s;
+        }
+
+        .risk-card:nth-child(3) {
+            transition-delay: 0.34s;
+        }
+
+        .section-diagnostico.is-visible .risk-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .risk-card:hover {
+            background: #fff;
+        }
+
+        .card-top {}
+
+        .card-number {
+            font-family: var(--font-sans);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 28px;
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: clamp(22px, 2vw, 28px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            color: var(--color-text-primary);
+            margin: 0 0 20px;
+        }
+
+        .card-body {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        .card-footer {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--color-accent);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-footer:hover {
+            opacity: 1;
+        }
+
+        .card-footer-icon {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Closing statement */
+        .diag-closing {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 80px 5% 120px;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .section-diagnostico.is-closing-visible .diag-closing {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .diag-closing-bar {
+            width: 1px;
+            height: 72px;
+            background: linear-gradient(to bottom, transparent, var(--color-accent) 40%, var(--color-accent) 60%, transparent);
+            margin-bottom: 32px;
+        }
+
+        .diag-closing-text {
+            font-family: var(--font-serif);
+            font-size: clamp(22px, 2.4vw, 34px);
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--color-text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .diag-closing-text em {
+            color: var(--color-accent);
+            font-style: italic;
+            display: block;
+        }
+
+        @media (max-width: 991px) {
+            .diag-header {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 80px 5% 48px;
+            }
+
+            .diag-header-desc {
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid #ddd;
+                padding-top: 24px;
+            }
+
+            .diag-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -510,6 +807,77 @@
             </div>
 
         </div>
+    </section>
+
+    <!-- ── Segunda Dobra: Header + Cards ── -->
+    <section class="section-diagnostico" id="diagnostico">
+
+        <!-- A linha divisória no topo -->
+        <div class="divider-sticky-wrap" id="dividerWrap">
+            <div class="divider-container">
+                <canvas id="dividerCanvas"></canvas>
+            </div>
+        </div>
+
+        <div id="diagnostico-content">
+
+            <!-- Header horizontal: Alinhado ao grid de 3 colunas -->
+            <div class="diag-header">
+                <div class="diag-header-left">
+                    <p class="section-label">O Diagnóstico</p>
+                    <h2 class="diag-header-title">
+                        O risco digital evoluiu.<br>
+                        A governança não acompanhou.
+                    </h2>
+                </div>
+                <div class="diag-header-right">
+                    <p class="diag-header-desc">
+                        Organizações acumulam relatórios, indicadores e ferramentas.<br>
+                        Mas a clareza estratégica se perde no caminho — e o risco chega ao board fragmentado, tarde e
+                        sem contexto.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Grid de 3 cards reais -->
+            <div class="diag-cards-section">
+                <div class="diag-cards-grid">
+
+                    <div class="risk-card">
+                        <span class="card-number">01</span>
+                        <h3 class="card-title">Fragmentado</h3>
+                        <p class="card-body">Risco técnico, impacto financeiro, regulação e reputação são analisados em
+                            silos — raramente integrados na mesma leitura estratégica.</p>
+                    </div>
+
+                    <div class="risk-card">
+                        <span class="card-number">02</span>
+                        <h3 class="card-title">Reativo</h3>
+                        <p class="card-body">O risco entra na pauta quando vira incidente ou pressão regulatória — não
+                            como variável contínua da estratégia de negócio.</p>
+                    </div>
+
+                    <div class="risk-card">
+                        <span class="card-number">03</span>
+                        <h3 class="card-title">Assimétrico</h3>
+                        <p class="card-body">Quem analisa domina a técnica. Quem decide precisa de contexto. Entre um e
+                            outro, a clareza se perde.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Fechamento -->
+            <div class="diag-closing" id="diagClosing">
+                <div class="diag-closing-bar"></div>
+                <p class="diag-closing-text">
+                    As organizações acumulam sinais.<br>
+                    <em>Poucas acumulam contexto.</em>
+                </p>
+            </div>
+
+        </div> <!-- Fim de diagnostico-content -->
+
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -757,6 +1125,102 @@
                 };
 
                 (document.fonts ? document.fonts.ready : Promise.resolve()).then(init).catch(init);
+            })();
+
+            // ── Linha Divisória Estagiada com Scroll ────────────────────────
+            (function () {
+                const canvas = document.getElementById('dividerCanvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const wrap = document.getElementById('dividerWrap');
+                const diagContent = document.getElementById('diagnostico-content');
+
+                let segments = [];
+                function buildSegments(totalW) {
+                    const segs = [];
+                    let x = 0;
+                    while (x < totalW) {
+                        const w = 30 + Math.random() * 100;
+                        segs.push({
+                            x,
+                            w,
+                            initialChaosY: (Math.random() - 0.5) * 60,
+                            initialH: 8 + Math.random() * 24,
+                            initialOpacity: 0.3 + Math.random() * 0.7
+                        });
+                        x += w + (10 + Math.random() * 30);
+                    }
+                    return segs;
+                }
+
+                function resize() {
+                    const dpr = window.devicePixelRatio || 1;
+                    const rect = canvas.getBoundingClientRect();
+                    canvas.width = rect.width * dpr;
+                    canvas.height = 140 * dpr;
+                    ctx.scale(dpr, dpr);
+                    segments = buildSegments(rect.width);
+                    update();
+                }
+
+                function getProgress() {
+                    const rect = wrap.getBoundingClientRect();
+                    const winH = window.innerHeight;
+                    // O progresso começa quando a linha surge embaixo e termina quando ela cruza o centro
+                    const start = winH;
+                    const end = winH * 0.4;
+                    const current = rect.top;
+                    return Math.min(Math.max((start - current) / (start - end), 0), 1);
+                }
+
+                function draw(p) {
+                    const rect = canvas.getBoundingClientRect();
+                    ctx.clearRect(0, 0, rect.width, 140);
+                    const centerY = 70;
+
+                    const easeP = t => t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                    const ep = easeP(Math.min(p / 0.85, 1));
+
+                    // Desenha os segmentos
+                    segments.forEach((seg, i) => {
+                        const y = centerY + seg.initialChaosY * (1 - ep);
+                        const h = seg.initialH * (1 - ep) + 1;
+                        const op = seg.initialOpacity * (1 - ep * 0.4);
+
+                        // Expansão lateral dos segmentos para fechar os gaps em 100%
+                        const widthExpansion = ep > 0.6 ? (ep - 0.6) / 0.4 : 0;
+                        const finalW = seg.w + (30 * widthExpansion); // Leve sobreposição para garantir linha sólida
+
+                        ctx.fillStyle = `rgba(127, 153, 245, ${op})`;
+                        ctx.beginPath();
+                        ctx.rect(seg.x, y - h / 2, finalW, h);
+                        ctx.fill();
+                    });
+
+                    // Caso a convergência seja total, garante uma linha sólida de ponta a ponta
+                    if (ep > 0.98) {
+                        ctx.fillStyle = "rgba(127, 153, 245, 0.6)";
+                        ctx.fillRect(0, centerY - 0.5, rect.width, 1);
+                    }
+
+                    // Revelação do conteúdo (desativada para debug)
+                    /*
+                    if (diagContent) {
+                        const contentP = Math.max((p - 0.4) / 0.6, 0);
+                        diagContent.style.opacity = contentP;
+                        diagContent.style.transform = `translateY(${(1 - contentP) * 30}px)`;
+                        diagContent.style.pointerEvents = contentP > 0.1 ? "auto" : "none";
+                    }
+                    */
+                }
+
+                function update() {
+                    requestAnimationFrame(() => draw(getProgress()));
+                }
+
+                window.addEventListener('scroll', update, { passive: true });
+                window.addEventListener('resize', resize);
+                resize();
             })();
 
         });
