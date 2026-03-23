@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Verta - Governança Estratégica</title>
+    <meta content="Verta - A infraestrutura para tomada de decisão estratégica no conselho e C-level."
+        name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <link
+        href="https://cdn.prod.website-files.com/6895a11a67e50a85e0b93804/css/rockfixmekaa.webflow.shared.8bd7c0a5a.min.css"
+        rel="stylesheet" type="text/css">
+    <link
+        href="https://cdn.prod.website-files.com/6895a11a67e50a85e0b93804/css/rockfixmekaa.webflow.6895a11a67e50a85e0b937f9-ff60340fd.min.css"
+        rel="stylesheet" type="text/css">
+
+    <style>
+        :root {
+            --color-bg: #f9f7f3;
+            --color-text-primary: #242424;
+            --color-text-secondary: #5d5d5d;
+            --color-accent: #7F99F5;
+            --color-neutral-accent: #3a3a2d;
+            --font-serif: "Reckless Rockfi", serif;
+            --font-sans: "Suisseintl", sans-serif;
+            --transition-premium: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: var(--color-text-primary);
+        }
+
+        .eyebrow {
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .hero_paragraph {
+            font-size: 1.25rem;
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+            max-width: 540px;
+            margin-bottom: 3rem;
+        }
+
+        .hero_section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 5% 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero_container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* ── Visual Container: SVG Convergence ── */
+        .visual_container {
+            position: relative;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .verta-svg-wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .verta-svg-wrap svg {
+            width: 100%;
+            height: 100%;
+            max-width: 720px;
+        }
+
+        .verta-node-label {
+            font-family: "Suisseintl", "Inter", sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            fill: #5d5d5d;
+        }
+
+        .verta-center-label {
+            font-family: "Suisseintl", "Inter", sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            fill: #242424;
+        }
+
+        .verta-tagline {
+            font-family: "Suisseintl", "Inter", sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            fill: #9a9a9a;
+        }
+
+        /* ── Word Cycler ── */
+        .list-rotate-wrapper {
+            margin: 1.5rem 0 2.5rem;
+            position: relative;
+            overflow: hidden;
+            max-height: 9em;
+        }
+
+        .list-rotate-wrapper::before,
+        .list-rotate-wrapper::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 28%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .list-rotate-wrapper::before {
+            top: 0;
+            background: linear-gradient(to bottom, var(--color-bg) 10%, transparent 100%);
+        }
+
+        .list-rotate-wrapper::after {
+            bottom: 0;
+            background: linear-gradient(to top, var(--color-bg) 10%, transparent 100%);
+        }
+
+        [data-list-rotate] {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            will-change: transform;
+        }
+
+        [data-list-rotate] li {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--color-text-primary);
+            opacity: 0.22;
+            padding: 0.28em 0;
+            position: relative;
+            white-space: nowrap;
+            transition: opacity 640ms ease, padding-left 640ms ease;
+        }
+
+        [data-list-rotate] li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0.35em;
+            height: 0.35em;
+            border-radius: 50%;
+            background: var(--color-text-primary);
+            transform: translate(-250%, -50%);
+            opacity: 0;
+            transition: transform 640ms ease, opacity 420ms ease;
+        }
+
+        [data-list-rotate] li.--active {
+            opacity: 1;
+            padding-left: 1.1em;
+        }
+
+        [data-list-rotate] li.--active::before {
+            transform: translate(0, -50%);
+            opacity: 1;
+        }
+
+        [data-list-rotate] li.no-transition {
+            transition: none !important;
+        }
+
+        /* ── Nav ── */
+        @media (max-width: 991px) {
+            .hero_container {
+                padding-top: 100px;
+            }
+
+            .hide-mobile {
+                display: none !important;
+            }
+        }
+
+        .nav_minimal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 0;
+            z-index: 100;
+        }
+
+        .nav_container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav_right {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .nav_links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav_link {
+            font-family: var(--font-sans);
+            font-size: 13.5px;
+            font-weight: 450;
+            color: #5d5d5d;
+            text-decoration: none;
+            transition: color 0.35s ease;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav_link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #242424;
+            transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav_link:hover {
+            color: #242424;
+        }
+
+        .nav_link:hover::after {
+            width: 100%;
+        }
+
+        .nav_actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .cta_group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .btn_verta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
+            background-color: var(--color-text-primary);
+            color: #fff;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            border-radius: 2px;
+            transition: background-color 0.25s ease, opacity 0.25s ease;
+        }
+
+        .btn_verta:hover {
+            background-color: #000;
+        }
+
+        .btn_verta svg path {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn_verta:hover .dot-1 {
+            transition-delay: 0s;
+            opacity: 0;
+        }
+
+        .btn_verta:hover .dot-2 {
+            transition-delay: 0.15s;
+            opacity: 0;
+        }
+
+        .btn_verta:hover .dot-3 {
+            transition-delay: 0.3s;
+            opacity: 0;
+        }
+
+        .btn_verta .dot-3 {
+            transition-delay: 0s;
+        }
+
+        .btn_verta .dot-2 {
+            transition-delay: 0.15s;
+        }
+
+        .btn_verta .dot-1 {
+            transition-delay: 0.3s;
+        }
+
+        /* ── Reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: reveal-anim 1.5s var(--transition-premium) forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+
+        .delay-5 {
+            animation-delay: 1.0s;
+        }
+
+        @keyframes reveal-anim {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .hero_container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 120px;
+                gap: 40px;
+            }
+
+            .eyebrow {
+                justify-content: center;
+            }
+
+            .hero_paragraph {
+                margin: 0 auto 3rem;
+            }
+
+            .cta_group {
+                justify-content: center;
+            }
+
+            .visual_container {
+                height: 360px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav_minimal">
+        <div class="nav_container">
+            <a href="#" class="logo_verta">
+                <img src="./assets/images/verta-logo.svg" alt="Verta"
+                    style="height: 26px; width: auto; display: block; border-radius: 0 !important; object-fit: contain; transform: none !important;">
+            </a>
+            <div class="nav_right">
+                <div class="nav_links hide-mobile">
+                    <a href="#" class="nav_link">Plataforma</a>
+                    <a href="#" class="nav_link">Como Funciona</a>
+                    <a href="#" class="nav_link">Empresa</a>
+                    <a href="#" class="nav_link">Blog</a>
+                </div>
+                <div class="nav_actions">
+                    <a href="#" class="btn_verta">
+                        <div>Agendar conversa estratégica</div>
+                        <div style="width:16px;height:16px;flex-shrink:0;">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="dot-1"
+                                    d="M8.005 0.766C7.279 0.766 6.69 1.355 6.69 2.081C6.69 2.808 7.279 3.396 8.005 3.396C8.732 3.396 9.32 2.081 9.32 2.081C9.32 1.355 8.732 0.766 8.005 0.766Z"
+                                    fill="currentColor" />
+                                <path class="dot-2"
+                                    d="M13.919 6.682C13.193 6.682 12.604 7.271 12.604 7.997C12.604 8.724 13.193 9.313 13.919 9.313C14.646 9.313 15.234 8.724 15.234 7.997C15.234 7.271 14.646 6.682 13.919 6.682Z"
+                                    fill="currentColor" />
+                                <path class="dot-3"
+                                    d="M8.005 12.602C7.279 12.602 6.69 13.191 6.69 13.917C6.69 14.644 7.279 15.232 8.005 15.232C8.732 15.232 9.32 14.644 9.32 13.917C9.32 13.191 8.732 12.602 8.005 12.602Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero_section">
+        <div class="hero_container">
+
+            <div class="hero_content">
+                <div class="eyebrow reveal delay-1">Infraestrutura de decisão para governança de riscos digitais.</div>
+
+                <h1 class="reveal delay-2">
+                    O humano decide.<br>
+                    A Verta qualifica.
+                </h1>
+
+                <div class="list-rotate-wrapper reveal delay-3">
+                    <ul data-list-rotate id="cycler_rail">
+                        <li>Conselheiros</li>
+                        <li class="--active">C-Level</li>
+                        <li>Líderes de Risco</li>
+                        <li>Investidores</li>
+                    </ul>
+                </div>
+
+                <p class="hero_paragraph reveal delay-4">
+                    Transformamos risco digital em contexto estratégico mensurável, conectando impacto financeiro,
+                    regulatório e reputacional para decisões mais conscientes no board e no C-Level.
+                </p>
+
+                <div class="cta_group reveal delay-5">
+                    <a href="#" class="btn_verta">
+                        <div>Agendar conversa estratégica</div>
+                        <div style="width:16px;height:16px;flex-shrink:0;">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="dot-1"
+                                    d="M8.005 0.766C7.279 0.766 6.69 1.355 6.69 2.081C6.69 2.808 7.279 3.396 8.005 3.396C8.732 3.396 9.32 2.808 9.32 2.081C9.32 1.355 8.732 0.766 8.005 0.766Z"
+                                    fill="currentColor" />
+                                <path class="dot-2"
+                                    d="M13.919 6.682C13.193 6.682 12.604 7.271 12.604 7.997C12.604 8.724 13.193 9.313 13.919 9.313C14.646 9.313 15.234 8.724 15.234 7.997C15.234 7.271 14.646 6.682 13.919 6.682Z"
+                                    fill="currentColor" />
+                                <path class="dot-3"
+                                    d="M8.005 12.602C7.279 12.602 6.69 13.191 6.69 13.917C6.69 14.644 7.279 15.232 8.005 15.232C8.732 15.232 9.32 14.644 9.32 13.917C9.32 13.191 8.732 12.602 8.005 12.602Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ── SVG Convergence Animation ── -->
+            <div class="visual_container reveal delay-3">
+                <div class="verta-svg-wrap">
+                    <svg id="verta-conv-svg" viewBox="-20 -20 660 540" xmlns="http://www.w3.org/2000/svg">
+                        <g id="vc-lines"></g>
+                        <g id="vc-nodes"></g>
+                        <g id="vc-center"></g>
+                        <g id="vc-particles"></g>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // ── Convergence SVG Animation ──────────────────────────────────
+            (function () {
+                const linesG = document.getElementById('vc-lines');
+                const nodesG = document.getElementById('vc-nodes');
+                const centerG = document.getElementById('vc-center');
+                const particlesG = document.getElementById('vc-particles');
+
+                if (!linesG) return;
+
+                const cx = 280, cy = 240;
+
+                const ACCENT = '#7F99F5';
+                const ACCENT_LIGHT = '#B8C8FA';
+                const ACCENT_SOFT = '#DCE4FE';
+                const DOT_IDLE = '#C9D6FD';
+
+                const nodes = [
+                    { id: 'risco', label: 'Risco Digital', angle: -90, r: 165 },
+                    { id: 'financeiro', label: 'Impacto Financeiro', angle: -30, r: 165 },
+                    { id: 'regulatorio', label: 'Contexto Regulatório', angle: 30, r: 165 },
+                    { id: 'mercado', label: 'Sinais de Mercado', angle: 90, r: 165 },
+                    { id: 'reputacao', label: 'Reputação', angle: 150, r: 165 },
+                    { id: 'esg', label: 'ESG & Compliance', angle: 210, r: 165 },
+                ];
+
+                function toRad(d) { return d * Math.PI / 180; }
+                function nodePos(n) {
+                    return {
+                        x: cx + n.r * Math.cos(toRad(n.angle)),
+                        y: cy + n.r * Math.sin(toRad(n.angle))
+                    };
+                }
+                function lerp(a, b, t) { return a + (b - a) * t; }
+                function easeIO(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+                function lerpColor(h1, h2, t) {
+                    const p = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+                    const [r1, g1, b1] = p(h1), [r2, g2, b2] = p(h2);
+                    return '#' + [lerp(r1, r2, t), lerp(g1, g2, t), lerp(b1, b2, t)]
+                        .map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
+                }
+
+                const particles = [];
+                const nodeStates = nodes.map(() => ({ glow: 0 }));
+
+                nodes.forEach((n, i) => {
+                    const pos = nodePos(n);
+
+                    // Line
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', pos.x); line.setAttribute('y1', pos.y);
+                    line.setAttribute('x2', cx); line.setAttribute('y2', cy);
+                    line.setAttribute('stroke', '#e5e5e5');
+                    line.setAttribute('stroke-width', '0.7');
+                    line.setAttribute('stroke-dasharray', '3 6');
+                    line.setAttribute('opacity', '0.5');
+                    line.id = 'vc-line-' + n.id;
+                    linesG.appendChild(line);
+
+                    // Node group
+                    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    g.id = 'vc-node-' + n.id;
+
+                    // Single minimal dot
+                    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    dot.setAttribute('cx', pos.x); dot.setAttribute('cy', pos.y);
+                    dot.setAttribute('r', '4');
+                    dot.setAttribute('fill', DOT_IDLE);
+                    dot.id = 'vc-dot-' + n.id;
+
+                    // Label positioning
+                    let lx = pos.x, ly = pos.y, anchor = 'middle';
+                    const off = 24, a = n.angle;
+                    if (a > -60 && a < 60) { lx = pos.x + off; anchor = 'start'; }
+                    else if (a >= 60 && a < 120) { ly = pos.y + off; }
+                    else if (a >= 120 || a <= -120) { lx = pos.x - off; anchor = 'end'; }
+                    else { ly = pos.y - off; }
+
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', lx); text.setAttribute('y', ly);
+                    text.setAttribute('text-anchor', anchor);
+                    text.setAttribute('dominant-baseline', 'central');
+                    text.setAttribute('class', 'verta-node-label');
+                    text.setAttribute('opacity', '0.45');
+                    text.id = 'vc-text-' + n.id;
+                    text.textContent = n.label;
+
+                    g.appendChild(dot);
+                    g.appendChild(text);
+                    nodesG.appendChild(g);
+
+                    // Particle
+                    const p = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    p.setAttribute('r', '2.2');
+                    p.setAttribute('fill', ACCENT);
+                    p.setAttribute('opacity', '0');
+                    particlesG.appendChild(p);
+
+                    particles.push({ el: p, pos: nodePos(n), t: i / nodes.length });
+                });
+
+                // Central element
+                const centerOuter = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                centerOuter.setAttribute('cx', cx); centerOuter.setAttribute('cy', cy);
+                centerOuter.setAttribute('r', '22');
+                centerOuter.setAttribute('fill', ACCENT_SOFT);
+                centerG.appendChild(centerOuter);
+
+                const centerCore = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                centerCore.setAttribute('cx', cx); centerCore.setAttribute('cy', cy);
+                centerCore.setAttribute('r', '7');
+                centerCore.setAttribute('fill', ACCENT);
+                centerG.appendChild(centerCore);
+
+                const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                centerText.setAttribute('x', cx); centerText.setAttribute('y', cy + 52);
+                centerText.setAttribute('text-anchor', 'middle');
+                centerText.setAttribute('class', 'verta-center-label');
+                centerText.style.fontSize = "14px";
+                centerText.style.fontWeight = "700";
+                centerText.textContent = 'DECISÃO';
+                centerG.appendChild(centerText);
+
+                const tagline1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                tagline1.setAttribute('x', cx); tagline1.setAttribute('y', cy + 72);
+                tagline1.setAttribute('text-anchor', 'middle');
+                tagline1.setAttribute('class', 'verta-tagline');
+                tagline1.style.fontSize = "11px";
+                tagline1.style.letterSpacing = "0.12em";
+                tagline1.style.textTransform = "uppercase";
+                tagline1.textContent = 'convergência';
+                centerG.appendChild(tagline1);
+
+                const tagline2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                tagline2.setAttribute('x', cx); tagline2.setAttribute('y', cy + 88);
+                tagline2.setAttribute('text-anchor', 'middle');
+                tagline2.setAttribute('class', 'verta-tagline');
+                tagline2.style.fontSize = "11px";
+                tagline2.style.letterSpacing = "0.12em";
+                tagline2.style.textTransform = "uppercase";
+                tagline2.textContent = 'estratégica';
+                centerG.appendChild(tagline2);
+
+                let activeNode = 0, switchTimer = 0;
+                const SWITCH_INTERVAL = 220;
+                const LERP_SPEED = 0.02;
+
+                function animate() {
+                    switchTimer++;
+                    if (switchTimer >= SWITCH_INTERVAL) {
+                        switchTimer = 0;
+                        activeNode = (activeNode + 1) % nodes.length;
+                    }
+
+                    nodes.forEach((n, i) => {
+                        const state = nodeStates[i];
+                        state.glow = lerp(state.glow, i === activeNode ? 1 : 0, LERP_SPEED);
+                        const gv = state.glow;
+
+                        const dot = document.getElementById('vc-dot-' + n.id);
+                        const text = document.getElementById('vc-text-' + n.id);
+                        const line = document.getElementById('vc-line-' + n.id);
+
+                        if (dot) { dot.setAttribute('fill', lerpColor(DOT_IDLE, ACCENT, gv)); dot.setAttribute('r', lerp(4, 5.5, gv)); }
+                        if (text) { text.setAttribute('opacity', lerp(0.45, 1, gv)); }
+                        if (line) {
+                            line.setAttribute('stroke', lerpColor('#e5e5e5', ACCENT_LIGHT, gv));
+                            line.setAttribute('opacity', lerp(0.4, 0.9, gv));
+                            line.setAttribute('stroke-width', lerp(0.7, 1.3, gv));
+                        }
+                    });
+
+                    particles.forEach(p => {
+                        p.t = (p.t + 0.0028) % 1;
+                        const e = easeIO(p.t);
+                        p.el.setAttribute('cx', lerp(p.pos.x, cx, e));
+                        p.el.setAttribute('cy', lerp(p.pos.y, cy, e));
+                        const fade = p.t < 0.15 ? p.t / 0.15 : p.t > 0.85 ? (1 - p.t) / 0.15 : 1;
+                        p.el.setAttribute('opacity', fade * 0.5);
+                    });
+
+                    // Subtle breathing
+                    const breathe = 1 + 0.04 * Math.sin(Date.now() * 0.0012);
+                    centerOuter.setAttribute('r', 22 * breathe);
+                    centerCore.setAttribute('r', 7 * breathe);
+
+                    requestAnimationFrame(animate);
+                }
+
+                setTimeout(() => animate(), 300);
+            })();
+
+            // ── Word Carousel ──────────────────────────────────────────────
+            (function () {
+                const rail = document.getElementById("cycler_rail");
+                if (!rail) return;
+
+                const wrapper = rail.parentElement;
+                const origItems = Array.from(rail.querySelectorAll("li"));
+
+                for (let c = 1; c < 20; c++) {
+                    origItems.forEach(orig => {
+                        const clone = orig.cloneNode(true);
+                        clone.classList.remove("--active");
+                        rail.appendChild(clone);
+                    });
+                }
+
+                const allItems = Array.from(rail.querySelectorAll("li"));
+                const setActive = idx => allItems.forEach((li, i) => li.classList.toggle("--active", i === idx));
+
+                const init = () => {
+                    const wrapH = wrapper.getBoundingClientRect().height || 200;
+                    const itemH = allItems[0].getBoundingClientRect().height || 32;
+                    const center = (wrapH - itemH) / 2;
+                    const tops = allItems.map(li => li.offsetTop);
+                    const getY = idx => center - tops[idx];
+
+                    let focusIdx = 1;
+                    gsap.set(rail, { y: getY(focusIdx) });
+                    setActive(focusIdx);
+
+                    setInterval(() => {
+                        if (focusIdx >= allItems.length - 1) {
+                            allItems.forEach(li => li.classList.add("no-transition"));
+                            focusIdx = 1;
+                            gsap.set(rail, { y: getY(focusIdx) });
+                            setActive(focusIdx);
+                            setTimeout(() => allItems.forEach(li => li.classList.remove("no-transition")), 120);
+                            return;
+                        }
+                        focusIdx++;
+                        gsap.to(rail, {
+                            y: getY(focusIdx),
+                            duration: 1.1,
+                            ease: "power4.inOut",
+                            onStart: () => setActive(focusIdx)
+                        });
+                    }, 3200);
+                };
+
+                (document.fonts ? document.fonts.ready : Promise.resolve()).then(init).catch(init);
+            })();
+
+        });
+    </script>
+</body>
+
+</html>
