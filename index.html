@@ -64,35 +64,34 @@
             border-radius: 50%;
         }
 
-        .hero_paragraph {
-            font-size: 1.25rem;
-            line-height: 1.5;
-            color: var(--color-text-secondary);
-            max-width: 540px;
-            margin-bottom: 3rem;
-        }
 
-        .hero_section {
+        .hero {
             min-height: 100vh;
+            padding: 140px 0 60px;
             display: flex;
             align-items: center;
-            padding: 140px 5% 60px;
             position: relative;
             overflow: hidden;
+            background-color: var(--color-bg);
         }
 
-        .hero_container {
-            width: 100%;
+        .hero-inner {
+            width: 90%;
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            display: flex;
+            flex-wrap: wrap;
             align-items: center;
+            gap: 4rem;
         }
 
-        /* ── Visual Container: SVG Convergence ── */
-        .visual_container {
+        .hero-content {
+            flex: 1 1 500px;
+            z-index: 2;
+        }
+
+        .hero-visual {
+            flex: 1 1 500px;
             position: relative;
             height: 600px;
             display: flex;
@@ -101,6 +100,114 @@
             overflow: visible;
         }
 
+        .v-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid rgba(127, 153, 245, 0.2);
+            /* Using accent color for border */
+            background: rgba(127, 153, 245, 0.05);
+            /* Soft accent background */
+            margin-bottom: 1.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .v-badge::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-primary);
+        }
+
+        .hero-subtitle {
+            max-width: 36rem;
+            font-family: var(--font-sans);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1.75rem;
+            border-radius: 4px;
+            /* Maintaining the sharp/premium look of the existing site */
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .button-primary {
+            background: var(--color-text-primary);
+            color: #ffffff;
+            border: 1px solid var(--color-text-primary);
+        }
+
+        .button-primary:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-secondary {
+            background: transparent;
+            color: var(--color-text-primary);
+            border: 1px solid rgba(36, 36, 36, 0.2);
+        }
+
+        .button-secondary:hover {
+            border-color: var(--color-text-primary);
+            background: rgba(36, 36, 36, 0.02);
+            transform: translateY(-2px);
+        }
+
+        .hero-footnote {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-footnote span {
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        /* ── SVG Convergence Styling (kept from original) ── */
         .verta-svg-wrap {
             width: 100%;
             height: 100%;
@@ -116,7 +223,7 @@
         }
 
         .verta-node-label {
-            font-family: "Suisseintl", "Inter", sans-serif;
+            font-family: var(--font-sans);
             font-size: 11px;
             font-weight: 500;
             letter-spacing: 0.05em;
@@ -125,7 +232,7 @@
         }
 
         .verta-center-label {
-            font-family: "Suisseintl", "Inter", sans-serif;
+            font-family: var(--font-sans);
             font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.1em;
@@ -134,7 +241,7 @@
         }
 
         .verta-tagline {
-            font-family: "Suisseintl", "Inter", sans-serif;
+            font-family: var(--font-sans);
             font-size: 10px;
             font-weight: 400;
             letter-spacing: 0.04em;
@@ -181,6 +288,7 @@
         [data-list-rotate] li {
             font-family: var(--font-sans);
             font-size: 0.9rem;
+            /* Adjusted from original to fit new hero style */
             font-weight: 400;
             color: var(--color-text-primary);
             opacity: 0.22;
@@ -206,7 +314,7 @@
 
         [data-list-rotate] li.--active {
             opacity: 1;
-            padding-left: 1.1em;
+            padding-left: 1.25em;
         }
 
         [data-list-rotate] li.--active::before {
@@ -218,14 +326,33 @@
             transition: none !important;
         }
 
-        /* ── Nav ── */
         @media (max-width: 991px) {
-            .hero_container {
-                padding-top: 100px;
+            .hero {
+                text-align: center;
+                padding-top: 120px;
             }
 
-            .hide-mobile {
-                display: none !important;
+            .hero-inner {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .hero-content {
+                flex: 1 1 auto;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-footnote {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                height: 400px;
+                flex: 1 1 auto;
             }
         }
 
@@ -438,20 +565,26 @@
         }
 
         /* ── Segunda Dobra: Scroll Stacking ── */
+
         .section-diagnostico {
             background-color: var(--color-bg);
             position: relative;
-            padding: 0 5%;
+            padding: 0;
         }
 
         #diagnostico-content {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
             opacity: 1;
             transform: none;
         }
 
         /* Intro block — aparece antes do stacking */
         .diag-intro {
-            padding: 140px 5% 100px;
+            padding: 140px 0 100px;
+            width: 90%;
             max-width: 1400px;
             margin: 0 auto;
             opacity: 0;
@@ -465,25 +598,7 @@
         }
 
         .section-label {
-            font-family: var(--font-sans);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--color-accent);
             margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-label::before {
-            content: "";
-            width: 6px;
-            height: 6px;
-            background: var(--color-accent);
-            border-radius: 50%;
-            flex-shrink: 0;
         }
 
         .diag-headline {
@@ -514,9 +629,6 @@
             transform: translateY(0);
         }
 
-        .diag-header-left {
-            /* Ocupa apenas a 1a coluna do novo grid de 2 */
-        }
 
         .diag-header-title {
             font-family: var(--font-serif);
@@ -595,7 +707,6 @@
             background: #fff;
         }
 
-        .card-top {}
 
         .card-number {
             font-family: var(--font-sans);
@@ -707,6 +818,160 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ── SEÇÃO TIMELINE (dark) ─────────────────────────── */
+        .section-timeline {
+            background: #111111;
+            color: #f0f0f0;
+            padding: 8rem 0 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-timeline__inner {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            padding-top: 18vh;
+            /* Moved content higher up */
+            gap: 6rem;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .timeline-sticky-col {
+            padding-bottom: 2rem;
+        }
+
+        .section-timeline__header {
+            max-width: 100%;
+        }
+
+        .section-timeline__title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 2rem;
+        }
+
+        .section-timeline__intro {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #888;
+            max-width: 500px;
+        }
+
+        /* Stacked Items for Parallax Reveal */
+        .timeline-scroll-col {
+            position: relative;
+            width: 100%;
+            margin-top: 100px;
+            /* Aligned as requested */
+            min-height: 450px;
+        }
+
+        .timeline {
+            position: relative;
+            width: 100%;
+        }
+
+        .timeline__item {
+            position: absolute;
+            top: 0;
+            /* Anchored to top for perfect alignment across steps */
+            left: 0;
+            width: 100%;
+            display: flex;
+            gap: 3rem;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            /* Only active item is clickable */
+        }
+
+        .timeline__item.is-visible {
+            pointer-events: auto;
+        }
+
+        .timeline__marker {
+            flex-shrink: 0;
+            width: 12px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline__dot {
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 2;
+            margin-top: 0.45em;
+            box-shadow: 0 0 20px rgba(127, 153, 245, 0.8);
+        }
+
+        .timeline__line {
+            position: absolute;
+            top: 0.45em;
+            height: 15rem;
+            /* Standard length */
+            left: 50%;
+            width: 1px;
+            background: linear-gradient(to bottom, #7F99F5, transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline__content {
+            flex-grow: 1;
+            max-width: 720px;
+        }
+
+        .timeline__eyebrow {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #7F99F5;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        .timeline__heading {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline__text {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #aaaaaa;
+        }
+
+        @media (max-width: 991px) {
+            .section-timeline__inner {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                min-height: auto;
+                padding: 100px 0;
+            }
+
+            .timeline-scroll-col {
+                height: 500px;
+            }
+        }
     </style>
 </head>
 
@@ -748,17 +1013,26 @@
         </div>
     </nav>
 
-    <section class="hero_section">
-        <div class="hero_container">
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <!-- Label / badge acima da headline -->
+                <div class="v-badge reveal delay-1">
+                    Infraestrutura de decisão para boards e C-Levels
+                </div>
 
-            <div class="hero_content">
-                <div class="eyebrow reveal delay-1">Infraestrutura de decisão para governança de riscos digitais.</div>
-
-                <h1 class="reveal delay-2">
-                    O humano decide.<br>
-                    A Verta qualifica.
+                <!-- Headline ajustada -->
+                <h1 class="hero-title reveal delay-2">
+                    Transformamos risco digital em contexto estratégico para quem decide.
                 </h1>
 
+                <!-- Subheadline ajustada a partir do seu texto -->
+                <p class="hero-subtitle reveal delay-3">
+                    Conectamos risco técnico, impacto financeiro, regulatório e reputacional em uma visão única,
+                    mensurável e contínua, para decisões mais conscientes no board e no C-Level.
+                </p>
+
+                <!-- Word Cycler Slide -->
                 <div class="list-rotate-wrapper reveal delay-3">
                     <ul data-list-rotate id="cycler_rail">
                         <li>Conselheiros</li>
@@ -767,35 +1041,10 @@
                         <li>Investidores</li>
                     </ul>
                 </div>
-
-                <p class="hero_paragraph reveal delay-4">
-                    Transformamos risco digital em contexto estratégico mensurável, conectando impacto financeiro,
-                    regulatório e reputacional para decisões mais conscientes no board e no C-Level.
-                </p>
-
-                <div class="cta_group reveal delay-5">
-                    <a href="#" class="btn_verta">
-                        <div>Agendar conversa estratégica</div>
-                        <div style="width:16px;height:16px;flex-shrink:0;">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path class="dot-1"
-                                    d="M8.005 0.766C7.279 0.766 6.69 1.355 6.69 2.081C6.69 2.808 7.279 3.396 8.005 3.396C8.732 3.396 9.32 2.808 9.32 2.081C9.32 1.355 8.732 0.766 8.005 0.766Z"
-                                    fill="currentColor" />
-                                <path class="dot-2"
-                                    d="M13.919 6.682C13.193 6.682 12.604 7.271 12.604 7.997C12.604 8.724 13.193 9.313 13.919 9.313C14.646 9.313 15.234 8.724 15.234 7.997C15.234 7.271 14.646 6.682 13.919 6.682Z"
-                                    fill="currentColor" />
-                                <path class="dot-3"
-                                    d="M8.005 12.602C7.279 12.602 6.69 13.191 6.69 13.917C6.69 14.644 7.279 15.232 8.005 15.232C8.732 15.232 9.32 14.644 9.32 13.917C9.32 13.191 8.732 12.602 8.005 12.602Z"
-                                    fill="currentColor" />
-                            </svg>
-                        </div>
-                    </a>
-                </div>
             </div>
 
-            <!-- ── SVG Convergence Animation ── -->
-            <div class="visual_container reveal delay-3">
+            <!-- Caso você já tenha um lado visual/3D/avatar, mantém o container -->
+            <div class="hero-visual reveal delay-3">
                 <div class="verta-svg-wrap">
                     <svg id="verta-conv-svg" viewBox="-20 -20 660 540" xmlns="http://www.w3.org/2000/svg">
                         <g id="vc-lines"></g>
@@ -805,11 +1054,11 @@
                     </svg>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- ── Segunda Dobra: Header + Cards ── -->
+
     <section class="section-diagnostico" id="diagnostico">
 
         <!-- A linha divisória no topo -->
@@ -824,7 +1073,7 @@
             <!-- Header horizontal: Alinhado ao grid de 3 colunas -->
             <div class="diag-header">
                 <div class="diag-header-left">
-                    <p class="section-label">O Diagnóstico</p>
+                    <p class="section-label v-badge">O Diagnóstico</p>
                     <h2 class="diag-header-title">
                         O risco digital evoluiu.<br>
                         A governança não acompanhou.
@@ -880,7 +1129,89 @@
 
     </section>
 
+    <!-- SEÇÃO — COMO A VERTA MUDA A DINÂMICA DA DECISÃO -->
+    <section class="section section-timeline">
+        <div class="section-timeline__inner">
+
+            <div class="timeline-sticky-col">
+                <header class="section-timeline__header">
+                    <p class="v-badge">O Ciclo da Decisão</p>
+                    <h2 class="section-timeline__title">
+                        Como a Verta muda a dinâmica da decisão
+                    </h2>
+                    <p class="section-timeline__intro">
+                        Da preparação silenciosa ao aprendizado pós-reunião, a Verta acompanha o conselho
+                        em todo o ciclo da decisão — sem substituir o julgamento humano.
+                    </p>
+                </header>
+            </div>
+
+            <div class="timeline-scroll-col">
+                <!-- Timeline vertical -->
+                <div class="timeline">
+
+                    <!-- Item 1 -->
+                    <div class="timeline__item">
+                        <div class="timeline__marker">
+                            <span class="timeline__dot"></span>
+                            <span class="timeline__line"></span>
+                        </div>
+                        <div class="timeline__content">
+                            <span class="timeline__eyebrow">01 — Antes da reunião</span>
+                            <h3 class="timeline__heading">Um único ponto de partida</h3>
+                            <p class="timeline__text">
+                                O conselho não precisa mais navegar por PDFs, e-mails e versões diferentes
+                                da mesma verdade. A Verta organiza o essencial: decisões passadas,
+                                riscos críticos, contexto regulatório e sinais de mercado — em um
+                                único ponto de partida.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="timeline__item">
+                        <div class="timeline__marker">
+                            <span class="timeline__dot"></span>
+                            <span class="timeline__line"></span>
+                        </div>
+                        <div class="timeline__content">
+                            <span class="timeline__eyebrow">02 — Durante a discussão</span>
+                            <h3 class="timeline__heading">Avatar como apoio cognitivo</h3>
+                            <p class="timeline__text">
+                                O avatar da Verta acompanha a conversa em tempo real, conectando risco,
+                                impacto financeiro e regulação em respostas curtas, precisas e neutras.
+                                Cada conselheiro prepara perguntas melhores, testa cenários em silêncio
+                                e vota com mais contexto.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="timeline__item timeline__item--last">
+                        <div class="timeline__marker">
+                            <span class="timeline__dot"></span>
+                            <span class="timeline__line"></span>
+                        </div>
+                        <div class="timeline__content">
+                            <span class="timeline__eyebrow">03 — Depois da decisão</span>
+                            <h3 class="timeline__heading">Contexto que não se perde</h3>
+                            <p class="timeline__text">
+                                Nada se perde em atas e memórias individuais. A Verta conserva o contexto,
+                                revela padrões e alimenta agentes especializados que observam comitês e
+                                grupos de trabalho — para que o board comece a próxima reunião mais
+                                consciente do que decidiu e de como decide.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -1075,6 +1406,8 @@
                 setTimeout(() => animate(), 300);
             })();
 
+
+
             // ── Word Carousel ──────────────────────────────────────────────
             (function () {
                 const rail = document.getElementById("cycler_rail");
@@ -1221,6 +1554,41 @@
                 window.addEventListener('scroll', update, { passive: true });
                 window.addEventListener('resize', resize);
                 resize();
+            })();
+
+            // ── Timeline Scroll Trigger (Stacked Parallax) ─────────────────
+            (function () {
+                if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+                gsap.registerPlugin(ScrollTrigger);
+
+                const section = document.querySelector('.section-timeline');
+                const items = gsap.utils.toArray('.timeline__item');
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top top",
+                        end: "+=300%", // Durating of the sequence (3 screen heights)
+                        pin: true,
+                        scrub: 1,
+                        markers: false
+                    }
+                });
+
+                // Show item 1 immediately or shortly after start
+                tl.to(items[0], { autoAlpha: 1, duration: 0.5 });
+
+                // Fade out 1 and fade in 2
+                tl.to(items[0], { autoAlpha: 0, duration: 0.5 }, "+=1");
+                tl.to(items[1], { autoAlpha: 1, duration: 0.5 }, "<");
+
+                // Fade out 2 and fade in 3
+                tl.to(items[1], { autoAlpha: 0, duration: 0.5 }, "+=1");
+                tl.to(items[2], { autoAlpha: 1, duration: 0.5 }, "<");
+
+                // Final hold for item 3
+                tl.to({}, { duration: 0.5 });
+
             })();
 
         });
