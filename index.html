@@ -1568,18 +1568,18 @@
                     scrollTrigger: {
                         trigger: section,
                         start: "top top",
-                        end: "+=450%", // Increased budget to ensure a generous initial hold
+                        end: "+=320%", // Balanced budget for a snappier feel
                         pin: true,
                         scrub: 1,
                         markers: false
                     }
                 });
 
-                // 1. Extended initial hold to let the title/intro establish
-                tl.to({}, { duration: 2 });
+                // 1. Refined initial hold to let the title/intro establish
+                tl.to({}, { duration: 0.6 });
 
                 // 2. Step 01 appears
-                tl.to(items[0], { autoAlpha: 1, duration: 1 });
+                tl.to(items[0], { autoAlpha: 1, duration: 0.6 });
 
                 // Fade out 1 and fade in 2
                 tl.to(items[0], { autoAlpha: 0, duration: 0.5 }, "+=1");
