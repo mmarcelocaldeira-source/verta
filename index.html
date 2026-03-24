@@ -1568,15 +1568,18 @@
                     scrollTrigger: {
                         trigger: section,
                         start: "top top",
-                        end: "+=300%", // Durating of the sequence (3 screen heights)
+                        end: "+=450%", // Increased budget to ensure a generous initial hold
                         pin: true,
                         scrub: 1,
                         markers: false
                     }
                 });
 
-                // Show item 1 immediately or shortly after start
-                tl.to(items[0], { autoAlpha: 1, duration: 0.5 });
+                // 1. Extended initial hold to let the title/intro establish
+                tl.to({}, { duration: 2 });
+
+                // 2. Step 01 appears
+                tl.to(items[0], { autoAlpha: 1, duration: 1 });
 
                 // Fade out 1 and fade in 2
                 tl.to(items[0], { autoAlpha: 0, duration: 0.5 }, "+=1");
