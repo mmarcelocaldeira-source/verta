@@ -129,7 +129,7 @@
 
         .hero-title {
             font-family: var(--font-serif);
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 400;
             line-height: 1.05;
             letter-spacing: -0.03em;
@@ -344,6 +344,12 @@
             .hero-subtitle {
                 margin-left: auto;
                 margin-right: auto;
+                padding: 0 10px;
+            }
+
+            [data-list-rotate] li {
+                width: fit-content;
+                margin: 0 auto;
             }
 
             .hero-footnote {
@@ -477,6 +483,81 @@
 
         .btn_verta .dot-1 {
             transition-delay: 0.3s;
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        @media (max-width: 991px) {
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                z-index: 1001;
+                width: 32px;
+                height: 32px;
+                padding: 0;
+            }
+            .hamburger span {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background-color: var(--color-text-primary);
+                transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+                margin-left: auto;
+            }
+            .hamburger.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 24px; }
+            .hamburger.is-active span:nth-child(2) { opacity: 0; }
+            .hamburger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 24px; }
+
+            .nav_minimal {
+                padding: 24px 0;
+                z-index: 10000; /* overlay na tela toda */
+            }
+
+            .nav_right {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: var(--color-bg);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                z-index: 1000;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease, transform 0.4s ease;
+                transform: translateY(-20px);
+            }
+            .nav_right.is-active {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+            .nav_links {
+                flex-direction: column;
+                gap: 24px;
+                align-items: center;
+            }
+            .nav_link {
+                font-size: 20px;
+            }
+            .btn_verta {
+                padding: 14px 22px;
+                font-size: 14px;
+            }
+            .logo_verta {
+                z-index: 1001;
+                position: relative;
+            }
         }
 
         /* ── Reveal ── */
@@ -817,6 +898,11 @@
             .diag-cards-grid {
                 grid-template-columns: 1fr;
             }
+
+            .risk-card {
+                padding: 32px 24px 40px;
+                min-height: auto;
+            }
         }
 
         /* ── SEÇÃO PLATAFORMA HORIZONTAL TABS ─────────────────────────── */
@@ -955,16 +1041,18 @@
             .plat-tabs__right {
                 position: sticky;
                 top: 0;
-                height: 50vh;
+                height: 45vh;
                 order: -1;
-                z-index: 10;
+                z-index: 20;
                 display: flex;
                 align-items: center;
             }
 
             .plat-tabs__text-box {
                 background: var(--color-bg);
-                height: 45vh;
+                height: 100%;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+                border-radius: 0 0 16px 16px;
             }
 
             .plat-tabs__left {
@@ -976,11 +1064,11 @@
             .plat-image-item {
                 height: auto;
                 min-height: 300px;
-                margin-bottom: 2rem;
+                margin-bottom: 3rem;
             }
 
             .plat-text-content {
-                padding: 30px 20px;
+                padding: 40px 24px;
             }
         }
 
@@ -1066,15 +1154,15 @@
         }
 
         .timeline {
-            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
             width: 100%;
-            height: 300px; /* Reference height for the items to sit in */
         }
 
         .timeline__item {
-            position: absolute; /* Overlap in the same spot */
-            top: 0;
-            left: 0;
+            grid-column: 1 / -1;
+            grid-row: 1 / -1;
             width: 100%;
             display: flex;
             gap: 3rem;
@@ -1148,13 +1236,17 @@
         @media (max-width: 991px) {
             .section-timeline__inner {
                 grid-template-columns: 1fr;
-                gap: 4rem;
+                gap: 3rem;
                 min-height: auto;
-                padding: 100px 0;
+                padding: 80px 0;
             }
 
-            .timeline-scroll-col {
-                height: 500px;
+            .timeline__item {
+                gap: 1.5rem;
+            }
+
+            .timeline__line {
+                height: 12rem;
             }
         }
 
@@ -1190,20 +1282,17 @@
             align-items: center;
             gap: 60px 80px;
             margin-top: 64px;
+            min-height: 60px;
         }
 
         .partner-logo {
-            max-height: 40px;
-            max-width: 180px;
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            max-height: 60px; /* Aumentado de 40px */
+            max-width: 220px; /* Aumentado de 180px */
             width: auto;
             object-fit: contain;
-            opacity: 0.5;
-            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .partner-logo:hover {
-            opacity: 1;
-            transform: translateY(-4px) scale(1.05);
         }
 
         @media (max-width: 767px) {
@@ -1215,9 +1304,8 @@
                 margin-top: 40px;
             }
             .partner-logo {
-                max-height: 32px;
-                max-width: 140px;
-                opacity: 0.7;
+                max-height: 45px; /* Aumentado de 32px */
+                max-width: 160px; /* Aumentado de 140px */
             }
         }
     </style>
@@ -1231,8 +1319,8 @@
                 <img src="./assets/images/verta-logo.svg" alt="Verta"
                     style="height: 26px; width: auto; display: block; border-radius: 0 !important; object-fit: contain; transform: none !important;">
             </a>
-            <div class="nav_right">
-                <div class="nav_links hide-mobile">
+            <div class="nav_right" id="navRight">
+                <div class="nav_links">
                     <a href="#" class="nav_link">Plataforma</a>
                     <a href="#" class="nav_link">Como Funciona</a>
                     <a href="#" class="nav_link">Empresa</a>
@@ -1258,6 +1346,11 @@
                     </a>
                 </div>
             </div>
+            <button class="hamburger" id="navToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -1533,8 +1626,12 @@
                 <img src="./assets/images/p-logo-castle.svg" alt="Castle" class="partner-logo">
                 <img src="./assets/images/p-logo-elytron.svg" alt="Elytron" class="partner-logo">
                 <img src="./assets/images/p-logo-security-first.svg" alt="Security First" class="partner-logo">
+                
                 <img src="./assets/images/p-logo-tao.svg" alt="TAO" class="partner-logo">
                 <img src="./assets/images/p-logo-urbano-vitalino-vermelha.svg" alt="Urbano Vitalino" class="partner-logo">
+                <img src="./assets/images/p-logo-Alvarez-e-marsal.svg" alt="Alvarez e Marsal" class="partner-logo">
+                <img src="./assets/images/p-logo-bidweb.svg" alt="Bidweb" class="partner-logo">
+                <img src="./assets/images/p-logo-castle.svg" alt="Castle" class="partner-logo">
             </div>
         </div>
     </section>
@@ -1542,6 +1639,21 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+
+            // ── Mobile Menu Toggle ──────────────────────────────────
+            const navToggle = document.getElementById('navToggle');
+            const navRight = document.getElementById('navRight');
+            if(navToggle && navRight) {
+                navToggle.addEventListener('click', () => {
+                    navToggle.classList.toggle('is-active');
+                    navRight.classList.toggle('is-active');
+                    if (navRight.classList.contains('is-active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
 
             // ── Convergence SVG Animation ──────────────────────────────────
             (function () {
@@ -1958,18 +2070,88 @@
                 });
             }
 
-            // ── Partners Staggered Reveal ───────────────────────────
-            gsap.from(".partner-logo", {
-                scrollTrigger: {
-                    trigger: ".partners-grid",
+            // ── Partners Carousel ───────────────────────────
+            (function() {
+                const logos = gsap.utils.toArray(".partner-logo");
+                if (logos.length === 0) return;
+                
+                // Ocultar todos por segurança inicial
+                gsap.set(logos, { display: "none", autoAlpha: 0 });
+
+                const groupSize = 5;
+                let currentIndex = 0;
+                let isAnimating = false;
+
+                function showNextGroup() {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    
+                    const currentLogos = logos.filter(l => l.style.display !== "none" && l.style.display !== "");
+                    
+                    if (currentLogos.length > 0) {
+                        // Fade out o grupo atual
+                        gsap.to(currentLogos, {
+                            autoAlpha: 0,
+                            y: -15,
+                            duration: 0.5,
+                            stagger: 0.05,
+                            ease: "power2.in",
+                            onComplete: () => {
+                                gsap.set(currentLogos, { display: "none", y: 0 });
+                                fadeInNext();
+                            }
+                        });
+                    } else {
+                        fadeInNext();
+                    }
+                }
+
+                function fadeInNext() {
+                    let nextLogos = [];
+                    for (let i = 0; i < groupSize; i++) {
+                        let idx = (currentIndex + i) % logos.length;
+                        nextLogos.push(logos[idx]);
+                    }
+                    
+                    currentIndex = (currentIndex + groupSize) % logos.length;
+
+                    gsap.set(nextLogos, { display: "block", y: 15, autoAlpha: 0 });
+                    gsap.to(nextLogos, { 
+                        autoAlpha: 1, // Alterado de 0.5 para 1 (100% visível)
+                        y: 0, 
+                        duration: 0.6, 
+                        stagger: 0.1, 
+                        ease: "power2.out",
+                        onComplete: () => {
+                            isAnimating = false;
+                        }
+                    });
+                }
+
+                // Adicionar hover via JS
+                logos.forEach(logo => {
+                    logo.addEventListener('mouseenter', () => {
+                        if (logo.style.display !== "none") {
+                            gsap.to(logo, { y: -4, scale: 1.05, duration: 0.3, overwrite: "auto" });
+                        }
+                    });
+                    logo.addEventListener('mouseleave', () => {
+                        if (logo.style.display !== "none") {
+                            gsap.to(logo, { y: 0, scale: 1, duration: 0.3, overwrite: "auto" });
+                        }
+                    });
+                });
+
+                ScrollTrigger.create({
+                    trigger: ".section-partners",
                     start: "top 85%",
-                },
-                y: 30,
-                autoAlpha: 0,
-                duration: 1,
-                stagger: 0.1,
-                ease: "power3.out"
-            });
+                    once: true,
+                    onEnter: () => {
+                        showNextGroup();
+                        setInterval(showNextGroup, 4000);
+                    }
+                });
+            })();
         });
     </script>
 </body>
