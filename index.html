@@ -823,7 +823,7 @@
 
         .section-plat-tabs {
             background-color: var(--color-bg);
-            padding: 8rem 0;
+            padding: 4rem 0 8rem; /* Reduced top padding */
             overflow: visible;
             position: relative;
         }
@@ -831,7 +831,7 @@
         .plat-tabs__intro {
             width: 90%;
             max-width: 1400px;
-            margin: 0 auto 60px auto;
+            margin: 0 auto 30px auto; /* Reduced from 60px */
         }
 
         .plat-tabs__title {
@@ -857,8 +857,8 @@
             width: 90%;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: 1.7fr 0.8fr;
+            gap: 5rem;
             align-items: flex-start;
             position: relative;
         }
@@ -866,9 +866,10 @@
         .plat-tabs__left {
             display: flex;
             flex-direction: column;
-            gap: 15vh; /* Larger gap to ensure distinct triggers like RockFi */
-            padding-top: 20vh;
-            padding-bottom: 50vh; 
+            gap: 15vh;
+            /* Larger gap to ensure distinct triggers like RockFi */
+            padding-top: 10vh; /* Reduced from 20vh */
+            padding-bottom: 20vh;
         }
 
         .plat-image-item {
@@ -878,8 +879,8 @@
             border-radius: 8px;
             overflow: hidden;
             background: transparent;
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .plat-image-item img {
@@ -911,7 +912,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            padding: 60px 40px;
+            padding: 40px 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -973,7 +974,9 @@
             }
 
             .plat-image-item {
-                height: 45vh;
+                height: auto;
+                min-height: 300px;
+                margin-bottom: 2rem;
             }
 
             .plat-text-content {
@@ -1013,7 +1016,7 @@
         .section-timeline {
             background: #111111;
             color: #f0f0f0;
-            padding: 8rem 0 8rem;
+            padding: 4rem 0 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -1024,10 +1027,8 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            padding-top: 18vh;
-            /* Moved content higher up */
             gap: 6rem;
-            align-items: flex-start;
+            align-items: center; /* Centering the grid container's children */
             min-height: 100vh;
         }
 
@@ -1058,23 +1059,21 @@
         }
 
         /* Stacked Items for Parallax Reveal */
+        /* Timeline scroll col — static stacked layout */
         .timeline-scroll-col {
             position: relative;
             width: 100%;
-            margin-top: 100px;
-            /* Aligned as requested */
-            min-height: 450px;
         }
 
         .timeline {
             position: relative;
             width: 100%;
+            height: 300px; /* Reference height for the items to sit in */
         }
 
         .timeline__item {
-            position: absolute;
+            position: absolute; /* Overlap in the same spot */
             top: 0;
-            /* Anchored to top for perfect alignment across steps */
             left: 0;
             width: 100%;
             display: flex;
@@ -1082,11 +1081,6 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            /* Only active item is clickable */
-        }
-
-        .timeline__item.is-visible {
-            pointer-events: auto;
         }
 
         .timeline__marker {
@@ -1161,6 +1155,69 @@
 
             .timeline-scroll-col {
                 height: 500px;
+            }
+        }
+
+        /* ── SEÇÃO PARTNERS ─────────────────────────── */
+        .section-partners {
+            background-color: #111111;
+            padding: 100px 0 140px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .partners-container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-partners .plat-tabs__title {
+            color: #ffffff;
+        }
+
+        .section-partners .v-badge {
+            color: #ffffff;
+            border-color: rgba(127, 153, 245, 0.3);
+            background: rgba(127, 153, 245, 0.1);
+        }
+
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 60px 80px;
+            margin-top: 64px;
+        }
+
+        .partner-logo {
+            max-height: 40px;
+            max-width: 180px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.5;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        @media (max-width: 767px) {
+            .section-partners {
+                padding: 60px 0 80px;
+            }
+            .partners-grid {
+                gap: 40px 32px;
+                margin-top: 40px;
+            }
+            .partner-logo {
+                max-height: 32px;
+                max-width: 140px;
+                opacity: 0.7;
             }
         }
     </style>
@@ -1428,7 +1485,7 @@
                     <img src="./assets/images/planodeacao.png" alt="Plano de Ação" />
                 </div>
             </div>
-            
+
             <div class="plat-tabs__right">
                 <div class="plat-tabs__text-box">
                     <div class="plat-text-content is-active">
@@ -1462,6 +1519,23 @@
                 O que não é medido, não é governado.<br>
                 <em>A Verta mede. Compara. Traduz.</em>
             </p>
+        </div>
+    <!-- SEÇÃO — PARCEIROS -->
+    <section class="section section-partners">
+        <div class="partners-container">
+            <div class="reveal delay-1">
+                <p class="section-label v-badge" style="margin-left: auto; margin-right: auto; width: fit-content;">Ecossistema</p>
+                <h2 class="plat-tabs__title">Parceiros Estratégicos</h2>
+            </div>
+            <div class="partners-grid">
+                <img src="./assets/images/p-logo-Alvarez-e-marsal.svg" alt="Alvarez e Marsal" class="partner-logo">
+                <img src="./assets/images/p-logo-bidweb.svg" alt="Bidweb" class="partner-logo">
+                <img src="./assets/images/p-logo-castle.svg" alt="Castle" class="partner-logo">
+                <img src="./assets/images/p-logo-elytron.svg" alt="Elytron" class="partner-logo">
+                <img src="./assets/images/p-logo-security-first.svg" alt="Security First" class="partner-logo">
+                <img src="./assets/images/p-logo-tao.svg" alt="TAO" class="partner-logo">
+                <img src="./assets/images/p-logo-urbano-vitalino-vermelha.svg" alt="Urbano Vitalino" class="partner-logo">
+            </div>
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -1810,42 +1884,51 @@
                 resize();
             })();
 
-            // ── Timeline Scroll Trigger (Stacked Parallax) ─────────────────
+            // ── Timeline Scroll Trigger ───────────────────────────
             (function () {
                 if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
                 gsap.registerPlugin(ScrollTrigger);
 
                 const section = document.querySelector('.section-timeline');
                 const items = gsap.utils.toArray('.timeline__item');
+                if (!section || items.length === 0) return;
 
+                // Ensure items are hidden before GSAP starts (prevents flash on load)
+                gsap.set(items, { autoAlpha: 0, y: 30 });
+
+                // Single timeline: pin + all animations in one ScrollTrigger
+                // pinSpacing:true = Plataforma is pushed down correctly,
+                // and only rises after the entire scroll budget is consumed
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: section,
                         start: "top top",
-                        end: "+=220%", // Snappier scroll budget
+                        end: "+=280%",
                         pin: true,
+                        pinSpacing: true,
                         scrub: 1,
-                        markers: false
+                        invalidateOnRefresh: true
                     }
                 });
 
-                // 1. Initial hold
-                tl.to({}, { duration: 0.4 });
+                // Brief pause before first step appears
+                tl.to({}, { duration: 0.5 });
 
-                // 2. Step 01 appears
-                tl.to(items[0], { autoAlpha: 1, duration: 0.6 });
+                // Step 01: enter → hold → exit
+                tl.to(items[0], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" });
+                tl.to({}, { duration: 1.2 });
+                tl.to(items[0], { autoAlpha: 0, y: -20, duration: 0.6, ease: "none" });
 
-                // Fade out 1 and fade in 2
-                tl.to(items[0], { autoAlpha: 0, duration: 0.6 }, "+=0.8");
-                tl.to(items[1], { autoAlpha: 1, duration: 0.6 }, "<");
+                // Step 02: enter → hold → exit
+                tl.to(items[1], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" }, "<");
+                tl.to({}, { duration: 1.2 });
+                tl.to(items[1], { autoAlpha: 0, y: -20, duration: 0.6, ease: "none" });
 
-                // Fade out 2 and fade in 3
-                tl.to(items[1], { autoAlpha: 0, duration: 0.6 }, "+=0.8");
-                tl.to(items[2], { autoAlpha: 1, duration: 0.6 }, "<");
-
-                // Final small hold - brings up the next section faster
-                tl.to({}, { duration: 0.2 });
-
+                // Step 03: enter → long hold
+                // During this hold the user keeps scrolling — timeline stays pinned with 03 visible
+                // When budget runs out, pin releases and Plataforma rises naturally below
+                tl.to(items[2], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" }, "<");
+                tl.to({}, { duration: 1.5 }); // Hold on step 03 — Plataforma rises below during this
             })();
 
             // ── Plataforma Vertical Scroll ───────────────────────────
@@ -1854,20 +1937,39 @@
 
             if (platImages.length > 0 && platContents.length > 0) {
                 platImages.forEach((imgItem, i) => {
+                    const isLast = i === platImages.length - 1;
+
                     ScrollTrigger.create({
                         trigger: imgItem,
                         start: "top center", // Trigger shift when image hits center
+                        end: isLast ? "top center" : "bottom center",
                         onEnter: () => {
                             platContents.forEach(c => c.classList.remove('is-active'));
-                            if(platContents[i]) platContents[i].classList.add('is-active');
+                            if (platContents[i]) platContents[i].classList.add('is-active');
                         },
                         onEnterBack: () => {
                             platContents.forEach(c => c.classList.remove('is-active'));
-                            if(platContents[i]) platContents[i].classList.add('is-active');
+                            if (platContents[i]) platContents[i].classList.add('is-active');
                         }
                     });
+
+                    // For the last image, once it hits the center, we want to unlock the sticky
+                    // and have it move up with the image.
                 });
             }
+
+            // ── Partners Staggered Reveal ───────────────────────────
+            gsap.from(".partner-logo", {
+                scrollTrigger: {
+                    trigger: ".partners-grid",
+                    start: "top 85%",
+                },
+                y: 30,
+                autoAlpha: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out"
+            });
         });
     </script>
 </body>
