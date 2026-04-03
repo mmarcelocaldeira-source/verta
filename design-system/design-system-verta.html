@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verta - Design System</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Typography */
+      --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      
+      --font-size-h1: 72px;
+      --font-size-h2: 48px;
+      --font-size-h3: 32px;
+      --font-size-h4: 24px;
+      --font-size-body-lg: 18px;
+      --font-size-body: 16px;
+      --font-size-sm: 14px;
+      --font-size-xs: 12px;
+
+      --tracking-tight: -0.03em;
+      --tracking-normal: 0;
+      
+      /* Brand Colors */
+      --color-brand-50: #edf1fe;
+      --color-brand-100: #e1e7fc;
+      --color-brand-200: #c8d3f9;
+      --color-brand-300: #a7bcf5;
+      --color-brand-400: #7f99f5; /* Primary */
+      --color-brand-500: #627eea;
+      --color-brand-600: #4960d1;
+      --color-brand-700: #3b4eb1;
+      --color-brand-800: #2d3d8c;
+      --color-brand-900: #1b254d;
+
+      /* Neutrals */
+      --color-neutral-0: #ffffff;
+      --color-neutral-50: #f8fafc; /* Page Background */
+      --color-neutral-100: #f1f5f9;
+      --color-neutral-200: #e2e8f0;
+      --color-neutral-300: #cbd5e1;
+      --color-neutral-400: #94a3b8;
+      --color-neutral-500: #64748b;
+      --color-neutral-600: #475569;
+      --color-neutral-700: #334155;
+      --color-neutral-800: #1e293b;
+      --color-neutral-900: #0f172a; /* Main Text */
+
+      /* Semantics */
+      --color-success-100: #dcfce7;
+      --color-success-600: #16a34a;
+      --color-error-100: #fee2e2;
+      --color-error-600: #dc2626;
+
+      /* Spacing */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-32: 128px;
+
+      /* Radii */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-pill: 9999px;
+
+      /* Shadows (Stripe-inspired Layered Depth) */
+      --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.1);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -1px rgba(15, 23, 42, 0.03);
+      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+      --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.05), 0 10px 10px -5px rgba(15, 23, 42, 0.02);
+      
+      --shadow-brand-glow: 0 10px 25px -5px rgba(127, 153, 245, 0.4);
+
+      /* Transitions */
+      --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.5s cubic-bezier(0.22, 1, 0.36, 1); /* RockFi-style smooth snapping */
+    }
+
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-body);
+      line-height: 1.6;
+      color: var(--color-neutral-600);
+      background-color: var(--color-neutral-50);
+      -webkit-font-smoothing: antialiased;
+      padding-top: 80px;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: var(--font-display);
+      color: var(--color-neutral-900);
+      line-height: 1.1;
+      letter-spacing: var(--tracking-tight);
+    }
+
+    /* Navigation */
+    .ds-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-neutral-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-8);
+      z-index: 100;
+    }
+
+    .ds-nav-brand {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-neutral-900);
+      text-decoration: none;
+      letter-spacing: var(--tracking-tight);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ds-nav-brand .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--color-brand-400);
+      box-shadow: 0 0 12px var(--color-brand-400);
+    }
+
+    .ds-nav-links {
+      display: flex;
+      gap: var(--space-6);
+      list-style: none;
+    }
+    .ds-nav-links a {
+      color: var(--color-neutral-600);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
+    .ds-nav-links a:hover { color: var(--color-brand-500); }
+
+    /* Hero Section (Cohere + Stripe aesthetics) */
+    .ds-hero {
+      position: relative;
+      padding: var(--space-24) var(--space-8) var(--space-16);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--color-neutral-50);
+      border-bottom: 1px solid var(--color-neutral-200);
+    }
+
+    /* Soft Mesh Gradient Background */
+    .ds-hero::before {
+      content: "";
+      position: absolute;
+      top: -20%; left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(circle, rgba(127,153,245,0.15) 0%, rgba(241,245,249,0) 60%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ds-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      animation: slideUp var(--transition-slow) forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .ds-hero h1 {
+      font-size: var(--font-size-h1);
+      margin-bottom: var(--space-6);
+      background: linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-600) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ds-hero p {
+      font-size: var(--font-size-body-lg);
+      max-width: 600px;
+      margin: 0 auto var(--space-8);
+      color: var(--color-neutral-500);
+    }
+
+    .ds-hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-4);
+    }
+
+    /* Generic Section */
+    .ds-section {
+      padding: var(--space-24) var(--space-8);
+      max-width: 1200px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--color-neutral-200);
+    }
+    .ds-section:last-child { border-bottom: none; }
+
+    .ds-section-title {
+      font-size: var(--font-size-h2);
+      margin-bottom: var(--space-4);
+    }
+
+    .ds-section-desc {
+      font-size: var(--font-size-body-lg);
+      margin-bottom: var(--space-12);
+      max-width: 600px;
+    }
+
+    /* Token Grid */
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-6);
+    }
+    
+    .token-card {
+      background: var(--color-neutral-0);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+    }
+    .token-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .color-swatch { height: 100px; width: 100%; }
+    .token-details { padding: var(--space-4); }
+    .token-name { font-weight: 600; font-size: var(--font-size-sm); color: var(--color-neutral-900); margin-bottom: 4px; }
+    .token-value { font-family: monospace; font-size: var(--font-size-xs); color: var(--color-neutral-500); }
+
+    /* Type Spec Table */
+    .type-table { width: 100%; border-collapse: collapse; }
+    .type-table th, .type-table td {
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--color-neutral-200);
+      text-align: left;
+    }
+    .type-table th { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-neutral-400); }
+    .type-preview { width: 60%; }
+    .type-details { width: 40%; text-align: right; color: var(--color-neutral-500); font-family: monospace; font-size: 13px; }
+
+    /* UI Components */
+    .component-row {
+      display: flex;
+      gap: var(--space-8);
+      align-items: flex-start;
+      margin-bottom: var(--space-12);
+      padding: var(--space-8);
+      background: var(--color-neutral-0);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-neutral-200);
+      box-shadow: var(--shadow-xs);
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      height: 48px;
+      font-family: var(--font-display);
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary {
+      background: var(--color-brand-400);
+      color: var(--color-neutral-0);
+      box-shadow: 0 2px 4px rgba(127, 153, 245, 0.3);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--color-brand-500);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-brand-glow);
+    }
+    .btn-primary:active:not(:disabled) { transform: translateY(0); box-shadow: 0 1px 2px rgba(127, 153, 245, 0.4); }
+
+    .btn-secondary {
+      background: var(--color-neutral-0);
+      color: var(--color-neutral-900);
+      border-color: var(--color-neutral-200);
+      box-shadow: var(--shadow-xs);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--color-neutral-50);
+      border-color: var(--color-neutral-300);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-brand-500);
+    }
+    .btn-ghost:hover:not(:disabled) {
+      background: var(--color-brand-50);
+    }
+
+    /* Inputs */
+    .input-group { display: flex; flex-direction: column; gap: var(--space-2); }
+    .input-label { font-size: var(--font-size-sm); font-weight: 500; color: var(--color-neutral-700); }
+    .input-field {
+      width: 280px;
+      height: 48px;
+      padding: 0 var(--space-4);
+      border: 1px solid var(--color-neutral-300);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--font-size-body);
+      color: var(--color-neutral-900);
+      background: var(--color-neutral-0);
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-xs);
+    }
+    .input-field::placeholder { color: var(--color-neutral-400); }
+    .input-field:hover { border-color: var(--color-neutral-400); }
+    .input-field:focus { 
+      outline: none; 
+      border-color: var(--color-brand-400); 
+      box-shadow: 0 0 0 3px var(--color-brand-100); 
+    }
+    .input-field.error { border-color: var(--color-error-600); }
+    .input-field:disabled { background: var(--color-neutral-100); cursor: not-allowed; }
+
+    /* Cards */
+    .ds-card {
+      background: var(--color-neutral-0);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      max-width: 340px;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .ds-card:hover {
+      border-color: var(--color-neutral-300);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .ds-card-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--color-brand-50);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-brand-500);
+      font-size: 24px;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex; align-items: center; padding: 4px 12px;
+      border-radius: var(--radius-pill); font-size: var(--font-size-xs);
+      font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .badge-primary { background: var(--color-brand-100); color: var(--color-brand-700); }
+    .badge-success { background: var(--color-success-100); color: var(--color-success-600); }
+    .badge-neutral { background: var(--color-neutral-100); color: var(--color-neutral-600); }
+
+    /* Layout Patterns */
+    .layout-demo {
+      background: var(--color-neutral-0);
+      border: 1px dashed var(--color-neutral-300);
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-8);
+    }
+    .grid-3-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    .grid-placeholder {
+      background: var(--color-neutral-50);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-md);
+      height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: var(--font-size-sm); color: var(--color-neutral-500);
+    }
+
+    /* Animations */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-scroll {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+    .animate-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Utilities */
+    .flex-col { display: flex; flex-direction: column; gap: var(--space-4); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="ds-nav">
+    <a href="#" class="ds-nav-brand">
+      <div class="dot"></div> Verta
+    </a>
+    <ul class="ds-nav-links">
+      <li><a href="#tokens">Tokens</a></li>
+      <li><a href="#typography">Tipografia</a></li>
+      <li><a href="#colors">Cores</a></li>
+      <li><a href="#components">Componentes</a></li>
+      <li><a href="#layout">Layout</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="ds-hero">
+    <div class="ds-hero-content">
+      <span class="badge badge-primary" style="margin-bottom: var(--space-4);">Design System v1.0</span>
+      <h1>Simplicidade e Sofisticação.</h1>
+      <p>Um sistema de design vivo, construído para ser premium, rápido e escalável. Inspirado pelas melhores interfaces financeiras e de tecnologia globais.</p>
+      <div class="ds-hero-actions">
+        <a href="#components" class="btn btn-primary">Ver Componentes</a>
+        <a href="#tokens" class="btn btn-secondary">Documentação</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENS / COLORS -->
+  <section id="colors" class="ds-section">
+    <h2 class="ds-section-title">Cores & Superfícies</h2>
+    <p class="ds-section-desc">Uma paleta baseada no elegante Verta Blue (#7F99F5), combinada com neutros frios (Slate) que garantem um contraste impecável no fundo claro.</p>
+
+    <h3 class="font-display" style="font-size: var(--font-size-h4); margin-bottom: var(--space-4);">Verta Brand</h3>
+    <div class="token-grid" style="margin-bottom: var(--space-12);">
+      <div class="token-card">
+        <div class="color-swatch" style="background: var(--color-brand-400);"></div>
+        <div class="token-details">
+          <div class="token-name">Primary 400</div>
+          <div class="token-value">#7F99F5</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="color-swatch" style="background: var(--color-brand-600);"></div>
+        <div class="token-details">
+          <div class="token-name">Hover 600</div>
+          <div class="token-value">#4960D1</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="color-swatch" style="background: var(--color-brand-900);"></div>
+        <div class="token-details">
+          <div class="token-name">Brand Dark 900</div>
+          <div class="token-value">#1B254D</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="color-swatch" style="background: var(--color-brand-100);"></div>
+        <div class="token-details">
+          <div class="token-name">Soft Fill 100</div>
+          <div class="token-value">#E1E7FC</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="font-display" style="font-size: var(--font-size-h4); margin-bottom: var(--space-4);">Neutrals Scale</h3>
+    <div class="token-grid">
+      <div class="token-card">
+        <div class="color-swatch" style="background: var(--color-neutral-900);"></div>
+        <div class="token-details">
+          <div class="token-name">Neutral 900 (Text)</div>
+          <div class="token-value">#0F172A</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="color-swatch" style="background: var(--color-neutral-600);"></div>
+        <div class="token-details">
+          <div class="token-name">Neutral 600 (Body)</div>
+          <div class="token-value">#475569</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="color-swatch" style="background: var(--color-neutral-200);"></div>
+        <div class="token-details">
+          <div class="token-name">Neutral 200 (Borders)</div>
+          <div class="token-value">#E2E8F0</div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="color-swatch" style="background: var(--color-neutral-50);"></div>
+        <div class="token-details">
+          <div class="token-name">Neutral 50 (Page BG)</div>
+          <div class="token-value">#F8FAFC</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section id="typography" class="ds-section">
+    <h2 class="ds-section-title">Tipografia</h2>
+    <p class="ds-section-desc">Uma combinação moderna de <b>Plus Jakarta Sans</b> para títulos com personalidade e <b>Inter</b> para legibilidade em textos e UI.</p>
+
+    <table class="type-table">
+      <thead>
+        <tr>
+          <th>Style & Preview</th>
+          <th>Size / Line-Height / Spacing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="type-preview"><h1 style="font-size: var(--font-size-h1);">Heading 1</h1></td>
+          <td class="type-details">72px / 1.1 / -0.03em / Bold</td>
+        </tr>
+        <tr>
+          <td class="type-preview"><h2 style="font-size: var(--font-size-h2);">Heading 2</h2></td>
+          <td class="type-details">48px / 1.1 / -0.03em / Bold</td>
+        </tr>
+        <tr>
+          <td class="type-preview"><h3 style="font-size: var(--font-size-h3);">Heading 3</h3></td>
+          <td class="type-details">32px / 1.1 / -0.03em / SemiBold</td>
+        </tr>
+        <tr>
+          <td class="type-preview" style="font-size: var(--font-size-body-lg);">Body Large</td>
+          <td class="type-details">18px / 1.6 / Normal / Regular</td>
+        </tr>
+        <tr>
+          <td class="type-preview" style="font-weight: 500;">Button / Tag Text</td>
+          <td class="type-details">14px / 1 / Normal / Medium</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- UI COMPONENTS -->
+  <section id="components" class="ds-section">
+    <h2 class="ds-section-title">Componentes de Interface</h2>
+    
+    <h3 class="font-display" style="font-size: var(--font-size-h4); margin-bottom: var(--space-4);">Botões</h3>
+    <div class="component-row">
+      <div class="flex-col">
+        <span class="token-name">Primary (Brand Glow)</span>
+        <div style="display: flex; gap: 16px;">
+          <button class="btn btn-primary">Avançar</button>
+          <button class="btn btn-primary" style="background: var(--color-brand-500); transform: translateY(-2px); box-shadow: var(--shadow-brand-glow);">Hover</button>
+        </div>
+      </div>
+      <div class="flex-col">
+        <span class="token-name">Secondary (Box Shadow)</span>
+        <div style="display: flex; gap: 16px;">
+          <button class="btn btn-secondary">Cancelar</button>
+          <button class="btn btn-secondary" style="background: var(--color-neutral-50); transform: translateY(-2px); box-shadow: var(--shadow-sm);">Hover</button>
+        </div>
+      </div>
+      <div class="flex-col">
+        <span class="token-name">Ghost</span>
+        <div style="display: flex; gap: 16px;">
+          <button class="btn btn-ghost">Saiba mais</button>
+          <button class="btn btn-ghost" style="background: var(--color-brand-50);">Hover</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="font-display" style="font-size: var(--font-size-h4); margin-bottom: var(--space-4);">Inputs & Formulários</h3>
+    <div class="component-row">
+      <div class="input-group">
+        <label class="input-label">E-mail corporativo</label>
+        <input type="email" class="input-field" placeholder="exemplo@verta.com">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Estado Focus</label>
+        <input type="text" class="input-field" style="border-color: var(--color-brand-400); box-shadow: 0 0 0 3px var(--color-brand-100);" value="Verta">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Estado de Erro</label>
+        <input type="text" class="input-field error" value="Texto inválido">
+      </div>
+    </div>
+
+    <h3 class="font-display" style="font-size: var(--font-size-h4); margin-bottom: var(--space-4);">Cards & Badges</h3>
+    <div class="component-row" style="background: transparent; border: none; padding: 0; box-shadow: none;">
+      <div class="ds-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div class="ds-card-icon">✧</div>
+          <span class="badge badge-success">Novo</span>
+        </div>
+        <h4 class="font-display" style="font-size: var(--font-size-h4); font-weight: 600;">Integração Global</h4>
+        <p style="font-size: var(--font-size-sm);">Conecte suas finanças corporativas através de um único ecossistema seguro e escalável.</p>
+      </div>
+
+      <div class="ds-card" style="border-color: var(--color-neutral-300); transform: translateY(-4px); box-shadow: var(--shadow-lg);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div class="ds-card-icon">✦</div>
+          <span class="badge badge-primary">SaaS</span>
+        </div>
+        <h4 class="font-display" style="font-size: var(--font-size-h4); font-weight: 600;">Estado de Hover</h4>
+        <p style="font-size: var(--font-size-sm);">Demonstra a elevação clássica com sombras profundas que enriquecem a interface.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTION -->
+  <section id="layout" class="ds-section">
+    <h2 class="ds-section-title">Motion & Scroll Reveals</h2>
+    <p class="ds-section-desc">Uma experiência dinâmica usando curvas de aceleração precisas (cubic-bezier) que criam uma sensação orgânica.</p>
+
+    <div class="grid-3-col">
+      <div class="ds-card animate-scroll">
+        <h4 class="font-display" style="font-size: var(--font-size-body-lg); font-weight: 600;">Bloco 1</h4>
+        <p style="font-size: var(--font-size-sm);">Surge de baixo para cima acompanhando a rolagem.</p>
+      </div>
+      <div class="ds-card animate-scroll" style="transition-delay: 150ms;">
+        <h4 class="font-display" style="font-size: var(--font-size-body-lg); font-weight: 600;">Bloco 2</h4>
+        <p style="font-size: var(--font-size-sm);">Atraso programado (stagger) para fluxo ocular.</p>
+      </div>
+      <div class="ds-card animate-scroll" style="transition-delay: 300ms;">
+        <h4 class="font-display" style="font-size: var(--font-size-body-lg); font-weight: 600;">Bloco 3</h4>
+        <p style="font-size: var(--font-size-sm);">Suavidade total e elevação em CSS puro.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.animate-scroll').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
