@@ -8,6 +8,13 @@
         name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
+    <!-- DS Fonts: Plus Jakarta Sans (display) + Inter (body/UI) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
     <link
         href="https://cdn.prod.website-files.com/6895a11a67e50a85e0b93804/css/rockfixmekaa.webflow.shared.8bd7c0a5a.min.css"
         rel="stylesheet" type="text/css">
@@ -17,34 +24,104 @@
 
     <style>
         :root {
-            --color-bg: #f9f7f3;
-            --color-text-primary: #242424;
-            --color-text-secondary: #5d5d5d;
-            --color-accent: #7F99F5;
-            --color-neutral-accent: #3a3a2d;
+            /* ── Design System Tokens ── */
+
+            /* Surfaces */
+            --color-bg: #f8fafc;
+            /* neutral-50  */
+            --color-surface: #ffffff;
+            /* neutral-0   */
+            --color-border: #e2e8f0;
+            /* neutral-200 */
+            --color-border-strong: #cbd5e1;
+            /* neutral-300 */
+
+            /* Text */
+            --color-text-primary: #0f172a;
+            /* neutral-900 */
+            --color-text-secondary: #475569;
+            /* neutral-600 */
+            --color-text-muted: #64748b;
+            /* neutral-500 */
+
+            /* Brand (Verta Blue) */
+            --color-accent: #7f99f5;
+            /* brand-400   */
+            --color-accent-hover: #627eea;
+            /* brand-500   */
+            --color-accent-dark: #1b254d;
+            /* brand-900   */
+            --color-accent-soft: #e1e7fc;
+            /* brand-100   */
+            --color-accent-subtler: rgba(127, 153, 245, 0.08);
+
+            /* Typography */
+            --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+            /* Kept for SVG/wordmark references */
             --font-serif: "Reckless Rockfi", serif;
-            --font-sans: "Suisseintl", sans-serif;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+            /* Title scale (fluid) */
+            --title-xl: clamp(2.4rem, 4.6vw, 3.6rem);
+            --title-l: clamp(2rem, 3.6vw, 3rem);
+            --title-m: clamp(1.5rem, 2.6vw, 2.2rem);
+            --subtitle: 1.1rem;
+            /* hero-subtitle — padrão de todas as seções */
+
+            /* Spacing */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-12: 48px;
+            --space-16: 64px;
+            --space-24: 96px;
+
+            /* Radii */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-pill: 9999px;
+
+            /* Shadows */
+            --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+            --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.10);
+            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -1px rgba(15, 23, 42, 0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+            --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.05), 0 10px 10px -5px rgba(15, 23, 42, 0.02);
+            --shadow-brand-glow: 0 10px 25px -5px rgba(127, 153, 245, 0.40);
+
+            /* Transitions */
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
             --transition-premium: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         body {
             background-color: var(--color-bg);
             color: var(--color-text-primary);
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        h1 {
-            font-family: var(--font-serif);
-            font-weight: 400;
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
             line-height: 1.05;
             letter-spacing: -0.03em;
             color: var(--color-text-primary);
         }
 
         .eyebrow {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             text-transform: uppercase;
             letter-spacing: 0.12em;
             font-size: 11px;
@@ -73,6 +150,20 @@
             position: relative;
             overflow: hidden;
             background-color: var(--color-bg);
+            /* DS: soft mesh gradient behind hero */
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            left: 60%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(127, 153, 245, 0.12) 0%, transparent 65%);
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .hero-inner {
@@ -100,22 +191,32 @@
             overflow: visible;
         }
 
+        /* ── DS Badge ── */
         .v-badge {
             display: inline-flex;
             align-items: center;
-            padding: 0.5rem 1rem;
-            border-radius: 999px;
-            font-size: 0.7rem;
-            font-family: var(--font-sans);
+            padding: 4px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 11px;
+            font-family: var(--font-body);
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            border: 1px solid rgba(127, 153, 245, 0.2);
-            /* Using accent color for border */
-            background: rgba(127, 153, 245, 0.05);
-            /* Soft accent background */
+            border: 1px solid var(--color-accent-soft);
+            background: var(--color-accent-subtler);
             margin-bottom: 1.5rem;
-            color: var(--color-text-secondary);
+            color: var(--color-accent-hover);
+            opacity: 0.85;
+        }
+
+        /* Hero badge stays prominent */
+        .hero .v-badge {
+            font-size: 12px;
+            opacity: 1;
+            background: var(--color-accent-soft);
+            color: var(--color-accent-dark);
+            border-color: transparent;
+            box-shadow: var(--shadow-xs);
         }
 
         .v-badge::before {
@@ -124,13 +225,14 @@
             height: 6px;
             background-color: var(--color-accent);
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 8px;
+            box-shadow: 0 0 6px var(--color-accent);
         }
 
         .hero-title {
-            font-family: var(--font-serif);
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 400;
+            font-family: var(--font-display);
+            font-size: var(--title-xl);
+            font-weight: 700;
             line-height: 1.05;
             letter-spacing: -0.03em;
             margin-bottom: 1.5rem;
@@ -139,9 +241,9 @@
 
         .hero-subtitle {
             max-width: 36rem;
-            font-family: var(--font-sans);
-            font-size: 1.15rem;
-            line-height: 1.6;
+            font-family: var(--font-body);
+            font-size: var(--subtitle);
+            line-height: 1.65;
             color: var(--color-text-secondary);
             margin-bottom: 2.5rem;
         }
@@ -153,43 +255,91 @@
             margin-bottom: 2rem;
         }
 
+        /* ── DS Button System ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+            height: 44px;
+            border-radius: var(--radius-pill);
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all var(--transition-fast);
+        }
+
+        .btn--primary {
+            background: var(--color-accent);
+            color: #fff;
+            box-shadow: 0 2px 4px rgba(127, 153, 245, 0.30);
+        }
+
+        .btn--primary:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-brand-glow);
+        }
+
+        .btn--ghost {
+            background: var(--color-surface);
+            color: var(--color-text-primary);
+            border-color: var(--color-border);
+            box-shadow: var(--shadow-xs);
+        }
+
+        .btn--ghost:hover {
+            background: var(--color-bg);
+            border-color: var(--color-border-strong);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Legacy aliases — keep existing markup working */
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem 1.75rem;
-            border-radius: 4px;
-            /* Maintaining the sharp/premium look of the existing site */
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            font-weight: 500;
+            padding: 0 24px;
+            height: 44px;
+            border-radius: var(--radius-pill);
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1px solid transparent;
+            transition: all var(--transition-fast);
         }
 
         .button-primary {
-            background: var(--color-text-primary);
-            color: #ffffff;
-            border: 1px solid var(--color-text-primary);
+            background: var(--color-accent);
+            color: #fff;
+            box-shadow: 0 2px 4px rgba(127, 153, 245, 0.3);
         }
 
         .button-primary:hover {
-            background: #000;
+            background: var(--color-accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-brand-glow);
         }
 
         .button-secondary {
-            background: transparent;
+            background: var(--color-surface);
             color: var(--color-text-primary);
-            border: 1px solid rgba(36, 36, 36, 0.2);
+            border-color: var(--color-border);
+            box-shadow: var(--shadow-xs);
         }
 
         .button-secondary:hover {
-            border-color: var(--color-text-primary);
-            background: rgba(36, 36, 36, 0.02);
+            background: var(--color-bg);
+            border-color: var(--color-border-strong);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
 
         .hero-footnote {
@@ -207,45 +357,61 @@
             color: var(--color-text-primary);
         }
 
-        /* ── SVG Convergence Styling (kept from original) ── */
-        .verta-svg-wrap {
+        /* ── Hero Dashboard SVG Container ── */
+        .hero-dashboard-svg {
             width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            max-width: 960px;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .verta-svg-wrap svg {
-            width: 100%;
-            height: 100%;
-            max-width: 720px;
+        @media (max-width: 991px) {
+            .hero-dashboard-svg {
+                margin: 40px auto 0;
+                max-width: 100%;
+            }
         }
 
-        .verta-node-label {
-            font-family: var(--font-sans);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            fill: #5d5d5d;
-        }
+        @media (max-width: 760px) {
+            .verta-v4-toolbar {
+                flex-wrap: wrap;
+            }
 
-        .verta-center-label {
-            font-family: var(--font-sans);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            fill: #242424;
-        }
+            .toolbar-update {
+                margin-left: 0;
+                width: 100%;
+            }
 
-        .verta-tagline {
-            font-family: var(--font-sans);
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            fill: #9a9a9a;
+            .v4-score-layout,
+            .v4-bottom-split {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .v4-big-score {
+                font-size: 68px;
+            }
+
+            .metric-yellow {
+                font-size: 54px;
+            }
+
+            .metric-white {
+                font-size: 50px;
+            }
+
+            .v4-card {
+                padding: 22px 20px 24px;
+            }
+
+            .v4-grade-stack {
+                width: 100%;
+            }
         }
 
         /* ── Word Cycler ── */
@@ -286,9 +452,8 @@
         }
 
         [data-list-rotate] li {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             font-size: 0.9rem;
-            /* Adjusted from original to fit new hero style */
             font-weight: 400;
             color: var(--color-text-primary);
             opacity: 0.22;
@@ -362,6 +527,22 @@
             }
         }
 
+        /* ── Hero mobile: compact ── */
+        @media (max-width: 600px) {
+            .hero {
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+
+            .hero-visual {
+                height: 280px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+
         .nav_minimal {
             position: absolute;
             top: 0;
@@ -393,12 +574,12 @@
         }
 
         .nav_link {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             font-size: 13.5px;
-            font-weight: 450;
-            color: #5d5d5d;
+            font-weight: 500;
+            color: var(--color-text-secondary);
             text-decoration: none;
-            transition: color 0.35s ease;
+            transition: color var(--transition-fast);
             position: relative;
             padding: 4px 0;
         }
@@ -410,12 +591,12 @@
             left: 0;
             width: 0;
             height: 1px;
-            background-color: #242424;
-            transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            background-color: var(--color-accent);
+            transition: width var(--transition-slow);
         }
 
         .nav_link:hover {
-            color: #242424;
+            color: var(--color-text-primary);
         }
 
         .nav_link:hover::after {
@@ -437,20 +618,24 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 14px 22px;
-            background-color: var(--color-text-primary);
+            padding: 0 22px;
+            height: 44px;
+            background: var(--color-accent);
             color: #fff;
             text-decoration: none;
-            font-family: var(--font-sans);
+            font-family: var(--font-display);
             font-size: 13px;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            border-radius: 2px;
-            transition: background-color 0.25s ease, opacity 0.25s ease;
+            font-weight: 600;
+            letter-spacing: 0;
+            border-radius: var(--radius-pill);
+            transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+            box-shadow: 0 2px 4px rgba(127, 153, 245, 0.30);
         }
 
         .btn_verta:hover {
-            background-color: #000;
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-brand-glow);
         }
 
         .btn_verta svg path {
@@ -503,6 +688,7 @@
                 height: 32px;
                 padding: 0;
             }
+
             .hamburger span {
                 display: block;
                 width: 24px;
@@ -511,13 +697,25 @@
                 transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
                 margin-left: auto;
             }
-            .hamburger.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 24px; }
-            .hamburger.is-active span:nth-child(2) { opacity: 0; }
-            .hamburger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 24px; }
+
+            .hamburger.is-active span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+                width: 24px;
+            }
+
+            .hamburger.is-active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.is-active span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+                width: 24px;
+            }
 
             .nav_minimal {
                 padding: 24px 0;
-                z-index: 10000; /* overlay na tela toda */
+                z-index: 10000;
+                /* overlay na tela toda */
             }
 
             .nav_right {
@@ -526,7 +724,9 @@
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                background-color: var(--color-bg);
+                background: rgba(248, 250, 252, 0.98);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -534,37 +734,51 @@
                 z-index: 1000;
                 opacity: 0;
                 pointer-events: none;
-                transition: opacity 0.4s ease, transform 0.4s ease;
+                transition: opacity var(--transition-normal), transform var(--transition-normal);
                 transform: translateY(-20px);
             }
+
             .nav_right.is-active {
                 opacity: 1;
                 pointer-events: auto;
                 transform: translateY(0);
             }
+
             .nav_links {
                 flex-direction: column;
                 gap: 24px;
                 align-items: center;
             }
+
             .nav_link {
                 font-size: 20px;
             }
+
             .btn_verta {
                 padding: 14px 22px;
                 font-size: 14px;
             }
+
             .logo_verta {
                 z-index: 1001;
                 position: relative;
             }
         }
 
-        /* ── Reveal ── */
+        /* ── Reveal — only badge, title & first paragraph animate; rest fade softly ── */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
             animation: reveal-anim 1.5s var(--transition-premium) forwards;
+        }
+
+        /* Non-hero sections: subtle fade only (no translate, lower contrast) */
+        .section-diagnostico .reveal,
+        .section-timeline .reveal,
+        .section-plat-tabs .reveal,
+        .section-partners .reveal {
+            transform: none;
+            animation-duration: 1s;
         }
 
         .delay-1 {
@@ -592,6 +806,13 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* ── Accessible focus rings ── */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 3px;
         }
 
         @media (max-width: 991px) {
@@ -712,9 +933,9 @@
 
 
         .diag-header-title {
-            font-family: var(--font-serif);
-            font-size: clamp(28px, 2.8vw, 44px);
-            font-weight: 400;
+            font-family: var(--font-display);
+            font-size: var(--title-xl);
+            font-weight: 700;
             line-height: 1.12;
             letter-spacing: -0.03em;
             color: var(--color-text-primary);
@@ -722,21 +943,20 @@
         }
 
         .diag-header-right {
-            /* Ocupa apenas a 2a coluna */
             display: flex;
             align-items: flex-start;
             padding-top: 8px;
         }
 
         .diag-header-desc {
-            font-family: var(--font-sans);
-            font-size: 14px;
+            font-family: var(--font-body);
+            font-size: var(--subtitle);
             line-height: 1.65;
             color: var(--color-text-secondary);
             max-width: 100%;
             margin: 0;
             padding-left: 24px;
-            border-left: 1px solid #ddd;
+            border-left: 1px solid var(--color-border);
         }
 
         /* ── Cards grid 3 colunas ── */
@@ -750,14 +970,15 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1px;
-            background: #e8e5df;
-            border: 1px solid #e8e5df;
-            border-radius: 3px;
+            background: var(--color-border);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
             overflow: hidden;
+            box-shadow: var(--shadow-md);
         }
 
         .risk-card {
-            background: var(--color-bg);
+            background: var(--color-surface);
             padding: 48px 44px 56px;
             display: flex;
             flex-direction: column;
@@ -765,6 +986,7 @@
             min-height: 280px;
             opacity: 1 !important;
             transform: none !important;
+            transition: background var(--transition-fast);
         }
 
         .risk-card:nth-child(1) {
@@ -786,11 +1008,12 @@
 
         .risk-card:hover {
             background: #fff;
+            box-shadow: var(--shadow-xs);
         }
 
 
         .card-number {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.22em;
@@ -801,9 +1024,9 @@
         }
 
         .card-title {
-            font-family: var(--font-serif);
-            font-size: clamp(22px, 2vw, 28px);
-            font-weight: 400;
+            font-family: var(--font-display);
+            font-size: var(--title-m);
+            font-weight: 700;
             letter-spacing: -0.03em;
             line-height: 1.15;
             color: var(--color-text-primary);
@@ -811,7 +1034,7 @@
         }
 
         .card-body {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             font-size: 14px;
             line-height: 1.8;
             color: var(--color-text-secondary);
@@ -823,14 +1046,14 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             font-size: 12px;
             font-weight: 500;
             letter-spacing: 0.06em;
             color: var(--color-accent);
             text-decoration: none;
             opacity: 0.7;
-            transition: opacity 0.3s ease;
+            transition: opacity var(--transition-fast);
         }
 
         .card-footer:hover {
@@ -867,9 +1090,9 @@
         }
 
         .diag-closing-text {
-            font-family: var(--font-serif);
+            font-family: var(--font-display);
             font-size: clamp(22px, 2.4vw, 34px);
-            font-weight: 400;
+            font-weight: 700;
             line-height: 1.5;
             color: var(--color-text-primary);
             letter-spacing: -0.02em;
@@ -891,7 +1114,7 @@
             .diag-header-desc {
                 padding-left: 0;
                 border-left: none;
-                border-top: 1px solid #ddd;
+                border-top: 1px solid var(--color-border);
                 padding-top: 24px;
             }
 
@@ -905,11 +1128,28 @@
             }
         }
 
+        /* ── Diagnostico cards mobile ── */
+        @media (max-width: 600px) {
+            .risk-card {
+                padding: 24px 18px 30px;
+            }
+
+            .card-title {
+                margin-bottom: 12px;
+            }
+
+            .card-body {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+        }
+
         /* ── SEÇÃO PLATAFORMA HORIZONTAL TABS ─────────────────────────── */
 
         .section-plat-tabs {
             background-color: var(--color-bg);
-            padding: 4rem 0 8rem; /* Reduced top padding */
+            padding: 4rem 0 8rem;
+            /* Reduced top padding */
             overflow: visible;
             position: relative;
         }
@@ -917,13 +1157,14 @@
         .plat-tabs__intro {
             width: 90%;
             max-width: 1400px;
-            margin: 0 auto 30px auto; /* Reduced from 60px */
+            margin: 0 auto 30px auto;
+            /* Reduced from 60px */
         }
 
         .plat-tabs__title {
-            font-family: var(--font-serif);
-            font-size: clamp(28px, 2.8vw, 44px);
-            font-weight: 400;
+            font-family: var(--font-display);
+            font-size: var(--title-xl);
+            font-weight: 700;
             line-height: 1.12;
             letter-spacing: -0.03em;
             color: var(--color-text-primary);
@@ -931,8 +1172,8 @@
         }
 
         .plat-tabs__desc {
-            font-family: var(--font-sans);
-            font-size: 14px;
+            font-family: var(--font-body);
+            font-size: var(--subtitle);
             line-height: 1.65;
             color: var(--color-text-secondary);
             max-width: 680px;
@@ -954,7 +1195,8 @@
             flex-direction: column;
             gap: 15vh;
             /* Larger gap to ensure distinct triggers like RockFi */
-            padding-top: 10vh; /* Reduced from 20vh */
+            padding-top: 10vh;
+            /* Reduced from 20vh */
             padding-bottom: 20vh;
         }
 
@@ -962,11 +1204,11 @@
             height: auto;
             width: 100%;
             position: relative;
-            border-radius: 8px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
             background: transparent;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--color-border);
         }
 
         .plat-image-item img {
@@ -1016,9 +1258,9 @@
         }
 
         .plat-tab-title {
-            font-family: var(--font-serif);
-            font-size: clamp(28px, 3vw, 44px);
-            font-weight: 400;
+            font-family: var(--font-display);
+            font-size: var(--title-m);
+            font-weight: 700;
             line-height: 1.12;
             letter-spacing: -0.03em;
             color: var(--color-text-primary);
@@ -1026,10 +1268,23 @@
         }
 
         .plat-tab-text {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             font-size: 14px;
             line-height: 1.8;
             color: var(--color-text-secondary);
+        }
+
+        /* ── Tablet: disable sticky right panel (≤ 1024px) ── */
+        @media (max-width: 1024px) {
+            .plat-tabs__right {
+                position: static;
+                height: auto;
+                margin-bottom: 2rem;
+            }
+
+            /* NOTE: .plat-text-content intentionally NOT overridden here
+               — opacity/transform controlled by GSAP on desktop.
+               Mobile fallback handled in the 991px block below. */
         }
 
         @media (max-width: 991px) {
@@ -1039,9 +1294,6 @@
             }
 
             .plat-tabs__right {
-                position: sticky;
-                top: 0;
-                height: 45vh;
                 order: -1;
                 z-index: 20;
                 display: flex;
@@ -1050,8 +1302,7 @@
 
             .plat-tabs__text-box {
                 background: var(--color-bg);
-                height: 100%;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
                 border-radius: 0 0 16px 16px;
             }
 
@@ -1072,23 +1323,22 @@
             }
         }
 
-        /* Fechamento */
+        /* Fechamento — mesmo padrão que .diag-closing */
         .section-plataforma__closing {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 40px 5% 40px;
+            padding: 80px 5% 120px;
             background-color: var(--color-bg);
-            /* z-index to stay on top if needed, though not strictly required */
             position: relative;
             z-index: 2;
         }
 
         .section-plataforma__closing-text {
-            font-family: var(--font-serif);
-            font-size: clamp(20px, 2vw, 30px);
-            font-weight: 400;
+            font-family: var(--font-display);
+            font-size: clamp(22px, 2.4vw, 34px);
+            font-weight: 700;
             line-height: 1.5;
             color: var(--color-text-primary);
             letter-spacing: -0.02em;
@@ -1116,7 +1366,8 @@
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 6rem;
-            align-items: center; /* Centering the grid container's children */
+            align-items: center;
+            /* Centering the grid container's children */
             min-height: 100vh;
         }
 
@@ -1129,9 +1380,9 @@
         }
 
         .section-timeline__title {
-            font-family: var(--font-serif);
-            font-size: clamp(28px, 2.8vw, 44px);
-            font-weight: 400;
+            font-family: var(--font-display);
+            font-size: var(--title-xl);
+            font-weight: 700;
             line-height: 1.12;
             letter-spacing: -0.03em;
             color: #ffffff;
@@ -1139,10 +1390,10 @@
         }
 
         .section-timeline__intro {
-            font-family: var(--font-sans);
-            font-size: 14px;
+            font-family: var(--font-body);
+            font-size: var(--subtitle);
             line-height: 1.65;
-            color: #999999;
+            color: #b3b3b3;
             max-width: 500px;
         }
 
@@ -1217,9 +1468,9 @@
         }
 
         .timeline__heading {
-            font-family: var(--font-serif);
+            font-family: var(--font-display);
             font-size: clamp(22px, 2vw, 28px);
-            font-weight: 400;
+            font-weight: 700;
             line-height: 1.15;
             letter-spacing: -0.03em;
             color: #ffffff;
@@ -1227,10 +1478,10 @@
         }
 
         .timeline__text {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             font-size: 14px;
             line-height: 1.8;
-            color: #888888;
+            color: #b3b3b3;
         }
 
         @media (max-width: 991px) {
@@ -1252,10 +1503,11 @@
 
         /* ── SEÇÃO PARTNERS ─────────────────────────── */
         .section-partners {
-            background-color: #111111;
+            background: radial-gradient(circle at top, #1c1c1c 0, #0b0b0b 60%);
             padding: 100px 0 140px;
             position: relative;
             z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .partners-container {
@@ -1270,9 +1522,13 @@
         }
 
         .section-partners .v-badge {
-            color: #ffffff;
-            border-color: rgba(127, 153, 245, 0.3);
-            background: rgba(127, 153, 245, 0.1);
+            color: var(--color-accent-soft);
+            border-color: rgba(127, 153, 245, 0.25);
+            background: rgba(127, 153, 245, 0.12);
+        }
+
+        .section-partners .v-badge::before {
+            box-shadow: 0 0 8px var(--color-accent);
         }
 
         .partners-grid {
@@ -1289,8 +1545,10 @@
             display: none;
             visibility: hidden;
             opacity: 0;
-            max-height: 60px; /* Aumentado de 40px */
-            max-width: 220px; /* Aumentado de 180px */
+            max-height: 60px;
+            /* Aumentado de 40px */
+            max-width: 220px;
+            /* Aumentado de 180px */
             width: auto;
             object-fit: contain;
         }
@@ -1299,13 +1557,17 @@
             .section-partners {
                 padding: 60px 0 80px;
             }
+
             .partners-grid {
                 gap: 40px 32px;
                 margin-top: 40px;
             }
+
             .partner-logo {
-                max-height: 45px; /* Aumentado de 32px */
-                max-width: 160px; /* Aumentado de 140px */
+                max-height: 45px;
+                /* Aumentado de 32px */
+                max-width: 160px;
+                /* Aumentado de 140px */
             }
         }
     </style>
@@ -1384,15 +1646,10 @@
                 </div>
             </div>
 
-            <!-- Caso você já tenha um lado visual/3D/avatar, mantém o container -->
             <div class="hero-visual reveal delay-3">
-                <div class="verta-svg-wrap">
-                    <svg id="verta-conv-svg" viewBox="-20 -20 660 540" xmlns="http://www.w3.org/2000/svg">
-                        <g id="vc-lines"></g>
-                        <g id="vc-nodes"></g>
-                        <g id="vc-center"></g>
-                        <g id="vc-particles"></g>
-                    </svg>
+                <div class="hero-dashboard-svg">
+                    <img src="./assets/images/score.svg" alt="Verta Dashboard Preview"
+                        style="width: 100%; height: auto; display: block;">
                 </div>
             </div>
         </div>
@@ -1415,10 +1672,10 @@
             <div class="diag-header">
                 <div class="diag-header-left">
                     <p class="section-label v-badge">O Diagnóstico</p>
-                    <h2 class="diag-header-title">
+                    <h1 class="diag-header-title">
                         O risco digital evoluiu.<br>
                         A governança não acompanhou.
-                    </h2>
+                    </h1>
                 </div>
                 <div class="diag-header-right">
                     <p class="diag-header-desc">
@@ -1477,9 +1734,9 @@
             <div class="timeline-sticky-col">
                 <header class="section-timeline__header">
                     <p class="section-label v-badge">O Ciclo da Decisão</p>
-                    <h2 class="section-timeline__title">
+                    <h1 class="section-timeline__title">
                         Como a Verta muda a dinâmica da decisão
-                    </h2>
+                    </h1>
                     <p class="section-timeline__intro">
                         Da preparação silenciosa ao aprendizado pós-reunião, a Verta acompanha o conselho
                         em todo o ciclo da decisão — sem substituir o julgamento humano.
@@ -1556,9 +1813,9 @@
     <section class="section section-plat-tabs">
         <div class="plat-tabs__intro">
             <p class="section-label v-badge">A Plataforma</p>
-            <h2 class="plat-tabs__title">
+            <h1 class="plat-tabs__title">
                 Uma visão que o board<br>nunca teve antes.
-            </h2>
+            </h1>
             <p class="plat-tabs__desc">
                 Risco, impacto financeiro, maturidade e regulação
                 reunidos em uma única leitura estratégica — contínua,
@@ -1582,21 +1839,21 @@
             <div class="plat-tabs__right">
                 <div class="plat-tabs__text-box">
                     <div class="plat-text-content is-active">
-                        <h2 class="plat-tab-title">Risco com valor. Decisão com clareza.</h2>
+                        <h1 class="plat-tab-title">Risco com valor. Decisão com clareza.</h1>
                         <p class="plat-tab-text">A Verta traduz exposição técnica em impacto financeiro mensurável. O
                             board visualiza, em tempo real, o potencial de perda, o nível de maturidade e a
                             probabilidade de um ataque bem-sucedido — sem depender de relatórios intermediários.</p>
                     </div>
 
                     <div class="plat-text-content">
-                        <h2 class="plat-tab-title">Cada dimensão de risco. Uma única leitura.</h2>
+                        <h1 class="plat-tab-title">Cada dimensão de risco.<br> Uma única leitura.</h1>
                         <p class="plat-tab-text">Ransomware, Insider, DDoS, Terceiros — cada vetor avaliado
                             individualmente, com benchmark global e contextualizado para a realidade da organização. O
                             conselho não vê fragmentos. Vê o quadro completo.</p>
                     </div>
 
                     <div class="plat-text-content">
-                        <h2 class="plat-tab-title">Do risco atual à resiliência estratégica.</h2>
+                        <h1 class="plat-tab-title">Do risco atual à resiliência estratégica.</h1>
                         <p class="plat-tab-text">A Verta projeta a evolução da postura de segurança. O board enxerga não
                             só o estágio de maturidade atual, mas o risco reduzido e o ganho financeiro obtido a cada
                             nova fase do plano de ação.</p>
@@ -1613,547 +1870,379 @@
                 <em>A Verta mede. Compara. Traduz.</em>
             </p>
         </div>
-    <!-- SEÇÃO — PARCEIROS -->
-    <section class="section section-partners">
-        <div class="partners-container">
-            <div class="reveal delay-1">
-                <p class="section-label v-badge" style="margin-left: auto; margin-right: auto; width: fit-content;">Ecossistema</p>
-                <h2 class="plat-tabs__title">Parceiros Estratégicos</h2>
-            </div>
-            <div class="partners-grid">
-                <img src="./assets/images/p-logo-Alvarez-e-marsal.svg" alt="Alvarez e Marsal" class="partner-logo">
-                <img src="./assets/images/p-logo-bidweb.svg" alt="Bidweb" class="partner-logo">
-                <img src="./assets/images/p-logo-castle.svg" alt="Castle" class="partner-logo">
-                <img src="./assets/images/p-logo-elytron.svg" alt="Elytron" class="partner-logo">
-                <img src="./assets/images/p-logo-security-first.svg" alt="Security First" class="partner-logo">
-                
-                <img src="./assets/images/p-logo-tao.svg" alt="TAO" class="partner-logo">
-                <img src="./assets/images/p-logo-urbano-vitalino-vermelha.svg" alt="Urbano Vitalino" class="partner-logo">
-                <img src="./assets/images/p-logo-Alvarez-e-marsal.svg" alt="Alvarez e Marsal" class="partner-logo">
-                <img src="./assets/images/p-logo-bidweb.svg" alt="Bidweb" class="partner-logo">
-                <img src="./assets/images/p-logo-castle.svg" alt="Castle" class="partner-logo">
-            </div>
-        </div>
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        <!-- SEÇÃO — PARCEIROS -->
+        <section class="section section-partners">
+            <div class="partners-container">
+                <div class="reveal delay-1">
+                    <p class="section-label v-badge" style="margin-left: auto; margin-right: auto; width: fit-content;">
+                        Ecossistema</p>
+                    <h1 class="plat-tabs__title">Parceiros Estratégicos</h1>
+                </div>
+                <div class="partners-grid">
+                    <img src="./assets/images/p-logo-Alvarez-e-marsal.svg" alt="Parceiro Alvarez &amp; Marsal"
+                        class="partner-logo">
+                    <img src="./assets/images/p-logo-bidweb.svg" alt="Parceiro Bidweb" class="partner-logo">
+                    <img src="./assets/images/p-logo-castle.svg" alt="Parceiro Castle" class="partner-logo">
+                    <img src="./assets/images/p-logo-elytron.svg" alt="Parceiro Elytron" class="partner-logo">
+                    <img src="./assets/images/p-logo-security-first.svg" alt="Parceiro Security First"
+                        class="partner-logo">
 
-            // ── Mobile Menu Toggle ──────────────────────────────────
-            const navToggle = document.getElementById('navToggle');
-            const navRight = document.getElementById('navRight');
-            if(navToggle && navRight) {
-                navToggle.addEventListener('click', () => {
-                    navToggle.classList.toggle('is-active');
-                    navRight.classList.toggle('is-active');
-                    if (navRight.classList.contains('is-active')) {
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        document.body.style.overflow = '';
-                    }
+                    <img src="./assets/images/p-logo-tao.svg" alt="Parceiro TAO" class="partner-logo">
+                    <img src="./assets/images/p-logo-urbano-vitalino-vermelha.svg" alt="Parceiro Urbano Vitalino"
+                        class="partner-logo">
+                    <img src="./assets/images/p-logo-Alvarez-e-marsal.svg" alt="Parceiro Alvarez &amp; Marsal"
+                        class="partner-logo">
+                    <img src="./assets/images/p-logo-bidweb.svg" alt="Parceiro Bidweb" class="partner-logo">
+                    <img src="./assets/images/p-logo-castle.svg" alt="Parceiro Castle" class="partner-logo">
+                </div>
+            </div>
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                // ── Mobile Menu Toggle ──────────────────────────────────
+                const navToggle = document.getElementById('navToggle');
+                const navRight = document.getElementById('navRight');
+                if (navToggle && navRight) {
+                    navToggle.addEventListener('click', () => {
+                        navToggle.classList.toggle('is-active');
+                        navRight.classList.toggle('is-active');
+                        if (navRight.classList.contains('is-active')) {
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            document.body.style.overflow = '';
+                        }
+                    });
+                }
+
+                // ── Hero Verta Panel v4 Animation ──────────────────────────────
+                // GSAP Animations (Shell and Cards)
+                gsap.from('.dashboard-asset-wrapper', {
+                    opacity: 0,
+                    y: 18,
+                    scale: 0.98,
+                    duration: 0.85,
+                    ease: 'power3.out',
+                    delay: 0.2
                 });
-            }
 
-            // ── Convergence SVG Animation ──────────────────────────────────
-            (function () {
-                const linesG = document.getElementById('vc-lines');
-                const nodesG = document.getElementById('vc-nodes');
-                const centerG = document.getElementById('vc-center');
-                const particlesG = document.getElementById('vc-particles');
+                gsap.fromTo('.status-dot',
+                    { boxShadow: '0 0 0 0 rgba(125,220,122,.35)' },
+                    { boxShadow: '0 0 0 7px rgba(125,220,122,0)', duration: 1.6, repeat: -1, ease: 'sine.out' }
+                );
 
-                if (!linesG) return;
 
-                const cx = 280, cy = 240;
 
-                const ACCENT = '#7F99F5';
-                const ACCENT_LIGHT = '#B8C8FA';
-                const ACCENT_SOFT = '#DCE4FE';
-                const DOT_IDLE = '#C9D6FD';
+                // ── Word Carousel ──────────────────────────────────────────────
+                (function () {
+                    const rail = document.getElementById("cycler_rail");
+                    if (!rail) return;
 
-                const nodes = [
-                    { id: 'risco', label: 'Risco Digital', angle: -90, r: 165 },
-                    { id: 'financeiro', label: 'Impacto Financeiro', angle: -30, r: 165 },
-                    { id: 'regulatorio', label: 'Contexto Regulatório', angle: 30, r: 165 },
-                    { id: 'mercado', label: 'Sinais de Mercado', angle: 90, r: 165 },
-                    { id: 'reputacao', label: 'Reputação', angle: 150, r: 165 },
-                    { id: 'esg', label: 'ESG & Compliance', angle: 210, r: 165 },
-                ];
+                    const wrapper = rail.parentElement;
+                    const origItems = Array.from(rail.querySelectorAll("li"));
 
-                function toRad(d) { return d * Math.PI / 180; }
-                function nodePos(n) {
-                    return {
-                        x: cx + n.r * Math.cos(toRad(n.angle)),
-                        y: cy + n.r * Math.sin(toRad(n.angle))
+                    for (let c = 1; c < 20; c++) {
+                        origItems.forEach(orig => {
+                            const clone = orig.cloneNode(true);
+                            clone.classList.remove("--active");
+                            rail.appendChild(clone);
+                        });
+                    }
+
+                    const allItems = Array.from(rail.querySelectorAll("li"));
+                    const setActive = idx => allItems.forEach((li, i) => li.classList.toggle("--active", i === idx));
+
+                    const init = () => {
+                        const wrapH = wrapper.getBoundingClientRect().height || 200;
+                        const itemH = allItems[0].getBoundingClientRect().height || 32;
+                        const center = (wrapH - itemH) / 2;
+                        const tops = allItems.map(li => li.offsetTop);
+                        const getY = idx => center - tops[idx];
+
+                        let focusIdx = 1;
+                        gsap.set(rail, { y: getY(focusIdx) });
+                        setActive(focusIdx);
+
+                        setInterval(() => {
+                            if (focusIdx >= allItems.length - 1) {
+                                allItems.forEach(li => li.classList.add("no-transition"));
+                                focusIdx = 1;
+                                gsap.set(rail, { y: getY(focusIdx) });
+                                setActive(focusIdx);
+                                setTimeout(() => allItems.forEach(li => li.classList.remove("no-transition")), 120);
+                                return;
+                            }
+                            focusIdx++;
+                            gsap.to(rail, {
+                                y: getY(focusIdx),
+                                duration: 1.1,
+                                ease: "power4.inOut",
+                                onStart: () => setActive(focusIdx)
+                            });
+                        }, 3200);
                     };
-                }
-                function lerp(a, b, t) { return a + (b - a) * t; }
-                function easeIO(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
-                function lerpColor(h1, h2, t) {
-                    const p = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
-                    const [r1, g1, b1] = p(h1), [r2, g2, b2] = p(h2);
-                    return '#' + [lerp(r1, r2, t), lerp(g1, g2, t), lerp(b1, b2, t)]
-                        .map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
-                }
 
-                const particles = [];
-                const nodeStates = nodes.map(() => ({ glow: 0 }));
+                    (document.fonts ? document.fonts.ready : Promise.resolve()).then(init).catch(init);
+                })();
 
-                nodes.forEach((n, i) => {
-                    const pos = nodePos(n);
+                // ── Linha Divisória Estagiada com Scroll ────────────────────────
+                (function () {
+                    const canvas = document.getElementById('dividerCanvas');
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    const wrap = document.getElementById('dividerWrap');
+                    const diagContent = document.getElementById('diagnostico-content');
 
-                    // Line
-                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line.setAttribute('x1', pos.x); line.setAttribute('y1', pos.y);
-                    line.setAttribute('x2', cx); line.setAttribute('y2', cy);
-                    line.setAttribute('stroke', '#e5e5e5');
-                    line.setAttribute('stroke-width', '0.7');
-                    line.setAttribute('stroke-dasharray', '3 6');
-                    line.setAttribute('opacity', '0.5');
-                    line.id = 'vc-line-' + n.id;
-                    linesG.appendChild(line);
-
-                    // Node group
-                    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                    g.id = 'vc-node-' + n.id;
-
-                    // Single minimal dot
-                    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    dot.setAttribute('cx', pos.x); dot.setAttribute('cy', pos.y);
-                    dot.setAttribute('r', '4');
-                    dot.setAttribute('fill', DOT_IDLE);
-                    dot.id = 'vc-dot-' + n.id;
-
-                    // Label positioning
-                    let lx = pos.x, ly = pos.y, anchor = 'middle';
-                    const off = 24, a = n.angle;
-                    if (a > -60 && a < 60) { lx = pos.x + off; anchor = 'start'; }
-                    else if (a >= 60 && a < 120) { ly = pos.y + off; }
-                    else if (a >= 120 || a <= -120) { lx = pos.x - off; anchor = 'end'; }
-                    else { ly = pos.y - off; }
-
-                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                    text.setAttribute('x', lx); text.setAttribute('y', ly);
-                    text.setAttribute('text-anchor', anchor);
-                    text.setAttribute('dominant-baseline', 'central');
-                    text.setAttribute('class', 'verta-node-label');
-                    text.setAttribute('opacity', '0.45');
-                    text.id = 'vc-text-' + n.id;
-                    text.textContent = n.label;
-
-                    g.appendChild(dot);
-                    g.appendChild(text);
-                    nodesG.appendChild(g);
-
-                    // Particle
-                    const p = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    p.setAttribute('r', '2.2');
-                    p.setAttribute('fill', ACCENT);
-                    p.setAttribute('opacity', '0');
-                    particlesG.appendChild(p);
-
-                    particles.push({ el: p, pos: nodePos(n), t: i / nodes.length });
-                });
-
-                // Central element
-                const centerOuter = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                centerOuter.setAttribute('cx', cx); centerOuter.setAttribute('cy', cy);
-                centerOuter.setAttribute('r', '22');
-                centerOuter.setAttribute('fill', ACCENT_SOFT);
-                centerG.appendChild(centerOuter);
-
-                const centerCore = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                centerCore.setAttribute('cx', cx); centerCore.setAttribute('cy', cy);
-                centerCore.setAttribute('r', '7');
-                centerCore.setAttribute('fill', ACCENT);
-                centerG.appendChild(centerCore);
-
-                const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                centerText.setAttribute('x', cx); centerText.setAttribute('y', cy + 52);
-                centerText.setAttribute('text-anchor', 'middle');
-                centerText.setAttribute('class', 'verta-center-label');
-                centerText.style.fontSize = "14px";
-                centerText.style.fontWeight = "700";
-                centerText.textContent = 'DECISÃO';
-                centerG.appendChild(centerText);
-
-                const tagline1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                tagline1.setAttribute('x', cx); tagline1.setAttribute('y', cy + 72);
-                tagline1.setAttribute('text-anchor', 'middle');
-                tagline1.setAttribute('class', 'verta-tagline');
-                tagline1.style.fontSize = "11px";
-                tagline1.style.letterSpacing = "0.12em";
-                tagline1.style.textTransform = "uppercase";
-                tagline1.textContent = 'convergência';
-                centerG.appendChild(tagline1);
-
-                const tagline2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                tagline2.setAttribute('x', cx); tagline2.setAttribute('y', cy + 88);
-                tagline2.setAttribute('text-anchor', 'middle');
-                tagline2.setAttribute('class', 'verta-tagline');
-                tagline2.style.fontSize = "11px";
-                tagline2.style.letterSpacing = "0.12em";
-                tagline2.style.textTransform = "uppercase";
-                tagline2.textContent = 'estratégica';
-                centerG.appendChild(tagline2);
-
-                let activeNode = 0, switchTimer = 0;
-                const SWITCH_INTERVAL = 220;
-                const LERP_SPEED = 0.02;
-
-                function animate() {
-                    switchTimer++;
-                    if (switchTimer >= SWITCH_INTERVAL) {
-                        switchTimer = 0;
-                        activeNode = (activeNode + 1) % nodes.length;
+                    let segments = [];
+                    function buildSegments(totalW) {
+                        const segs = [];
+                        let x = 0;
+                        while (x < totalW) {
+                            const w = 30 + Math.random() * 100;
+                            segs.push({
+                                x,
+                                w,
+                                initialChaosY: (Math.random() - 0.5) * 60,
+                                initialH: 8 + Math.random() * 24,
+                                initialOpacity: 0.3 + Math.random() * 0.7
+                            });
+                            x += w + (10 + Math.random() * 30);
+                        }
+                        return segs;
                     }
 
-                    nodes.forEach((n, i) => {
-                        const state = nodeStates[i];
-                        state.glow = lerp(state.glow, i === activeNode ? 1 : 0, LERP_SPEED);
-                        const gv = state.glow;
+                    function resize() {
+                        const dpr = window.devicePixelRatio || 1;
+                        const rect = canvas.getBoundingClientRect();
+                        canvas.width = rect.width * dpr;
+                        canvas.height = 140 * dpr;
+                        ctx.scale(dpr, dpr);
+                        segments = buildSegments(rect.width);
+                        update();
+                    }
 
-                        const dot = document.getElementById('vc-dot-' + n.id);
-                        const text = document.getElementById('vc-text-' + n.id);
-                        const line = document.getElementById('vc-line-' + n.id);
+                    function getProgress() {
+                        const rect = wrap.getBoundingClientRect();
+                        const winH = window.innerHeight;
+                        // O progresso começa quando a linha surge embaixo e termina quando ela cruza o centro
+                        const start = winH;
+                        const end = winH * 0.4;
+                        const current = rect.top;
+                        return Math.min(Math.max((start - current) / (start - end), 0), 1);
+                    }
 
-                        if (dot) { dot.setAttribute('fill', lerpColor(DOT_IDLE, ACCENT, gv)); dot.setAttribute('r', lerp(4, 5.5, gv)); }
-                        if (text) { text.setAttribute('opacity', lerp(0.45, 1, gv)); }
-                        if (line) {
-                            line.setAttribute('stroke', lerpColor('#e5e5e5', ACCENT_LIGHT, gv));
-                            line.setAttribute('opacity', lerp(0.4, 0.9, gv));
-                            line.setAttribute('stroke-width', lerp(0.7, 1.3, gv));
-                        }
-                    });
+                    function draw(p) {
+                        const rect = canvas.getBoundingClientRect();
+                        ctx.clearRect(0, 0, rect.width, 140);
+                        const centerY = 70;
 
-                    particles.forEach(p => {
-                        p.t = (p.t + 0.0028) % 1;
-                        const e = easeIO(p.t);
-                        p.el.setAttribute('cx', lerp(p.pos.x, cx, e));
-                        p.el.setAttribute('cy', lerp(p.pos.y, cy, e));
-                        const fade = p.t < 0.15 ? p.t / 0.15 : p.t > 0.85 ? (1 - p.t) / 0.15 : 1;
-                        p.el.setAttribute('opacity', fade * 0.5);
-                    });
+                        const easeP = t => t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                        const ep = easeP(Math.min(p / 0.85, 1));
 
-                    // Subtle breathing
-                    const breathe = 1 + 0.04 * Math.sin(Date.now() * 0.0012);
-                    centerOuter.setAttribute('r', 22 * breathe);
-                    centerCore.setAttribute('r', 7 * breathe);
+                        // Desenha os segmentos
+                        segments.forEach((seg, i) => {
+                            const y = centerY + seg.initialChaosY * (1 - ep);
+                            const h = seg.initialH * (1 - ep) + 1;
+                            const op = seg.initialOpacity * (1 - ep * 0.4);
 
-                    requestAnimationFrame(animate);
-                }
+                            // Expansão lateral dos segmentos para fechar os gaps em 100%
+                            const widthExpansion = ep > 0.6 ? (ep - 0.6) / 0.4 : 0;
+                            const finalW = seg.w + (30 * widthExpansion); // Leve sobreposição para garantir linha sólida
 
-                setTimeout(() => animate(), 300);
-            })();
-
-
-
-            // ── Word Carousel ──────────────────────────────────────────────
-            (function () {
-                const rail = document.getElementById("cycler_rail");
-                if (!rail) return;
-
-                const wrapper = rail.parentElement;
-                const origItems = Array.from(rail.querySelectorAll("li"));
-
-                for (let c = 1; c < 20; c++) {
-                    origItems.forEach(orig => {
-                        const clone = orig.cloneNode(true);
-                        clone.classList.remove("--active");
-                        rail.appendChild(clone);
-                    });
-                }
-
-                const allItems = Array.from(rail.querySelectorAll("li"));
-                const setActive = idx => allItems.forEach((li, i) => li.classList.toggle("--active", i === idx));
-
-                const init = () => {
-                    const wrapH = wrapper.getBoundingClientRect().height || 200;
-                    const itemH = allItems[0].getBoundingClientRect().height || 32;
-                    const center = (wrapH - itemH) / 2;
-                    const tops = allItems.map(li => li.offsetTop);
-                    const getY = idx => center - tops[idx];
-
-                    let focusIdx = 1;
-                    gsap.set(rail, { y: getY(focusIdx) });
-                    setActive(focusIdx);
-
-                    setInterval(() => {
-                        if (focusIdx >= allItems.length - 1) {
-                            allItems.forEach(li => li.classList.add("no-transition"));
-                            focusIdx = 1;
-                            gsap.set(rail, { y: getY(focusIdx) });
-                            setActive(focusIdx);
-                            setTimeout(() => allItems.forEach(li => li.classList.remove("no-transition")), 120);
-                            return;
-                        }
-                        focusIdx++;
-                        gsap.to(rail, {
-                            y: getY(focusIdx),
-                            duration: 1.1,
-                            ease: "power4.inOut",
-                            onStart: () => setActive(focusIdx)
+                            ctx.fillStyle = `rgba(127, 153, 245, ${op})`;
+                            ctx.beginPath();
+                            ctx.rect(seg.x, y - h / 2, finalW, h);
+                            ctx.fill();
                         });
-                    }, 3200);
-                };
 
-                (document.fonts ? document.fonts.ready : Promise.resolve()).then(init).catch(init);
-            })();
+                        // Caso a convergência seja total, garante uma linha sólida de ponta a ponta
+                        if (ep > 0.98) {
+                            ctx.fillStyle = "rgba(127, 153, 245, 0.6)";
+                            ctx.fillRect(0, centerY - 0.5, rect.width, 1);
+                        }
 
-            // ── Linha Divisória Estagiada com Scroll ────────────────────────
-            (function () {
-                const canvas = document.getElementById('dividerCanvas');
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                const wrap = document.getElementById('dividerWrap');
-                const diagContent = document.getElementById('diagnostico-content');
-
-                let segments = [];
-                function buildSegments(totalW) {
-                    const segs = [];
-                    let x = 0;
-                    while (x < totalW) {
-                        const w = 30 + Math.random() * 100;
-                        segs.push({
-                            x,
-                            w,
-                            initialChaosY: (Math.random() - 0.5) * 60,
-                            initialH: 8 + Math.random() * 24,
-                            initialOpacity: 0.3 + Math.random() * 0.7
-                        });
-                        x += w + (10 + Math.random() * 30);
-                    }
-                    return segs;
-                }
-
-                function resize() {
-                    const dpr = window.devicePixelRatio || 1;
-                    const rect = canvas.getBoundingClientRect();
-                    canvas.width = rect.width * dpr;
-                    canvas.height = 140 * dpr;
-                    ctx.scale(dpr, dpr);
-                    segments = buildSegments(rect.width);
-                    update();
-                }
-
-                function getProgress() {
-                    const rect = wrap.getBoundingClientRect();
-                    const winH = window.innerHeight;
-                    // O progresso começa quando a linha surge embaixo e termina quando ela cruza o centro
-                    const start = winH;
-                    const end = winH * 0.4;
-                    const current = rect.top;
-                    return Math.min(Math.max((start - current) / (start - end), 0), 1);
-                }
-
-                function draw(p) {
-                    const rect = canvas.getBoundingClientRect();
-                    ctx.clearRect(0, 0, rect.width, 140);
-                    const centerY = 70;
-
-                    const easeP = t => t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                    const ep = easeP(Math.min(p / 0.85, 1));
-
-                    // Desenha os segmentos
-                    segments.forEach((seg, i) => {
-                        const y = centerY + seg.initialChaosY * (1 - ep);
-                        const h = seg.initialH * (1 - ep) + 1;
-                        const op = seg.initialOpacity * (1 - ep * 0.4);
-
-                        // Expansão lateral dos segmentos para fechar os gaps em 100%
-                        const widthExpansion = ep > 0.6 ? (ep - 0.6) / 0.4 : 0;
-                        const finalW = seg.w + (30 * widthExpansion); // Leve sobreposição para garantir linha sólida
-
-                        ctx.fillStyle = `rgba(127, 153, 245, ${op})`;
-                        ctx.beginPath();
-                        ctx.rect(seg.x, y - h / 2, finalW, h);
-                        ctx.fill();
-                    });
-
-                    // Caso a convergência seja total, garante uma linha sólida de ponta a ponta
-                    if (ep > 0.98) {
-                        ctx.fillStyle = "rgba(127, 153, 245, 0.6)";
-                        ctx.fillRect(0, centerY - 0.5, rect.width, 1);
+                        // Revelação do conteúdo (desativada para debug)
+                        /*
+                        if (diagContent) {
+                            const contentP = Math.max((p - 0.4) / 0.6, 0);
+                            diagContent.style.opacity = contentP;
+                            diagContent.style.transform = `translateY(${(1 - contentP) * 30}px)`;
+                            diagContent.style.pointerEvents = contentP > 0.1 ? "auto" : "none";
+                        }
+                        */
                     }
 
-                    // Revelação do conteúdo (desativada para debug)
-                    /*
-                    if (diagContent) {
-                        const contentP = Math.max((p - 0.4) / 0.6, 0);
-                        diagContent.style.opacity = contentP;
-                        diagContent.style.transform = `translateY(${(1 - contentP) * 30}px)`;
-                        diagContent.style.pointerEvents = contentP > 0.1 ? "auto" : "none";
+                    function update() {
+                        requestAnimationFrame(() => draw(getProgress()));
                     }
-                    */
-                }
 
-                function update() {
-                    requestAnimationFrame(() => draw(getProgress()));
-                }
+                    window.addEventListener('scroll', update, { passive: true });
+                    window.addEventListener('resize', resize);
+                    resize();
+                })();
 
-                window.addEventListener('scroll', update, { passive: true });
-                window.addEventListener('resize', resize);
-                resize();
-            })();
+                // ── Timeline Scroll Trigger ───────────────────────────
+                (function () {
+                    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+                    gsap.registerPlugin(ScrollTrigger);
 
-            // ── Timeline Scroll Trigger ───────────────────────────
-            (function () {
-                if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-                gsap.registerPlugin(ScrollTrigger);
+                    const section = document.querySelector('.section-timeline');
+                    const items = gsap.utils.toArray('.timeline__item');
+                    if (!section || items.length === 0) return;
 
-                const section = document.querySelector('.section-timeline');
-                const items = gsap.utils.toArray('.timeline__item');
-                if (!section || items.length === 0) return;
+                    // Ensure items are hidden before GSAP starts (prevents flash on load)
+                    gsap.set(items, { autoAlpha: 0, y: 30 });
 
-                // Ensure items are hidden before GSAP starts (prevents flash on load)
-                gsap.set(items, { autoAlpha: 0, y: 30 });
+                    // Single timeline: pin + all animations in one ScrollTrigger
+                    // pinSpacing:true = Plataforma is pushed down correctly,
+                    // and only rises after the entire scroll budget is consumed
+                    const isDesktop = window.innerWidth > 768;
 
-                // Single timeline: pin + all animations in one ScrollTrigger
-                // pinSpacing:true = Plataforma is pushed down correctly,
-                // and only rises after the entire scroll budget is consumed
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top top",
-                        end: "+=280%",
-                        pin: true,
-                        pinSpacing: true,
-                        scrub: 1,
-                        invalidateOnRefresh: true
-                    }
-                });
-
-                // Brief pause before first step appears
-                tl.to({}, { duration: 0.5 });
-
-                // Step 01: enter → hold → exit
-                tl.to(items[0], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" });
-                tl.to({}, { duration: 1.2 });
-                tl.to(items[0], { autoAlpha: 0, y: -20, duration: 0.6, ease: "none" });
-
-                // Step 02: enter → hold → exit
-                tl.to(items[1], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" }, "<");
-                tl.to({}, { duration: 1.2 });
-                tl.to(items[1], { autoAlpha: 0, y: -20, duration: 0.6, ease: "none" });
-
-                // Step 03: enter → long hold
-                // During this hold the user keeps scrolling — timeline stays pinned with 03 visible
-                // When budget runs out, pin releases and Plataforma rises naturally below
-                tl.to(items[2], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" }, "<");
-                tl.to({}, { duration: 1.5 }); // Hold on step 03 — Plataforma rises below during this
-            })();
-
-            // ── Plataforma Vertical Scroll ───────────────────────────
-            const platImages = gsap.utils.toArray('.plat-image-item');
-            const platContents = gsap.utils.toArray('.plat-text-content');
-
-            if (platImages.length > 0 && platContents.length > 0) {
-                platImages.forEach((imgItem, i) => {
-                    const isLast = i === platImages.length - 1;
-
-                    ScrollTrigger.create({
-                        trigger: imgItem,
-                        start: "top center", // Trigger shift when image hits center
-                        end: isLast ? "top center" : "bottom center",
-                        onEnter: () => {
-                            platContents.forEach(c => c.classList.remove('is-active'));
-                            if (platContents[i]) platContents[i].classList.add('is-active');
-                        },
-                        onEnterBack: () => {
-                            platContents.forEach(c => c.classList.remove('is-active'));
-                            if (platContents[i]) platContents[i].classList.add('is-active');
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top top",
+                            end: "+=280%",
+                            pin: isDesktop,
+                            pinSpacing: isDesktop,
+                            scrub: 1,
+                            invalidateOnRefresh: true
                         }
                     });
 
-                    // For the last image, once it hits the center, we want to unlock the sticky
-                    // and have it move up with the image.
-                });
-            }
+                    if (isDesktop) {
+                        // Brief pause before first step appears
+                        tl.to({}, { duration: 0.5 });
 
-            // ── Partners Carousel ───────────────────────────
-            (function() {
-                const logos = gsap.utils.toArray(".partner-logo");
-                if (logos.length === 0) return;
-                
-                // Ocultar todos por segurança inicial
-                gsap.set(logos, { display: "none", autoAlpha: 0 });
+                        // Step 01: enter → hold → exit
+                        tl.to(items[0], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" });
+                        tl.to({}, { duration: 1.2 });
+                        tl.to(items[0], { autoAlpha: 0, y: -20, duration: 0.6, ease: "none" });
 
-                const groupSize = 5;
-                let currentIndex = 0;
-                let isAnimating = false;
+                        // Step 02: enter → hold → exit
+                        tl.to(items[1], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" }, "<");
+                        tl.to({}, { duration: 1.2 });
+                        tl.to(items[1], { autoAlpha: 0, y: -20, duration: 0.6, ease: "none" });
 
-                function showNextGroup() {
-                    if (isAnimating) return;
-                    isAnimating = true;
-                    
-                    const currentLogos = logos.filter(l => l.style.display !== "none" && l.style.display !== "");
-                    
-                    if (currentLogos.length > 0) {
-                        // Fade out o grupo atual
-                        gsap.to(currentLogos, {
-                            autoAlpha: 0,
-                            y: -15,
-                            duration: 0.5,
-                            stagger: 0.05,
-                            ease: "power2.in",
-                            onComplete: () => {
-                                gsap.set(currentLogos, { display: "none", y: 0 });
-                                fadeInNext();
+                        // Step 03: enter → long hold
+                        tl.to(items[2], { autoAlpha: 1, y: 0, duration: 0.8, ease: "none" }, "<");
+                        tl.to({}, { duration: 1.5 });
+                    } else {
+                        // Mobile: show all items statically, no pin
+                        gsap.set(items, { autoAlpha: 1, y: 0 });
+                    }
+                })();
+
+                // ── Plataforma Vertical Scroll (desktop ≥ 1025px only) ───────────────────────────
+                const platImages = gsap.utils.toArray('.plat-image-item');
+                const platContents = gsap.utils.toArray('.plat-text-content');
+
+                if (platImages.length > 0 && platContents.length > 0 && window.innerWidth > 991) {
+                    platImages.forEach((imgItem, i) => {
+                        const isLast = i === platImages.length - 1;
+
+                        ScrollTrigger.create({
+                            trigger: imgItem,
+                            start: "top center",
+                            end: isLast ? "top center" : "bottom center",
+                            onEnter: () => {
+                                platContents.forEach(c => c.classList.remove('is-active'));
+                                if (platContents[i]) platContents[i].classList.add('is-active');
+                            },
+                            onEnterBack: () => {
+                                platContents.forEach(c => c.classList.remove('is-active'));
+                                if (platContents[i]) platContents[i].classList.add('is-active');
                             }
                         });
-                    } else {
-                        fadeInNext();
-                    }
-                }
-
-                function fadeInNext() {
-                    let nextLogos = [];
-                    for (let i = 0; i < groupSize; i++) {
-                        let idx = (currentIndex + i) % logos.length;
-                        nextLogos.push(logos[idx]);
-                    }
-                    
-                    currentIndex = (currentIndex + groupSize) % logos.length;
-
-                    gsap.set(nextLogos, { display: "block", y: 15, autoAlpha: 0 });
-                    gsap.to(nextLogos, { 
-                        autoAlpha: 1, // Alterado de 0.5 para 1 (100% visível)
-                        y: 0, 
-                        duration: 0.6, 
-                        stagger: 0.1, 
-                        ease: "power2.out",
-                        onComplete: () => {
-                            isAnimating = false;
-                        }
                     });
                 }
 
-                // Adicionar hover via JS
-                logos.forEach(logo => {
-                    logo.addEventListener('mouseenter', () => {
-                        if (logo.style.display !== "none") {
-                            gsap.to(logo, { y: -4, scale: 1.05, duration: 0.3, overwrite: "auto" });
-                        }
-                    });
-                    logo.addEventListener('mouseleave', () => {
-                        if (logo.style.display !== "none") {
-                            gsap.to(logo, { y: 0, scale: 1, duration: 0.3, overwrite: "auto" });
-                        }
-                    });
-                });
+                // ── Partners Carousel ───────────────────────────
+                (function () {
+                    const logos = gsap.utils.toArray(".partner-logo");
+                    if (logos.length === 0) return;
 
-                ScrollTrigger.create({
-                    trigger: ".section-partners",
-                    start: "top 85%",
-                    once: true,
-                    onEnter: () => {
-                        showNextGroup();
-                        setInterval(showNextGroup, 4000);
+                    // Ocultar todos por segurança inicial
+                    gsap.set(logos, { display: "none", autoAlpha: 0 });
+
+                    const groupSize = 5;
+                    let currentIndex = 0;
+                    let isAnimating = false;
+
+                    function showNextGroup() {
+                        if (isAnimating) return;
+                        isAnimating = true;
+
+                        const currentLogos = logos.filter(l => l.style.display !== "none" && l.style.display !== "");
+
+                        if (currentLogos.length > 0) {
+                            // Fade out o grupo atual
+                            gsap.to(currentLogos, {
+                                autoAlpha: 0,
+                                y: -15,
+                                duration: 0.5,
+                                stagger: 0.05,
+                                ease: "power2.in",
+                                onComplete: () => {
+                                    gsap.set(currentLogos, { display: "none", y: 0 });
+                                    fadeInNext();
+                                }
+                            });
+                        } else {
+                            fadeInNext();
+                        }
                     }
-                });
-            })();
-        });
-    </script>
+
+                    function fadeInNext() {
+                        let nextLogos = [];
+                        for (let i = 0; i < groupSize; i++) {
+                            let idx = (currentIndex + i) % logos.length;
+                            nextLogos.push(logos[idx]);
+                        }
+
+                        currentIndex = (currentIndex + groupSize) % logos.length;
+
+                        gsap.set(nextLogos, { display: "block", y: 15, autoAlpha: 0 });
+                        gsap.to(nextLogos, {
+                            autoAlpha: 1, // Alterado de 0.5 para 1 (100% visível)
+                            y: 0,
+                            duration: 0.6,
+                            stagger: 0.1,
+                            ease: "power2.out",
+                            onComplete: () => {
+                                isAnimating = false;
+                            }
+                        });
+                    }
+
+                    // Adicionar hover via JS
+                    logos.forEach(logo => {
+                        logo.addEventListener('mouseenter', () => {
+                            if (logo.style.display !== "none") {
+                                gsap.to(logo, { y: -4, scale: 1.05, duration: 0.3, overwrite: "auto" });
+                            }
+                        });
+                        logo.addEventListener('mouseleave', () => {
+                            if (logo.style.display !== "none") {
+                                gsap.to(logo, { y: 0, scale: 1, duration: 0.3, overwrite: "auto" });
+                            }
+                        });
+                    });
+
+                    ScrollTrigger.create({
+                        trigger: ".section-partners",
+                        start: "top 85%",
+                        once: true,
+                        onEnter: () => {
+                            showNextGroup();
+                            setInterval(showNextGroup, 4000);
+                        }
+                    });
+                })();
+            });
+        </script>
 </body>
 
 </html>
