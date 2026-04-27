@@ -881,7 +881,7 @@ body.page-safe .reveal.is-visible { opacity: 1; transform: none !important; }
   justify-content: center;
   position: relative;
   height: 560px;
-  overflow: hidden;
+  overflow: visible;
 }
 .rings {
   position: absolute; inset: 0;
@@ -2141,8 +2141,12 @@ footer { background: #fff; border-top: 1px solid var(--neutral-100); padding: 4.
   .testimonials-grid     { display: flex; }
   .testimonial-card      { min-height: 0; width: 280px; min-width: 280px; }
   .testimonials-container::before, .testimonials-container::after { display: none; }
-  .card                  { width: 280px; height: 380px; }
-  .score-num             { font-size: 72px; }
+  .card                  { width: 260px; height: 410px; padding: 1.5rem; }
+  .card-score-label      { font-size: 26px; margin-bottom: 1.25rem; }
+  .score-num             { font-size: 64px; }
+  .grade                 { width: 44px; height: 30px; font-size: 14px; border-radius: 6px; }
+  .grade-stack           { gap: 4px; }
+  .grade-arrow           { left: -26px; }
   .footer-main           { flex-direction: column; align-items: flex-start; padding-bottom: 2rem; }
   .footer-bottom         { padding-top: 1.5rem; }
   .footer-legal          { max-width: 100%; margin-top: 8px; text-align: left; }
@@ -2153,6 +2157,19 @@ footer { background: #fff; border-top: 1px solid var(--neutral-100); padding: 4.
   .cta-final h2          { font-size: 32px; }
   .cta-final-inner       { padding: 0 1.5rem; }
   h1                     { font-size: 28px; }
+
+  /* — Safe hero mobile fixes — */
+  body.page-safe .hero-inner          { width: 92%; }
+  body.page-safe .hero-text-col h1    { font-size: clamp(1.55rem, 6.5vw, 2rem); word-break: break-word; overflow-wrap: break-word; }
+  .hero-logo-img                      { height: 44px; }
+  .hero-logo-safe                     { font-size: 56px; }
+  .hero-logo-mark                     { margin-bottom: 1.75rem; }
+  .hero-desc                          { font-size: 15px; max-width: 100%; margin-bottom: 2rem; }
+  .hero-features                      { gap: 1rem; margin-top: 2rem; }
+  .hero-feature                       { font-size: 13px; }
+
+  /* card-wrapper: altura auto, centraliza o card, contém rings */
+  body.page-safe .card-wrapper        { height: auto; min-height: 460px; padding: 2rem 0; justify-content: center; align-items: center; overflow: hidden; }
 }
 @media (max-width: 767px) {
   .plat-tabs__vertical-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
