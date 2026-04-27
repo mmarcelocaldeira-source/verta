@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verta — Design System v3</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────────── */
+    :root {
+      --font-display: 'Blinker', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      --font-size-h1:      62px;
+      --font-size-h2:      48px;
+      --font-size-h3:      30px;
+      --font-size-h4:      22px;
+      --font-size-body-lg: 18px;
+      --font-size-body:    16px;
+      --font-size-sm:      14px;
+      --font-size-xs:      11px;
+
+      --line-height-display: 1.05;
+      --line-height-heading: 1.08;
+      --line-height-body:    1.7;
+
+      --tracking-display: -0.03em;
+      --tracking-heading: -0.025em;
+      --tracking-badge:    0.12em;
+
+      --brand-50:  #eef1fe;
+      --brand-100: #dde4fd;
+      --brand-300: #a8b8f9;
+      --brand-400: #7f99f5;
+      --brand-500: #5b7af0;
+      --brand-700: #2d4ec7;
+
+      --neutral-0:   #ffffff;
+      --neutral-50:  #f9fafb;
+      --neutral-100: #f3f4f6;
+      --neutral-200: #e5e7eb;
+      --neutral-400: #9ca3af;
+      --neutral-500: #6b7280;
+      --neutral-700: #374151;
+      --neutral-900: #111827;
+
+      --color-accent:          var(--brand-400);
+      --color-text-secondary:  var(--neutral-500);
+
+      --emerald:      #34d399;
+      --emerald-dark: #10b981;
+
+      --radius-sm:   8px;
+      --radius-md:   12px;
+      --radius-lg:   16px;
+      --radius-xl:   20px;
+      --radius-2xl:  24px;
+      --radius-pill: 9999px;
+
+      --shadow-xs:    0 2px 8px rgba(15,23,42,.03), 0 0 0 1px rgba(15,23,42,.02);
+      --shadow-sm:    0 4px 16px rgba(15,23,42,.04);
+      --shadow-md:    0 8px 24px rgba(15,23,42,.07);
+      --shadow-lg:    0 16px 48px rgba(127,153,245,.13), 0 4px 12px rgba(127,153,245,.07);
+      --shadow-brand: 0 10px 25px -5px rgba(127,153,245,.4);
+      --shadow-dark:  0 48px 96px rgba(0,0,0,.55), 0 16px 32px rgba(0,0,0,.3),
+                      inset 0 1px 0 rgba(255,255,255,.12), inset 0 -1px 0 rgba(0,0,0,.25),
+                      0 0 0 1px rgba(127,153,245,.08);
+
+      --ease-fast:   0.2s ease;
+      --ease-reveal: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-enter:  0.9s cubic-bezier(0.16, 1, 0.3, 1);
+
+      --space-1:  4px;  --space-2:  8px;  --space-3:  12px;
+      --space-4:  16px; --space-6:  24px; --space-8:  32px;
+      --space-12: 48px; --space-16: 64px; --space-24: 96px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--neutral-900);
+      background: var(--neutral-0);
+      -webkit-font-smoothing: antialiased;
+      padding-top: 64px;
+    }
+
+    /* ─── DS NAV ─────────────────────────────────────────────────── */
+    .ds-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--neutral-200);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--space-8);
+    }
+    .ds-nav-brand {
+      font-family: var(--font-display); font-size: 18px; font-weight: 700;
+      color: var(--neutral-900); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .ds-nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand-400); }
+    .ds-nav-links { display: flex; gap: var(--space-6); list-style: none; }
+    .ds-nav-links a {
+      font-size: var(--font-size-sm); font-weight: 500;
+      color: var(--neutral-500); text-decoration: none;
+      transition: color var(--ease-fast);
+    }
+    .ds-nav-links a:hover { color: var(--brand-500); }
+
+    /* ─── DS HERO ────────────────────────────────────────────────── */
+    .ds-hero {
+      padding: var(--space-24) var(--space-8) var(--space-16);
+      text-align: center; position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+    .ds-hero::before {
+      content: ''; position: absolute; top: -20%; left: 50%;
+      transform: translateX(-50%); width: 80vw; height: 80vw;
+      background: radial-gradient(circle, rgba(127,153,245,.12) 0%, transparent 60%);
+      filter: blur(80px); pointer-events: none;
+    }
+    .ds-hero-content { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .ds-hero h1 {
+      font-family: var(--font-display); font-size: var(--font-size-h1); font-weight: 400;
+      line-height: var(--line-height-display); letter-spacing: var(--tracking-display);
+      margin-bottom: var(--space-6); color: var(--neutral-900);
+    }
+    .ds-hero h1 em { font-style: normal; color: var(--brand-400); }
+    .ds-hero p { font-size: var(--font-size-body-lg); color: var(--neutral-500); max-width: 560px; margin: 0 auto var(--space-8); }
+    .ds-hero-actions { display: flex; justify-content: center; gap: var(--space-4); }
+
+    /* ─── DS SECTION SHELL ───────────────────────────────────────── */
+    .ds-section {
+      max-width: 1200px; margin: 0 auto;
+      padding: var(--space-24) var(--space-8);
+      border-bottom: 1px solid var(--neutral-100);
+    }
+    .ds-section:last-child { border-bottom: none; }
+    .ds-section-label {
+      font-size: var(--font-size-xs); font-weight: 600;
+      letter-spacing: var(--tracking-badge); text-transform: uppercase;
+      color: var(--neutral-400); margin-bottom: var(--space-2);
+    }
+    .ds-section-title {
+      font-family: var(--font-display); font-size: var(--font-size-h2); font-weight: 400;
+      line-height: var(--line-height-heading); letter-spacing: var(--tracking-heading);
+      margin-bottom: var(--space-4); color: var(--neutral-900);
+    }
+    .ds-section-desc { font-size: var(--font-size-body-lg); color: var(--neutral-500); max-width: 640px; margin-bottom: var(--space-12); }
+    .ds-subsection-title {
+      font-family: var(--font-display); font-size: var(--font-size-h4); font-weight: 400;
+      letter-spacing: var(--tracking-heading); color: var(--neutral-900);
+      margin-bottom: var(--space-4); margin-top: var(--space-12);
+    }
+    .ds-subsection-title:first-of-type { margin-top: 0; }
+    .ds-note {
+      font-size: 12px; color: var(--neutral-400); margin-top: calc(-1 * var(--space-4));
+      margin-bottom: var(--space-8); font-family: monospace;
+    }
+
+    /* ─── TOKEN GRID ─────────────────────────────────────────────── */
+    .token-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-4); margin-bottom: var(--space-12);
+    }
+    .token-card {
+      background: var(--neutral-0); border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xs);
+      transition: box-shadow var(--ease-fast), transform var(--ease-fast);
+    }
+    .token-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .color-swatch { height: 80px; width: 100%; }
+    .token-details { padding: var(--space-3) var(--space-4); }
+    .token-name { font-size: var(--font-size-sm); font-weight: 600; color: var(--neutral-900); margin-bottom: 3px; }
+    .token-var  { font-family: monospace; font-size: 11px; color: var(--brand-500); margin-bottom: 2px; }
+    .token-hex  { font-family: monospace; font-size: 11px; color: var(--neutral-400); }
+
+    /* ─── TYPE TABLE ─────────────────────────────────────────────── */
+    .type-table { width: 100%; border-collapse: collapse; }
+    .type-table th, .type-table td {
+      padding: var(--space-6) 0; border-bottom: 1px solid var(--neutral-100);
+      text-align: left; vertical-align: middle;
+    }
+    .type-table th { font-size: 11px; text-transform: uppercase; letter-spacing: var(--tracking-badge); color: var(--neutral-400); font-weight: 600; }
+    .type-preview { width: 55%; }
+    .type-meta { width: 45%; font-family: monospace; font-size: 12px; color: var(--neutral-500); text-align: right; }
+    .type-tag { display: inline-block; font-family: monospace; font-size: 10px; background: var(--brand-50); color: var(--brand-500); border-radius: 4px; padding: 2px 6px; margin-left: 6px; }
+
+    /* ─── COMPONENT ROW ──────────────────────────────────────────── */
+    .component-row {
+      display: flex; flex-wrap: wrap; gap: var(--space-8); align-items: flex-start;
+      padding: var(--space-8); background: var(--neutral-50);
+      border: 1px solid var(--neutral-100); border-radius: var(--radius-xl);
+      margin-bottom: var(--space-8);
+    }
+    .component-row.dark { background: var(--neutral-900); border-color: rgba(255,255,255,.08); }
+    .component-row.dark-section {
+      background: #0e0e14;
+      border-color: rgba(255,255,255,.06);
+    }
+    .comp-label { font-size: var(--font-size-xs); font-weight: 600; letter-spacing: var(--tracking-badge); text-transform: uppercase; color: var(--neutral-400); margin-bottom: var(--space-3); }
+    .comp-label.light { color: rgba(255,255,255,.35); }
+    .comp-col { display: flex; flex-direction: column; }
+
+    /* ─── BTN_VERTA (primary CTA — both pages) ───────────────────── */
+    .btn_verta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 0 22px; height: 44px;
+      background: var(--brand-400); color: #fff;
+      font-family: var(--font-body); font-size: var(--font-size-sm); font-weight: 600;
+      border-radius: var(--radius-md); border: none;
+      cursor: pointer; text-decoration: none;
+      transition: background var(--ease-fast), transform var(--ease-fast), box-shadow var(--ease-fast);
+    }
+    .btn_verta:hover { background: var(--brand-500); transform: translateY(-1px); box-shadow: var(--shadow-brand); }
+
+    /* ghost variant */
+    .btn-ghost-dark {
+      display: inline-flex; align-items: center; height: 44px; padding: 0 22px;
+      border-radius: var(--radius-md); font-family: var(--font-body);
+      font-size: var(--font-size-sm); font-weight: 600; text-decoration: none; cursor: pointer;
+      background: transparent; color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.15);
+      transition: background var(--ease-fast), border-color var(--ease-fast);
+    }
+    .btn-ghost-dark:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.28); }
+
+    /* ─── EYEBROW (universal section badge) ──────────────────────── */
+    .eyebrow {
+      font-family: var(--font-body); text-transform: uppercase;
+      letter-spacing: var(--tracking-badge); font-size: 11px; font-weight: 600;
+      color: var(--color-text-secondary); margin-bottom: 2rem;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 5px 14px; border-radius: var(--radius-pill);
+      border: 1px solid var(--neutral-200); background: transparent;
+    }
+    .eyebrow::before {
+      content: ""; width: 6px; height: 6px;
+      background-color: var(--color-accent);
+      border-radius: 50%; flex-shrink: 0;
+    }
+    /* Dark context variant */
+    .eyebrow-dark {
+      color: var(--brand-300);
+      border-color: rgba(127,153,245,.25);
+    }
+    .eyebrow-dark::before { background-color: var(--brand-400); }
+
+    /* ─── NAV_MINIMAL (unified nav — index + safe) ───────────────── */
+    .nav-demo {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px; background: rgba(10,10,18,.85);
+      backdrop-filter: blur(20px); border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-demo-logo { height: 26px; width: auto; opacity: .9; }
+    .nav-demo-links { display: flex; gap: 2rem; }
+    .nav-demo-link {
+      font-family: var(--font-body); font-size: var(--font-size-sm); font-weight: 500;
+      color: rgba(255,255,255,.6); text-decoration: none;
+    }
+    .nav-demo-link.active { color: var(--brand-400); font-weight: 600; }
+    .hamburger-demo { display: flex; flex-direction: column; gap: 5px; padding: 4px; cursor: pointer; }
+    .hamburger-demo span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.7); border-radius: 2px; }
+
+    /* ─── PARTNER LOGO GRID ──────────────────────────────────────── */
+    .partners-demo {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      align-items: center; gap: 40px 60px;
+      padding: var(--space-8); background: #111;
+      border-radius: var(--radius-xl); margin-bottom: var(--space-4);
+    }
+    .partner-logo-demo {
+      max-height: 40px; max-width: 160px;
+      object-fit: contain; filter: brightness(0) invert(1); opacity: .55;
+      transition: opacity .3s;
+    }
+    .partner-logo-demo:hover { opacity: 1; }
+
+    /* ─── QUOTE CAROUSEL ─────────────────────────────────────────── */
+    .section-quote-demo {
+      background: #0e0e14; border-radius: var(--radius-xl);
+      padding: 4rem 2rem; text-align: center; position: relative;
+    }
+    .quote-mark-demo {
+      font-family: Georgia, serif; font-size: 96px; line-height: 1;
+      color: rgba(127,153,245,.18); position: absolute;
+      top: 1.5rem; left: 50%; transform: translateX(-50%);
+      pointer-events: none; user-select: none;
+    }
+    .quote-text-demo {
+      font-family: var(--font-display); font-size: clamp(1.1rem,2vw,1.5rem);
+      font-weight: 400; color: rgba(255,255,255,.88);
+      line-height: 1.55; letter-spacing: -0.01em;
+      max-width: 680px; margin: 0 auto var(--space-8);
+      position: relative; z-index: 1;
+    }
+    .quote-author-demo {
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+    }
+    .quote-avatar-demo {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--brand-400); border: 2px solid rgba(127,153,245,.3);
+      object-fit: cover;
+    }
+    .quote-author-name { font-size: 14px; font-weight: 700; color: #fff; }
+    .quote-author-role { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px; }
+    .quote-dots-demo { display: flex; justify-content: center; gap: 8px; margin-top: 2.5rem; }
+    .quote-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.2);
+      transition: all .3s;
+    }
+    .quote-dot.active { width: 20px; border-radius: 3px; background: var(--brand-400); }
+
+    /* ─── CONTACT LINKS ──────────────────────────────────────────── */
+    .contact-links-demo {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; background: #0e0e14; border-radius: var(--radius-xl); padding: 2.5rem;
+    }
+    .contact-link-demo {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      padding: 1.5rem 3rem; text-decoration: none; cursor: pointer;
+    }
+    .contact-region { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--brand-300); }
+    .contact-email  { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; color: #fff; letter-spacing: -0.01em; }
+    .contact-divider { width: 1px; height: 48px; background: rgba(127,153,245,.2); flex-shrink: 0; }
+
+    /* ─── FOOTER COLS ────────────────────────────────────────────── */
+    .footer-demo {
+      background: #fff; border: 1px solid var(--neutral-100);
+      border-radius: var(--radius-xl); padding: 3rem;
+    }
+    .footer-cols-demo {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .footer-col-left { display: flex; flex-direction: column; gap: 1rem; }
+    .footer-col-right {
+      display: flex; flex-direction: column; gap: 1rem;
+      padding-left: 3rem; border-left: 1px solid var(--neutral-100);
+    }
+    .footer-tagline-demo { font-size: 15px; font-weight: 500; color: var(--neutral-500); line-height: 1.65; max-width: 320px; }
+    .footer-cnpj-demo   { font-size: 13px; color: var(--neutral-400); font-weight: 500; }
+    .footer-ops-label   { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--neutral-400); }
+    .footer-ops-name    { font-size: 16px; font-weight: 700; letter-spacing: .08em; color: var(--neutral-600); }
+    .footer-legal-demo  { font-size: 13px; color: var(--neutral-400); line-height: 1.65; }
+
+    /* ─── VALUE PROP CARD ────────────────────────────────────────── */
+    .vp-card {
+      background: var(--neutral-0); border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-xl); padding: 2rem 1.75rem 2.25rem;
+      width: 280px; position: relative; overflow: hidden;
+      transition: border-color var(--ease-fast), box-shadow var(--ease-fast), transform var(--ease-fast);
+    }
+    .vp-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; border-radius: 20px 20px 0 0;
+      background: linear-gradient(90deg, var(--brand-400), var(--brand-300));
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .vp-card:hover { border-color: var(--brand-100); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .vp-card:hover::before { opacity: 1; }
+    .vp-card.is-hover::before { opacity: 1; }
+    .vp-card.is-hover { border-color: var(--brand-100); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .vp-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      background: var(--brand-50); border: 1px solid var(--brand-100);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; color: var(--brand-400);
+    }
+    .vp-num { font-family: var(--font-display); font-size: 11px; font-weight: 400; letter-spacing: var(--tracking-badge); text-transform: uppercase; color: var(--brand-400); margin-bottom: .5rem; }
+    .vp-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 400; line-height: 1.3; letter-spacing: -0.01em; color: var(--neutral-900); margin-bottom: .85rem; }
+    .vp-card p  { font-size: 15px; color: var(--neutral-500); line-height: 1.72; }
+
+    /* ─── TESTIMONIAL CARD (Verta Safe carousel) ─────────────────── */
+    .testimonial-card {
+      background: var(--neutral-0); border: 1px solid var(--neutral-100);
+      border-radius: 22px; padding: 2rem 2rem 1.75rem;
+      width: 360px; box-shadow: var(--shadow-xs);
+      display: flex; flex-direction: column; justify-content: space-between;
+      gap: 1.5rem; position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C'; position: absolute;
+      top: 0.75rem; right: 1.25rem;
+      font-size: 56px; font-family: Georgia, serif; line-height: 1;
+      color: var(--brand-100); pointer-events: none;
+    }
+    .testimonial-text { font-size: 14px; color: var(--neutral-500); line-height: 1.7; padding-right: 2.5rem; }
+    .testimonial-footer {
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 0.75rem; border-top: 1px solid var(--neutral-100);
+    }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--brand-100); border: 2px solid rgba(127,153,245,.18);
+      object-fit: cover; flex-shrink: 0;
+    }
+    .testimonial-meta strong { display: block; font-size: 13px; font-weight: 700; color: var(--neutral-900); }
+    .testimonial-meta span   { font-size: 11px; color: var(--neutral-400); }
+    .testimonial-card.tc-active { box-shadow: 0 20px 56px rgba(15,23,42,.1), 0 4px 16px rgba(15,23,42,.06); border-color: rgba(127,153,245,.22); }
+
+    /* ─── DARK SURFACES ──────────────────────────────────────────── */
+    .dark-surface { background: var(--neutral-900); border-radius: var(--radius-xl); padding: var(--space-8); position: relative; overflow: hidden; }
+    .dark-surface-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(127,153,245,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(127,153,245,.04) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none;
+    }
+    .dark-surface-glow { position: absolute; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(91,122,240,.2) 0%, transparent 70%); width: 300px; height: 300px; top: -80px; right: -60px; }
+
+    /* ─── HERO CARD ──────────────────────────────────────────────── */
+    .hero-card {
+      width: 260px; border-radius: 32px; padding: 1.75rem;
+      background: linear-gradient(150deg, rgba(55,65,81,.72) 0%, rgba(20,27,45,.94) 45%, rgba(13,19,38,.98) 100%);
+      border: 1px solid rgba(255,255,255,.12); box-shadow: var(--shadow-dark);
+      display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;
+    }
+    .hero-card-score-label { font-size: 28px; font-weight: 500; color: #fff; font-family: var(--font-display); }
+    .hero-card-num  { font-size: 72px; font-weight: 800; color: var(--emerald); line-height: 1; letter-spacing: -0.05em; font-family: var(--font-display); }
+    .hero-card-pct  { font-size: 28px; font-weight: 800; color: var(--emerald); font-family: var(--font-display); }
+    .hero-card-status { display: flex; align-items: center; gap: 10px; }
+    .status-dot { width: 40px; height: 40px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 15px rgba(52,211,153,.3); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .status-txt p     { color: #fff; font-size: 13px; font-weight: 500; }
+    .status-txt small { color: #d1d5db; font-size: 11px; }
+
+    /* ─── STAT STRIP ─────────────────────────────────────────────── */
+    .stat-demo { text-align: center; padding: 2rem 2.5rem; position: relative; }
+    .stat-demo:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); height: 48px; width: 1px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,.12), transparent); }
+    .stat-value-demo { font-family: var(--font-display); font-size: 56px; font-weight: 600; color: #fff; line-height: 1; letter-spacing: -0.05em; margin-bottom: 10px; display: flex; align-items: baseline; justify-content: center; gap: 2px; }
+    .stat-suffix-demo  { font-size: 30px; font-weight: 600; color: var(--brand-400); }
+    .stat-prefix-demo  { font-size: 24px; font-weight: 600; color: var(--brand-400); align-self: flex-end; margin-bottom: 6px; }
+    .stat-label-demo   { font-size: 13px; color: rgba(255,255,255,.5); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    /* ─── SHADOW GRID ────────────────────────────────────────────── */
+    .shadow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-8); }
+    .shadow-swatch { background: var(--neutral-0); border: 1px solid var(--neutral-100); border-radius: var(--radius-lg); height: 96px; display: flex; align-items: flex-end; padding: var(--space-3); }
+    .shadow-swatch-name { font-size: 11px; font-family: monospace; color: var(--neutral-500); }
+
+    /* ─── MOTION ─────────────────────────────────────────────────── */
+    .motion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    .motion-card { background: var(--neutral-0); border: 1px solid var(--neutral-200); border-radius: var(--radius-xl); padding: var(--space-8); opacity: 0; transform: translateY(28px); transition: opacity var(--ease-reveal) var(--reveal-delay, 0s), transform var(--ease-reveal) var(--reveal-delay, 0s); }
+    .motion-card.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── KEYFRAMES ──────────────────────────────────────────────── */
+    @keyframes revealUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-12px); } }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+    .demo-float { animation: float 6s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+
+  <!-- DS NAV -->
+  <nav class="ds-nav">
+    <a href="#" class="ds-nav-brand"><div class="ds-nav-dot"></div>Verta — Design System v3</a>
+    <ul class="ds-nav-links">
+      <li><a href="#colors">Cores</a></li>
+      <li><a href="#typography">Tipografia</a></li>
+      <li><a href="#nav-component">Navegação</a></li>
+      <li><a href="#components">Componentes</a></li>
+      <li><a href="#dark">Dark</a></li>
+      <li><a href="#layout">Layout</a></li>
+      <li><a href="#motion">Motion</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="ds-hero">
+    <div class="ds-hero-content" style="animation: revealUp var(--ease-enter) both;">
+      <div style="display:inline-flex;align-items:center;gap:10px;padding:5px 14px;border-radius:9999px;border:1px solid var(--neutral-200);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--neutral-500);margin-bottom:1.5rem;">
+        <span style="width:6px;height:6px;background:var(--brand-400);border-radius:50%;display:inline-block;"></span>
+        Design System · v3.0 · index.html + verta-safe.html
+      </div>
+      <h1>Sistema <em>vivo.</em><br>Dois sites. Um padrão.</h1>
+      <p>Tokens, componentes e padrões compartilhados entre a Verta home page e o Verta Safe. Blinker + Inter, brand azul-índigo, superfícies dark.</p>
+      <div class="ds-hero-actions">
+        <a href="#components" class="btn_verta">Ver Componentes <span style="font-size:16px;line-height:1;">→</span></a>
+        <a href="#layout" class="btn-ghost-dark" style="background:var(--neutral-100);color:var(--neutral-700);border-color:var(--neutral-200);">Layout & Grid</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       01 — CORES
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="colors" class="ds-section">
+    <div class="ds-section-label">01 — Cores</div>
+    <h2 class="ds-section-title">Paleta & Tokens de Cor</h2>
+    <p class="ds-section-desc">Azul-índigo (#7F99F5) como cor primária — acento e interação. Esmeralda (#34D399) para scores e status positivos. Neutros Gray (Tailwind 50–900).</p>
+
+    <h3 class="ds-subsection-title">Brand Blue</h3>
+    <div class="token-grid">
+      <div class="token-card"><div class="color-swatch" style="background:#eef1fe;"></div><div class="token-details"><div class="token-name">Brand 50</div><div class="token-var">--brand-50</div><div class="token-hex">#EEF1FE</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#dde4fd;"></div><div class="token-details"><div class="token-name">Brand 100</div><div class="token-var">--brand-100</div><div class="token-hex">#DDE4FD</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#a8b8f9;"></div><div class="token-details"><div class="token-name">Brand 300 — dark sections</div><div class="token-var">--brand-300</div><div class="token-hex">#A8B8F9</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#7f99f5;"></div><div class="token-details"><div class="token-name">Brand 400 — Primary</div><div class="token-var">--brand-400</div><div class="token-hex">#7F99F5</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#5b7af0;"></div><div class="token-details"><div class="token-name">Brand 500 — Hover</div><div class="token-var">--brand-500</div><div class="token-hex">#5B7AF0</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#2d4ec7;"></div><div class="token-details"><div class="token-name">Brand 700</div><div class="token-var">--brand-700</div><div class="token-hex">#2D4EC7</div></div></div>
+    </div>
+
+    <h3 class="ds-subsection-title">Neutrals</h3>
+    <div class="token-grid">
+      <div class="token-card"><div class="color-swatch" style="background:#f9fafb;border-bottom:1px solid #e5e7eb;"></div><div class="token-details"><div class="token-name">Neutral 50 — Bg alt</div><div class="token-var">--neutral-50</div><div class="token-hex">#F9FAFB</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#f3f4f6;border-bottom:1px solid #e5e7eb;"></div><div class="token-details"><div class="token-name">Neutral 100 — Dividers</div><div class="token-var">--neutral-100</div><div class="token-hex">#F3F4F6</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#e5e7eb;"></div><div class="token-details"><div class="token-name">Neutral 200 — Borders</div><div class="token-var">--neutral-200</div><div class="token-hex">#E5E7EB</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#9ca3af;"></div><div class="token-details"><div class="token-name">Neutral 400 — Placeholder</div><div class="token-var">--neutral-400</div><div class="token-hex">#9CA3AF</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#6b7280;"></div><div class="token-details"><div class="token-name">Neutral 500 — Body text</div><div class="token-var">--neutral-500</div><div class="token-hex">#6B7280</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#374151;"></div><div class="token-details"><div class="token-name">Neutral 700</div><div class="token-var">--neutral-700</div><div class="token-hex">#374151</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#111827;"></div><div class="token-details"><div class="token-name">Neutral 900 — Headings</div><div class="token-var">--neutral-900</div><div class="token-hex">#111827</div></div></div>
+    </div>
+
+    <h3 class="ds-subsection-title">Semantic — Emerald</h3>
+    <div class="token-grid" style="max-width:480px">
+      <div class="token-card"><div class="color-swatch" style="background:#34d399;"></div><div class="token-details"><div class="token-name">Emerald — Score / Status</div><div class="token-var">--emerald</div><div class="token-hex">#34D399</div></div></div>
+      <div class="token-card"><div class="color-swatch" style="background:#10b981;"></div><div class="token-details"><div class="token-name">Emerald Dark</div><div class="token-var">--emerald-dark</div><div class="token-hex">#10B981</div></div></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       02 — TIPOGRAFIA
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="typography" class="ds-section">
+    <div class="ds-section-label">02 — Tipografia</div>
+    <h2 class="ds-section-title">Type Scale</h2>
+    <p class="ds-section-desc"><strong style="font-family:var(--font-display);font-weight:700;font-size:17px;">Blinker</strong> para display e headings (weight 400 — elegância sem boldness excessivo). <strong>Inter</strong> para body e UI.</p>
+
+    <table class="type-table">
+      <thead><tr><th>Preview</th><th>Specs</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="type-preview"><span style="font-family:var(--font-display);font-size:62px;font-weight:400;line-height:1.05;letter-spacing:-0.03em;color:var(--neutral-900);">H1 — 62px</span></td>
+          <td class="type-meta">Blinker 400 / 62px / lh 1.05 / -0.03em<span class="type-tag">hero</span></td>
+        </tr>
+        <tr>
+          <td class="type-preview"><span style="font-family:var(--font-display);font-size:48px;font-weight:400;line-height:1.08;letter-spacing:-0.025em;color:var(--neutral-900);">H2 — 48px</span></td>
+          <td class="type-meta">Blinker 400 / 48px / lh 1.08 / -0.025em<span class="type-tag">section</span></td>
+        </tr>
+        <tr>
+          <td class="type-preview"><span style="font-family:var(--font-display);font-size:30px;font-weight:400;line-height:1.2;letter-spacing:-0.02em;color:var(--neutral-900);">H3 — 30px</span></td>
+          <td class="type-meta">Blinker 400 / 30px / lh 1.2 / -0.02em<span class="type-tag">subsection</span></td>
+        </tr>
+        <tr>
+          <td class="type-preview"><span style="font-family:var(--font-display);font-size:22px;font-weight:400;letter-spacing:-0.01em;color:var(--neutral-900);">H4 — 22px</span></td>
+          <td class="type-meta">Blinker 400 / 22px / -0.01em<span class="type-tag">card title</span></td>
+        </tr>
+        <tr>
+          <td class="type-preview"><span style="font-size:18px;color:var(--neutral-500);line-height:1.7;">Body Large — Converte riscos digitais em decisões estratégicas.</span></td>
+          <td class="type-meta">Inter 400 / 18px / lh 1.7<span class="type-tag">hero desc</span></td>
+        </tr>
+        <tr>
+          <td class="type-preview"><span style="font-size:16px;color:var(--neutral-500);line-height:1.7;">Body — Verta traduz complexidade técnica em contexto executivo.</span></td>
+          <td class="type-meta">Inter 400 / 16px / lh 1.7<span class="type-tag">body</span></td>
+        </tr>
+        <tr>
+          <td class="type-preview"><span style="font-size:14px;font-weight:600;color:var(--neutral-700);">UI / Button — Acessar a plataforma</span></td>
+          <td class="type-meta">Inter 600 / 14px<span class="type-tag">btn</span></td>
+        </tr>
+        <tr>
+          <td class="type-preview"><span style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--neutral-500);">Eyebrow / Badge — Ecossistema</span></td>
+          <td class="type-meta">Inter 600 / 11px / 0.12em UC<span class="type-tag">eyebrow</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       03 — NAVEGAÇÃO
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="nav-component" class="ds-section">
+    <div class="ds-section-label">03 — Navegação</div>
+    <h2 class="ds-section-title">nav_minimal — Navbar Unificada</h2>
+    <p class="ds-section-desc">Mesma nav em ambos os sites. Dark glass, logo 26px, links Inter 500, botão <code style="font-family:monospace;background:var(--neutral-100);padding:2px 6px;border-radius:4px;">btn_verta</code>. Padding 40px em repouso, 18px após scroll (.scrolled).</p>
+
+    <h3 class="ds-subsection-title">Estado padrão (repouso)</h3>
+    <div class="nav-demo" style="margin-bottom:var(--space-4);">
+      <img src="./assets/images/verta-logo.svg" alt="Verta" class="nav-demo-logo">
+      <div class="nav-demo-links">
+        <a href="#" class="nav-demo-link">A Verta</a>
+        <a href="#" class="nav-demo-link">Como Funciona</a>
+        <a href="#" class="nav-demo-link">A Plataforma</a>
+        <a href="#" class="nav-demo-link">Contato</a>
+        <a href="#" class="nav-demo-link active">Verta Safe</a>
+      </div>
+      <a class="btn_verta" style="cursor:default;">
+        Acessar a plataforma
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="2" r="1.3" fill="currentColor"/><circle cx="14" cy="8" r="1.3" fill="currentColor"/><circle cx="8" cy="14" r="1.3" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <p class="ds-note">index.html: links de seção (#como-funciona, #a-plataforma, #contato) + "Verta Safe" destacado em brand-500 · verta-safe.html: apenas "Página Inicial" + "Contato"</p>
+
+    <h3 class="ds-subsection-title">Estado scrolled</h3>
+    <div class="nav-demo" style="padding:12px 40px;margin-bottom:var(--space-4);">
+      <img src="./assets/images/verta-logo.svg" alt="Verta" class="nav-demo-logo">
+      <div class="nav-demo-links">
+        <a href="#" class="nav-demo-link">A Verta</a>
+        <a href="#" class="nav-demo-link">Como Funciona</a>
+        <a href="#" class="nav-demo-link active">Verta Safe</a>
+      </div>
+      <a class="btn_verta" style="cursor:default;">Acessar a plataforma <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="2" r="1.3" fill="currentColor"/><circle cx="14" cy="8" r="1.3" fill="currentColor"/><circle cx="8" cy="14" r="1.3" fill="currentColor"/></svg></a>
+    </div>
+    <p class="ds-note">scrollY > 60px → .scrolled → padding: 18px 0 · JS: window.scrollY toggle</p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       04 — COMPONENTES
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="components" class="ds-section">
+    <div class="ds-section-label">04 — Componentes</div>
+    <h2 class="ds-section-title">UI Components</h2>
+
+    <!-- BTN_VERTA -->
+    <h3 class="ds-subsection-title">btn_verta — Botão primário CTA</h3>
+    <div class="component-row dark">
+      <div class="comp-col">
+        <div class="comp-label light">Default</div>
+        <a class="btn_verta" style="cursor:default;">Acessar a plataforma <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="2" r="1.3" fill="currentColor"/><circle cx="14" cy="8" r="1.3" fill="currentColor"/><circle cx="8" cy="14" r="1.3" fill="currentColor"/></svg></a>
+      </div>
+      <div class="comp-col">
+        <div class="comp-label light">Hover (simulado)</div>
+        <a class="btn_verta" style="cursor:default;background:var(--brand-500);transform:translateY(-1px);box-shadow:var(--shadow-brand);">Acessar a plataforma <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="2" r="1.3" fill="currentColor"/><circle cx="14" cy="8" r="1.3" fill="currentColor"/><circle cx="8" cy="14" r="1.3" fill="currentColor"/></svg></a>
+      </div>
+      <div class="comp-col">
+        <div class="comp-label light">Ghost dark</div>
+        <a class="btn-ghost-dark" style="cursor:default;">Ver a plataforma</a>
+      </div>
+    </div>
+    <p class="ds-note">brand-400 → brand-500 hover · height 44px · padding 0 22px · radius-md · gap 10px · 3-dots SVG icon</p>
+
+    <!-- EYEBROW -->
+    <h3 class="ds-subsection-title">Eyebrow — Badge de seção (universal)</h3>
+    <div class="component-row" style="flex-direction:column;gap:var(--space-6);align-items:flex-start;">
+      <div>
+        <div class="comp-label">Light context (seções brancas / claras)</div>
+        <div style="margin-top:var(--space-3);display:flex;flex-direction:column;gap:var(--space-3);">
+          <span class="eyebrow">Ecossistema</span>
+          <span class="eyebrow">Como Funciona</span>
+          <span class="eyebrow">A Plataforma</span>
+        </div>
+      </div>
+    </div>
+    <div class="component-row dark-section" style="flex-direction:column;gap:var(--space-6);align-items:flex-start;">
+      <div>
+        <div class="comp-label light">Dark context — seções escuras (.section-evidencia, .section-partners, .section-final-cta etc.)</div>
+        <div style="margin-top:var(--space-3);display:flex;flex-direction:column;gap:var(--space-3);">
+          <span class="eyebrow eyebrow-dark">Ecossistema</span>
+          <span class="eyebrow eyebrow-dark">Evidências</span>
+          <span class="eyebrow eyebrow-dark">A Solução</span>
+        </div>
+      </div>
+    </div>
+    <p class="ds-note">Classe única .eyebrow · dot via ::before com --color-accent · Dark override via parent selector no style.css</p>
+    <div style="margin-top:var(--space-6);padding:var(--space-6);background:var(--neutral-50);border:1px solid var(--neutral-100);border-radius:var(--radius-lg);">
+      <div class="eyebrow" style="margin-bottom:1rem;">Parceiros</div>
+      <span style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:400;letter-spacing:-0.025em;color:var(--neutral-900);">Parceiros Estratégicos e Clientes</span>
+    </div>
+
+    <!-- PARCEIROS GRID -->
+    <h3 class="ds-subsection-title">Partners Grid</h3>
+    <div class="partners-demo">
+      <img src="./assets/images/partners/p-logo-castle.svg"       alt="Castle"        class="partner-logo-demo">
+      <img src="./assets/images/partners/p-logo-elytron.svg"      alt="Elytron"       class="partner-logo-demo">
+      <img src="./assets/images/partners/p-logo-tao.svg"          alt="TAO"           class="partner-logo-demo">
+      <img src="./assets/images/partners/p-logo-telmex.svg"       alt="Telmex"        class="partner-logo-demo">
+      <img src="./assets/images/partners/p-logo-claro.svg"        alt="Claro"         class="partner-logo-demo">
+      <img src="./assets/images/partners/p-logo-embratel.svg"     alt="Embratel"      class="partner-logo-demo">
+      <img src="./assets/images/partners/p-logo-fti.svg"          alt="FTI"           class="partner-logo-demo">
+      <img src="./assets/images/partners/p-logo-pluggy.png"       alt="Pluggy"        class="partner-logo-demo">
+    </div>
+    <p class="ds-note">assets/images/partners/ · filter brightness(0) invert(1) · opacity .55 → 1 hover · GSAP carousel: fade, 2.8s/logo, stagger 0.08 · start: "top bottom" · 15 logos total</p>
+
+    <!-- QUOTE CAROUSEL -->
+    <h3 class="ds-subsection-title">Quote Carousel — Home (section-quote)</h3>
+    <div class="section-quote-demo">
+      <div class="quote-mark-demo">"</div>
+      <p class="quote-text-demo">A Verta nos deu clareza sobre o que realmente estava em risco — e isso mudou como tomamos decisões sobre segurança.</p>
+      <div class="quote-author-demo">
+        <img src="./assets/images/testimonials/victor-urano.jpg" alt="Victor Urano" class="quote-avatar-demo" onerror="this.style.background='var(--brand-400)'">
+        <div style="text-align:left;">
+          <div class="quote-author-name">Victor Urano</div>
+          <div class="quote-author-role">Co-founder — Pluggy</div>
+        </div>
+      </div>
+      <div class="quote-dots-demo">
+        <div class="quote-dot active"></div>
+        <div class="quote-dot"></div>
+        <div class="quote-dot"></div>
+      </div>
+    </div>
+    <p class="ds-note">1 item → dots ocultos, auto-rotate off · 2+ itens → dots visíveis, auto-rotate 6s, pause on hover, swipe · .quote-track usa CSS grid overlay (grid-column:1, grid-row:1) para crossfade</p>
+
+    <!-- TESTIMONIAL CARDS (Safe) -->
+    <h3 class="ds-subsection-title">Testimonial Cards — Verta Safe (carrossel horizontal)</h3>
+    <div class="component-row" style="gap:var(--space-6);flex-wrap:wrap;">
+      <div class="testimonial-card" style="opacity:.45;transform:scale(.93);">
+        <p class="testimonial-text">"O perfil de risco cibernético é determinado, sobretudo, pela sua arquitetura de governança."</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar" style="background:var(--brand-100);display:flex;align-items:center;justify-content:center;font-size:16px;">👤</div>
+          <div class="testimonial-meta"><strong>Prof. Paulo Moura, PhD</strong><span>Diretor Adjunto — IMREDD, França</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card tc-active">
+        <p class="testimonial-text">"A Verta nos deu clareza sobre o que realmente estava em risco — e isso mudou como tomamos decisões."</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar" style="background:var(--brand-100);display:flex;align-items:center;justify-content:center;font-size:16px;">👤</div>
+          <div class="testimonial-meta"><strong>Victor Urano</strong><span>Co-founder — Pluggy</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="ds-note">Inativo: opacity .45, scale .93 · Ativo: border brand rgba, shadow 20px · Glyph " : top 0.75rem / right 1.25rem / 56px / color brand-100 · padding-right 2.5rem no texto</p>
+
+    <!-- CONTACT LINKS -->
+    <h3 class="ds-subsection-title">Contact Links — Final CTA (sem formulário)</h3>
+    <div class="contact-links-demo">
+      <a class="contact-link-demo">
+        <span class="contact-region">Verta USA</span>
+        <span class="contact-email">Contact@verta.digital</span>
+      </a>
+      <div class="contact-divider"></div>
+      <a class="contact-link-demo">
+        <span class="contact-region">Verta Brasil</span>
+        <span class="contact-email">Contato@verta.digital</span>
+      </a>
+    </div>
+    <p class="ds-note">Dois mailto: links · região em Inter 600 small-caps brand-300 · email em Blinker 400 clamp(1.1rem,2vw,1.5rem) branco · divider 1px rgba(127,153,245,.2) · mobile: coluna, divider oculto</p>
+
+    <!-- VALUE PROP CARDS -->
+    <h3 class="ds-subsection-title">Value Prop Cards</h3>
+    <div class="component-row" style="background:var(--neutral-0);border:none;padding:0;gap:var(--space-6);flex-wrap:wrap;">
+      <div class="vp-card">
+        <div class="vp-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+        </div>
+        <div class="vp-num">01</div>
+        <h3>Diagnóstico de maturidade</h3>
+        <p>Entenda de forma descomplicada o seu nível de maturidade e risco digital.</p>
+      </div>
+      <div class="vp-card is-hover">
+        <div class="vp-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <div class="vp-num">02 — hover state</div>
+        <h3>Clareza para Boards e C-Level</h3>
+        <p>Riscos digitais em linguagem executiva — sem jargão técnico.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       05 — DARK SURFACES
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="dark" class="ds-section">
+    <div class="ds-section-label">05 — Superfícies Dark</div>
+    <h2 class="ds-section-title">Dark Mode Components</h2>
+    <p class="ds-section-desc">Usadas no Hero Card, Stats Strip, section-evidencia, section-partners, section-final-cta, section-como-funciona e section-video-feature.</p>
+
+    <h3 class="ds-subsection-title">Stats Strip</h3>
+    <div class="dark-surface" style="margin-bottom:var(--space-8);">
+      <div class="dark-surface-grid"></div>
+      <div class="dark-surface-glow"></div>
+      <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;">
+        <div class="stat-demo"><div class="stat-value-demo"><span>500</span><span class="stat-suffix-demo">+</span></div><div class="stat-label-demo">Empresas protegidas</div></div>
+        <div class="stat-demo"><div class="stat-value-demo"><span class="stat-prefix-demo">R$</span><span>50</span><span class="stat-suffix-demo">M</span></div><div class="stat-label-demo">Em coberturas ativas</div></div>
+        <div class="stat-demo"><div class="stat-value-demo"><span>100</span><span class="stat-suffix-demo">%</span></div><div class="stat-label-demo">Digital — sem burocracia</div></div>
+      </div>
+    </div>
+
+    <h3 class="ds-subsection-title">Hero Card (score card)</h3>
+    <div class="component-row dark">
+      <div class="hero-card demo-float">
+        <div>
+          <div class="hero-card-score-label">Score</div>
+          <div class="hero-card-status">
+            <div class="status-dot">✓</div>
+            <div class="status-txt"><p>Elegível ao Seguro</p><small>Ver detalhes →</small></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:2px;">
+          <span class="hero-card-num">86</span><span class="hero-card-pct">%</span>
+        </div>
+      </div>
+      <div style="padding:var(--space-4);">
+        <div class="comp-label light" style="margin-bottom:var(--space-4);">Especificações</div>
+        <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+          <div style="font-size:12px;color:rgba(255,255,255,.5);font-family:monospace;">gradient: 150deg · #374151aa → #0D1326FA</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);font-family:monospace;">shadow: 5-layer dark + brand outline</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);font-family:monospace;">border-radius: 32px</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);font-family:monospace;">animation: float 6s ease-in-out infinite</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);font-family:monospace;">score: --emerald #34D399</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <h3 class="ds-subsection-title">Footer — Verta Safe (duas colunas)</h3>
+    <div class="footer-demo">
+      <div class="footer-cols-demo">
+        <div class="footer-col-left">
+          <img src="./assets/images/verta-logo.svg" alt="Verta" style="height:32px;width:auto;display:block;margin-bottom:0.5rem;">
+          <p class="footer-tagline-demo">Entenda seu risco e fique segurado em Cibersegurança — Simples, Digital e Transparente.</p>
+          <p class="footer-cnpj-demo">Verta Brasil Ltda &nbsp;·&nbsp; CNPJ 61.039.284/0001-14</p>
+        </div>
+        <div class="footer-col-right">
+          <div>
+            <div class="footer-ops-label">Operado por</div>
+            <div class="footer-ops-name">AKAD SEGUROS</div>
+          </div>
+          <p class="footer-legal-demo">Aviso Legal: Os produtos comercializados são garantidos pela Akad Seguros S.A., inscrita no CNPJ nº 14.868.712/0001-31, sediada na Av. das Nações Unidas 12.955 - 24º Andar, CEP 04578-911, São Paulo – SP. Processos Susep n° 15414.624988/2022-26.</p>
+        </div>
+      </div>
+    </div>
+    <p class="ds-note">Grid 1fr 1fr · gap 4rem · col-right: border-left 1px neutral-100 + padding-left 3rem · mobile: coluna única, border-top</p>
+
+    <!-- SHADOWS -->
+    <h3 class="ds-subsection-title">Sombras</h3>
+    <div class="shadow-grid">
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);"><div class="shadow-swatch" style="box-shadow:var(--shadow-xs);"><span class="shadow-swatch-name">--shadow-xs</span></div><p style="font-size:11px;font-family:monospace;color:var(--neutral-400);">card default / border</p></div>
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);"><div class="shadow-swatch" style="box-shadow:var(--shadow-sm);"><span class="shadow-swatch-name">--shadow-sm</span></div><p style="font-size:11px;font-family:monospace;color:var(--neutral-400);">cards em repouso</p></div>
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);"><div class="shadow-swatch" style="box-shadow:var(--shadow-lg);"><span class="shadow-swatch-name">--shadow-lg (brand)</span></div><p style="font-size:11px;font-family:monospace;color:var(--neutral-400);">vp-card hover</p></div>
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);"><div class="shadow-swatch" style="box-shadow:var(--shadow-brand);"><span class="shadow-swatch-name">--shadow-brand</span></div><p style="font-size:11px;font-family:monospace;color:var(--neutral-400);">btn hover</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       06 — LAYOUT & GRID
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="layout" class="ds-section">
+    <div class="ds-section-label">06 — Layout & Grid</div>
+    <h2 class="ds-section-title">Spacing & Grid System</h2>
+    <p class="ds-section-desc">Container padrão: <code style="font-family:monospace;background:var(--neutral-100);padding:2px 6px;border-radius:4px;">width: 90%; max-width: 1280px; margin: 0 auto</code> — aplicado em ambos os sites.</p>
+
+    <table class="type-table">
+      <thead><tr><th>Token / Padrão</th><th>Valor</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td style="font-family:monospace;font-size:13px;">container</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">width:90% · max-width:1280px · margin:0 auto</td><td style="font-size:13px;color:var(--neutral-500);">todas as seções — index + safe</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">padding lateral mobile</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">0 1.5rem (24px)</td><td style="font-size:13px;color:var(--neutral-500);">≤ 767px</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">gap 2-col grid</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">5–6rem (80–96px)</td><td style="font-size:13px;color:var(--neutral-500);">hero, partner, process</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">partners-grid margin-top</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">96px</td><td style="font-size:13px;color:var(--neutral-500);">espaço entre título e logos</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">section padding (tall)</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">128px–160px vertical</td><td style="font-size:13px;color:var(--neutral-500);">section-partners, hero, CTA</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">section padding (default)</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">5–6rem vertical</td><td style="font-size:13px;color:var(--neutral-500);">pilares, plat-tabs, quote</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">--radius-md (btn)</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">12px</td><td style="font-size:13px;color:var(--neutral-500);">botões, inputs</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">--radius-xl (cards)</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">20px</td><td style="font-size:13px;color:var(--neutral-500);">vp-card, component-row</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">--radius-pill (eyebrow)</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">9999px</td><td style="font-size:13px;color:var(--neutral-500);">eyebrow badges</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">testimonial border-radius</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">22px</td><td style="font-size:13px;color:var(--neutral-500);">testimonial cards</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">nav height — repouso</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">padding 40px 0</td><td style="font-size:13px;color:var(--neutral-500);">nav_minimal default</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">nav height — scrolled</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">padding 18px 0</td><td style="font-size:13px;color:var(--neutral-500);">nav_minimal.scrolled</td></tr>
+        <tr><td style="font-family:monospace;font-size:13px;">logo height</td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">26px</td><td style="font-size:13px;color:var(--neutral-500);">ambas as páginas</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="ds-subsection-title" style="margin-top:var(--space-12);">Estrutura de Arquivos</h3>
+    <pre style="background:var(--neutral-900);color:rgba(255,255,255,.75);padding:var(--space-8);border-radius:var(--radius-lg);font-size:13px;line-height:1.8;overflow-x:auto;">VERTA_PAGINA_PRINCIPAL/
+├── index.html              ← Home page (page-home)
+├── verta-safe.html         ← Verta Safe (page-safe)
+├── design-system-verta.html
+└── assets/
+    ├── css/
+    │   └── style.css       ← Arquivo único compartilhado
+    └── images/
+        ├── partners/       ← 15 logos (SVG + PNG)
+        │   ├── p-logo-tao.svg
+        │   ├── p-logo-claro.svg
+        │   ├── p-logo-telmex.svg
+        │   ├── p-logo-embratel.svg
+        │   ├── p-logo-fti.svg
+        │   ├── p-logo-pluggy.png
+        │   ├── p-logo-m3corp.png
+        │   ├── p-logo-pdk-advogados.png
+        │   └── ...
+        └── testimonials/
+            └── victor-urano.jpg</pre>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       07 — MOTION
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="motion" class="ds-section">
+    <div class="ds-section-label">07 — Motion</div>
+    <h2 class="ds-section-title">Animações & Easing</h2>
+    <p class="ds-section-desc">Easing principal: <code style="font-family:monospace;background:var(--neutral-100);padding:2px 6px;border-radius:4px;">cubic-bezier(0.16, 1, 0.3, 1)</code> — spring-like sem over-shoot. GSAP para scroll reveals e logo carousel.</p>
+
+    <table class="type-table" style="margin-bottom:var(--space-12);">
+      <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td><code style="font-family:monospace;font-size:13px;">--ease-fast</code></td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">0.2s ease</td><td style="font-size:13px;color:var(--neutral-500);">hover colors, btn, borders, opacity</td></tr>
+        <tr><td><code style="font-family:monospace;font-size:13px;">--ease-reveal</code></td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">0.7s cubic-bezier(0.16,1,0.3,1)</td><td style="font-size:13px;color:var(--neutral-500);">scroll reveal — .reveal class</td></tr>
+        <tr><td><code style="font-family:monospace;font-size:13px;">--ease-enter</code></td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">0.9s cubic-bezier(0.16,1,0.3,1)</td><td style="font-size:13px;color:var(--neutral-500);">hero entrance, dashboard</td></tr>
+        <tr><td><code style="font-family:monospace;font-size:13px;">float</code></td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">6s ease-in-out infinite / translateY(-12px)</td><td style="font-size:13px;color:var(--neutral-500);">hero card idle</td></tr>
+        <tr><td><code style="font-family:monospace;font-size:13px;">blink</code></td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">2s ease-in-out infinite / opacity .4→1</td><td style="font-size:13px;color:var(--neutral-500);">status dot, grade arrow</td></tr>
+        <tr><td><code style="font-family:monospace;font-size:13px;">GSAP partners</code></td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">duration 0.55 · stagger 0.08 · fade loop 2.8s</td><td style="font-size:13px;color:var(--neutral-500);">logo carousel · start "top bottom"</td></tr>
+        <tr><td><code style="font-family:monospace;font-size:13px;">quote carousel</code></td><td style="font-family:monospace;font-size:12px;color:var(--neutral-500);">auto-rotate 6s · CSS grid crossfade</td><td style="font-size:13px;color:var(--neutral-500);">section-quote · pause on hover/swipe</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="ds-subsection-title">Scroll Reveal — Stagger Demo</h3>
+    <div class="motion-grid">
+      <div class="motion-card" style="--reveal-delay:0s"><h4 style="font-family:var(--font-display);font-size:18px;font-weight:400;margin-bottom:8px;">Bloco 1</h4><p style="font-size:14px;color:var(--neutral-500);">opacity 0→1, translateY(28px)→0, delay 0s</p></div>
+      <div class="motion-card" style="--reveal-delay:0.1s"><h4 style="font-family:var(--font-display);font-size:18px;font-weight:400;margin-bottom:8px;">Bloco 2</h4><p style="font-size:14px;color:var(--neutral-500);">delay 0.1s — stagger para ritmo visual</p></div>
+      <div class="motion-card" style="--reveal-delay:0.2s"><h4 style="font-family:var(--font-display);font-size:18px;font-weight:400;margin-bottom:8px;">Bloco 3</h4><p style="font-size:14px;color:var(--neutral-500);">delay 0.2s — último item do grupo</p></div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.motion-card').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

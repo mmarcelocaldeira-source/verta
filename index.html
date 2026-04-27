@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -21,2348 +21,32 @@
     <link
         href="https://cdn.prod.website-files.com/6895a11a67e50a85e0b93804/css/rockfixmekaa.webflow.6895a11a67e50a85e0b937f9-ff60340fd.min.css"
         rel="stylesheet" type="text/css">
-
-    <style>
-        /* ─── DS TOKENS — Verta Design System v2.0 ──────────────────── */
-        :root {
-            /* Fonts */
-            --font-display: 'Blinker', sans-serif;
-            --font-body:    'Inter', sans-serif;
-            --font-serif:   "Reckless Rockfi", serif;
-            --font-sans:    'Inter', sans-serif;
-
-            /* Type Scale */
-            --font-size-h1:      62px;
-            --font-size-h2:      48px;
-            --font-size-h3:      30px;
-            --font-size-h4:      22px;
-            --font-size-body-lg: 18px;
-            --font-size-body:    16px;
-            --font-size-sm:      14px;
-            --font-size-xs:      11px;
-
-            --line-height-display: 1.05;
-            --line-height-heading: 1.08;
-            --line-height-body:    1.7;
-
-            --tracking-display: -0.03em;
-            --tracking-heading: -0.025em;
-            --tracking-badge:    0.12em;
-
-            /* Brand */
-            --brand-50:  #eef1fe;
-            --brand-100: #dde4fd;
-            --brand-300: #a8b8f9;
-            --brand-400: #7f99f5;
-            --brand-500: #5b7af0;
-            --brand-700: #2d4ec7;
-
-            /* Neutrals */
-            --neutral-0:   #ffffff;
-            --neutral-50:  #f9fafb;
-            --neutral-100: #f3f4f6;
-            --neutral-200: #e5e7eb;
-            --neutral-400: #9ca3af;
-            --neutral-500: #6b7280;
-            --neutral-700: #374151;
-            --neutral-900: #111827;
-
-            /* Semantic */
-            --emerald:      #34d399;
-            --emerald-dark: #10b981;
-
-            /* Legacy aliases — keep existing markup working */
-            --color-bg:             var(--neutral-50);
-            --color-surface:        var(--neutral-0);
-            --color-border:         var(--neutral-200);
-            --color-border-strong:  #cbd5e1;
-            --color-text-primary:   var(--neutral-900);
-            --color-text-secondary: var(--neutral-500);
-            --color-text-muted:     var(--neutral-500);
-            --color-accent:         var(--brand-400);
-            --color-accent-hover:   var(--brand-500);
-            --color-accent-dark:    #1b254d;
-            --color-accent-soft:    var(--brand-100);
-            --color-accent-subtler: rgba(127, 153, 245, 0.08);
-
-            /* Title scale (fluid) */
-            --title-xl: clamp(2.4rem, 4.2vw, 3.875rem); /* → 62px */
-            --title-l:  clamp(2rem, 3.4vw, 3rem);        /* → 48px */
-            --title-m:  clamp(1.4rem, 2.2vw, 1.875rem);  /* → 30px */
-            --subtitle: var(--font-size-body-lg);         /* 18px */
-
-            /* Radii */
-            --radius-sm:   8px;
-            --radius-md:   12px;
-            --radius-lg:   16px;
-            --radius-xl:   20px;
-            --radius-2xl:  24px;
-            --radius-pill: 9999px;
-
-            /* Shadows */
-            --shadow-xs:        0 2px 8px rgba(15, 23, 42, .03), 0 0 0 1px rgba(15, 23, 42, .02);
-            --shadow-sm:        0 4px 16px rgba(15, 23, 42, .04);
-            --shadow-md:        0 8px 24px rgba(15, 23, 42, .07);
-            --shadow-lg:        0 16px 48px rgba(127, 153, 245, .13), 0 4px 12px rgba(127, 153, 245, .07);
-            --shadow-xl:        0 20px 25px -5px rgba(15, 23, 42, .05), 0 10px 10px -5px rgba(15, 23, 42, .02);
-            --shadow-brand:     0 10px 25px -5px rgba(127, 153, 245, .4);
-            --shadow-brand-glow:0 10px 25px -5px rgba(127, 153, 245, .40);
-
-            /* Transitions */
-            --ease-fast:         0.2s ease;
-            --ease-reveal:       0.7s cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-enter:        0.9s cubic-bezier(0.16, 1, 0.3, 1);
-            --transition-fast:   var(--ease-fast);
-            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow:   0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            --transition-premium:1.2s cubic-bezier(0.22, 1, 0.36, 1);
-
-            /* Spacing */
-            --space-1:  4px;
-            --space-2:  8px;
-            --space-3:  12px;
-            --space-4:  16px;
-            --space-6:  24px;
-            --space-8:  32px;
-            --space-12: 48px;
-            --space-16: 64px;
-            --space-24: 96px;
-        }
-
-        /* ─── RESET & BASE ──────────────────────────────────────────── */
-        *, *::before, *::after { box-sizing: border-box; }
-
-        body {
-            background-color: var(--color-bg);
-            color: var(--color-text-primary);
-            font-family: var(--font-body);
-            font-size: var(--font-size-body);
-            line-height: var(--line-height-body);
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-display);
-            font-weight: 400;
-            line-height: var(--line-height-heading);
-            letter-spacing: var(--tracking-heading);
-            color: var(--color-text-primary);
-        }
-
-        /* ─── EYEBROW ──────────────────────────────────────────────── */
-        .eyebrow {
-            font-family: var(--font-body);
-            text-transform: uppercase;
-            letter-spacing: var(--tracking-badge);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            color: var(--color-text-secondary);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .eyebrow::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            background-color: var(--color-accent);
-            border-radius: 50%;
-        }
-
-        /* ─── HERO ─────────────────────────────────────────────────── */
-        .hero {
-            min-height: 100vh;
-            padding: 152px 0 80px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background-color: var(--color-bg);
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: -10%;
-            left: 60%;
-            width: 70vw;
-            height: 70vw;
-            background: radial-gradient(circle, rgba(127, 153, 245, 0.12) 0%, transparent 65%);
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero-inner {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 3rem;
-        }
-
-        .hero-content {
-            /* largura fixa — não cresce, imagem preenche o resto */
-            flex: 0 0 480px;
-            z-index: 2;
-        }
-
-        .hero-visual {
-            /* cresce para ocupar todo espaço restante */
-            flex: 1 1 420px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            overflow: visible;
-            margin-top: 3.1rem;
-        }
-
-        /* ─── BADGE ────────────────────────────────────────────────── */
-        .v-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 5px 14px;
-            border-radius: var(--radius-pill);
-            font-size: var(--font-size-xs);
-            font-family: var(--font-body);
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            border: 1px solid var(--neutral-200);
-            background: transparent;
-            margin-bottom: 1.75rem;
-            color: var(--neutral-500);
-        }
-
-        .hero .v-badge {
-            background: var(--brand-50);
-            border-color: var(--brand-100);
-            color: var(--brand-500);
-        }
-
-        /* Hero badge uses internal structure — no generic ::before dot */
-        .hero .v-badge::before { display: none; }
-
-        .v-badge::before {
-            content: "";
-            width: 6px;
-            height: 6px;
-            background-color: var(--color-accent);
-            border-radius: 50%;
-            margin-right: 8px;
-            box-shadow: 0 0 6px var(--color-accent);
-        }
-
-        /* ─── HERO TYPOGRAPHY ──────────────────────────────────────── */
-        .hero-title {
-            font-family: var(--font-display);
-            font-size: var(--title-xl);
-            font-weight: 400;
-            line-height: var(--line-height-display);
-            letter-spacing: var(--tracking-display);
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-            padding-bottom: 2.5rem;
-            color: var(--color-text-primary);
-        }
-
-        .hero-subtitle {
-            max-width: 38rem;
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: var(--color-text-secondary);
-            margin-bottom: 0 !important;
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        /* ─── BUTTONS ──────────────────────────────────────────────── */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 24px;
-            height: 48px;
-            border-radius: var(--radius-md);
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            letter-spacing: 0;
-            cursor: pointer;
-            text-decoration: none;
-            border: none;
-            transition: background var(--ease-fast), transform var(--ease-fast), box-shadow var(--ease-fast);
-        }
-
-        .btn--primary {
-            background: var(--brand-400);
-            color: #fff;
-            box-shadow: 0 2px 4px rgba(127, 153, 245, 0.30);
-        }
-
-        .btn--primary:hover {
-            background: var(--brand-500);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-brand);
-        }
-
-        .btn--ghost {
-            background: var(--color-surface);
-            color: var(--color-text-primary);
-            border: 1px solid var(--color-border);
-            box-shadow: var(--shadow-xs);
-        }
-
-        .btn--ghost:hover {
-            background: var(--color-bg);
-            border-color: var(--color-border-strong);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Legacy aliases */
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 24px;
-            height: 48px;
-            border-radius: var(--radius-md);
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            border: none;
-            transition: background var(--ease-fast), transform var(--ease-fast), box-shadow var(--ease-fast);
-        }
-
-        .button-primary {
-            background: var(--brand-400);
-            color: #fff;
-            box-shadow: 0 2px 4px rgba(127, 153, 245, 0.3);
-        }
-
-        .button-primary:hover {
-            background: var(--brand-500);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-brand);
-        }
-
-        .button-secondary {
-            background: var(--color-surface);
-            color: var(--color-text-primary);
-            border: 1px solid var(--color-border);
-            box-shadow: var(--shadow-xs);
-        }
-
-        .button-secondary:hover {
-            background: var(--color-bg);
-            border-color: var(--color-border-strong);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .hero-footnote {
-            font-family: var(--font-sans);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            opacity: 0.8;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .hero-footnote span {
-            font-weight: 600;
-            color: var(--color-text-primary);
-        }
-
-        /* ─── HERO VISUAL ──────────────────────────────────────────── */
-        .hero-dashboard-svg {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 32px 72px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        @media (max-width: 991px) {
-            .hero-dashboard-svg {
-                margin: 40px auto 0;
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 760px) {
-            .verta-v4-toolbar { flex-wrap: wrap; }
-            .toolbar-update   { margin-left: 0; width: 100%; }
-            .v4-score-layout,
-            .v4-bottom-split  { flex-direction: column; align-items: flex-start; }
-            .v4-big-score     { font-size: 68px; }
-            .metric-yellow    { font-size: 54px; }
-            .metric-white     { font-size: 50px; }
-            .v4-card          { padding: 22px 20px 24px; }
-            .v4-grade-stack   { width: 100%; }
-        }
-
-        /* ─── WORD CYCLER ──────────────────────────────────────────── */
-        .list-rotate-wrapper {
-            margin: 2rem 0 2.5rem;
-            position: relative;
-            overflow: hidden !important;
-            /* height set by JS: 3 × itemHeight */
-        }
-
-        .list-rotate-wrapper::before,
-        .list-rotate-wrapper::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 33%;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .list-rotate-wrapper::before {
-            top: 0;
-            background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
-        }
-
-        .list-rotate-wrapper::after {
-            bottom: 0;
-            background: linear-gradient(to top, var(--color-bg) 0%, transparent 100%);
-        }
-
-        [data-list-rotate] {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            position: relative;
-            will-change: transform;
-        }
-
-        [data-list-rotate] li {
-            font-family: var(--font-body);
-            font-size: 17px;
-            font-weight: 400;
-            line-height: 1.4;
-            color: var(--color-text-primary);
-            opacity: 0.18;
-            padding: 0.55em 0;
-            position: relative;
-            white-space: nowrap;
-            transition: opacity 600ms ease, padding-left 600ms ease, font-size 600ms ease;
-        }
-
-        [data-list-rotate] li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--brand-400);
-            transform: translate(-220%, -50%);
-            opacity: 0;
-            transition: transform 600ms ease, opacity 450ms ease;
-        }
-
-        [data-list-rotate] li.--active {
-            opacity: 1;
-            font-size: 17px;
-            padding-left: 1.3em;
-        }
-
-        [data-list-rotate] li.--active::before {
-            transform: translate(0, -50%);
-            opacity: 1;
-        }
-
-        [data-list-rotate] li.no-transition { transition: none !important; }
-
-        @media (max-width: 991px) {
-            .hero {
-                text-align: center;
-                padding-top: 120px;
-            }
-
-            .hero-inner {
-                flex-direction: column;
-                gap: 3rem;
-            }
-
-            .hero-content { flex: 1 1 auto; }
-
-            .hero-subtitle {
-                margin-left: auto;
-                margin-right: auto;
-                padding: 0 10px;
-            }
-
-            [data-list-rotate] li {
-                width: fit-content;
-                margin: 0 auto;
-            }
-
-            .hero-footnote { justify-content: center; }
-
-            .hero-visual {
-                height: auto;
-                flex: 1 1 auto;
-                margin-top: 0;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                padding-top: 100px;
-                padding-bottom: 40px;
-            }
-
-            .hero-visual { height: auto; }
-
-            .hero-subtitle { font-size: 1rem; }
-        }
-
-        /* ─── NAV ──────────────────────────────────────────────────── */
-        .nav_minimal {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 40px 0;
-            z-index: 100;
-        }
-
-        .nav_container {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        .nav_right {
-            display: flex;
-            align-items: center;
-            gap: 48px;
-        }
-
-        .nav_links { display: flex; gap: 32px; }
-
-        .nav_link {
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            color: var(--neutral-500);
-            text-decoration: none;
-            transition: color var(--ease-fast);
-            position: relative;
-            padding: 4px 0;
-        }
-
-        .nav_link::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--brand-400);
-            transition: width var(--transition-slow);
-        }
-
-        .nav_link:hover { color: var(--neutral-900); }
-        .nav_link:hover::after { width: 100%; }
-
-        .nav_actions { display: flex; align-items: center; }
-
-        .cta_group { display: flex; align-items: center; gap: 32px; }
-
-        .btn_verta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 22px;
-            height: 48px;
-            background: var(--brand-400);
-            color: #fff;
-            text-decoration: none;
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            letter-spacing: 0;
-            border-radius: var(--radius-md);
-            transition: background var(--ease-fast), transform var(--ease-fast), box-shadow var(--ease-fast);
-            box-shadow: 0 2px 4px rgba(127, 153, 245, 0.30);
-        }
-
-        .btn_verta:hover {
-            background: var(--brand-500);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-brand);
-        }
-
-        .btn_verta svg path {
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn_verta:hover .dot-1 { transition-delay: 0s;    opacity: 0; }
-        .btn_verta:hover .dot-2 { transition-delay: 0.15s; opacity: 0; }
-        .btn_verta:hover .dot-3 { transition-delay: 0.3s;  opacity: 0; }
-        .btn_verta .dot-3 { transition-delay: 0s; }
-        .btn_verta .dot-2 { transition-delay: 0.15s; }
-        .btn_verta .dot-1 { transition-delay: 0.3s; }
-
-        .hamburger { display: none; }
-
-        @media (max-width: 991px) {
-            .hamburger {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 5px;
-                background: none;
-                border: none;
-                cursor: pointer;
-                z-index: 1001;
-                width: 32px;
-                height: 32px;
-                padding: 0;
-            }
-
-            .hamburger span {
-                display: block;
-                width: 24px;
-                height: 2px;
-                background-color: var(--neutral-900);
-                transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-                margin-left: auto;
-            }
-
-            .hamburger.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 24px; }
-            .hamburger.is-active span:nth-child(2) { opacity: 0; }
-            .hamburger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 24px; }
-
-            .nav_minimal { padding: 24px 0; z-index: 10000; }
-
-            .nav_right {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background: rgba(249, 250, 251, 0.98);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 40px;
-                z-index: 1000;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity var(--transition-normal), transform var(--transition-normal);
-                transform: translateY(-20px);
-            }
-
-            .nav_right.is-active { opacity: 1; pointer-events: auto; transform: translateY(0); }
-
-            .nav_links { flex-direction: column; gap: 24px; align-items: center; }
-
-            .nav_link { font-size: 20px; }
-
-            .btn_verta { padding: 14px 22px; font-size: 14px; }
-
-            .logo_verta { z-index: 1001; position: relative; }
-        }
-
-        /* ─── REVEAL ───────────────────────────────────────────────── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: reveal-anim 1.5s var(--transition-premium) forwards;
-        }
-
-        .section-diagnostico .reveal,
-        .section-como-funciona .reveal,
-        .section-plat-tabs .reveal,
-        .section-partners .reveal {
-            transform: none;
-            animation-duration: 1s;
-        }
-
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-        .delay-5 { animation-delay: 1.0s; }
-
-        @keyframes reveal-anim {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid var(--brand-400);
-            outline-offset: 3px;
-        }
-
-        @media (max-width: 991px) {
-            .hero_container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding-top: 120px;
-                gap: 40px;
-            }
-
-            .eyebrow { justify-content: center; }
-            .hero_paragraph { margin: 0 auto 3rem; }
-            .cta_group { justify-content: center; }
-            .visual_container { height: 360px; }
-        }
-
-        /* ─── DIVIDER ──────────────────────────────────────────────── */
-        .divider-sticky-wrap {
-            position: relative;
-            width: 100%;
-            height: 140px;
-            z-index: 50;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            overflow: visible;
-        }
-
-        .divider-container {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-            height: 100%;
-            position: relative;
-        }
-
-        #dividerCanvas {
-            width: 100%;
-            height: 100%;
-            transform: translateY(20px);
-        }
-
-        /* ─── DIAGNÓSTICO ──────────────────────────────────────────── */
-        .section-diagnostico {
-            background-color: var(--color-bg);
-            position: relative;
-            padding: 0;
-        }
-
-        #diagnostico-content {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-            position: relative;
-            opacity: 1;
-            transform: none;
-        }
-
-        .diag-intro {
-            padding: 140px 0 100px;
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .section-diagnostico.is-visible .diag-intro {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-label { margin-bottom: var(--space-8); }
-
-        .diag-headline {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 3.8vw, 3.625rem);
-            font-weight: 400;
-            line-height: var(--line-height-heading);
-            letter-spacing: var(--tracking-display);
-            color: var(--color-text-primary);
-            max-width: 680px;
-        }
-
-        .diag-header {
-            padding: 120px 0 80px;
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: 5rem;
-            align-items: end;
-            opacity: 1 !important;
-            transform: none !important;
-        }
-
-        .section-diagnostico.is-visible .diag-header { opacity: 1; transform: translateY(0); }
-
-        .diag-header-title {
-            font-family: var(--font-display);
-            font-size: var(--title-xl);
-            font-weight: 400;
-            line-height: var(--line-height-heading);
-            letter-spacing: var(--tracking-display);
-            color: var(--color-text-primary);
-            margin: 0;
-        }
-
-        .diag-header-right {
-            display: flex;
-            align-items: flex-start;
-            padding-top: 8px;
-        }
-
-        .diag-header-desc {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: var(--color-text-secondary);
-            max-width: 100%;
-            margin: 0;
-            padding-left: var(--space-6);
-            border-left: 1px solid var(--neutral-200);
-        }
-
-        /* ─── CARDS GRID ───────────────────────────────────────────── */
-        .diag-cards-section { padding: 0 0 var(--space-12); }
-
-        .diag-cards-grid {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--neutral-200);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-        }
-
-        .risk-card {
-            background: var(--color-surface);
-            padding: 52px 48px 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            min-height: 300px;
-            opacity: 1 !important;
-            transform: none !important;
-            transition: background var(--ease-fast), box-shadow var(--ease-fast);
-        }
-
-        .risk-card:nth-child(1) { transition-delay: 0.1s; }
-        .risk-card:nth-child(2) { transition-delay: 0.22s; }
-        .risk-card:nth-child(3) { transition-delay: 0.34s; }
-
-        .section-diagnostico.is-visible .risk-card { opacity: 1; transform: translateY(0); }
-
-        .risk-card:hover {
-            background: var(--neutral-0);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .card-number {
-            font-family: var(--font-body);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            color: var(--brand-400);
-            display: block;
-            margin-bottom: var(--space-8);
-        }
-
-        .card-title {
-            font-family: var(--font-display);
-            font-size: var(--title-m);
-            font-weight: 400;
-            letter-spacing: var(--tracking-heading);
-            line-height: var(--line-height-heading);
-            color: var(--color-text-primary);
-            margin: 0 0 var(--space-6);
-        }
-
-        .card-body {
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin: 0;
-        }
-
-        .card-footer {
-            margin-top: var(--space-12);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-body);
-            font-size: var(--font-size-xs);
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            color: var(--brand-400);
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity var(--ease-fast);
-        }
-
-        .card-footer:hover { opacity: 1; }
-        .card-footer-icon { width: 14px; height: 14px; flex-shrink: 0; }
-
-        /* ─── CLOSING STATEMENT ────────────────────────────────────── */
-        .diag-closing {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 96px 5% 128px;
-            opacity: 1 !important;
-            transform: none !important;
-        }
-
-        .section-diagnostico.is-closing-visible .diag-closing { opacity: 1; transform: translateY(0); }
-
-        .diag-closing-bar {
-            width: 1px;
-            height: 72px;
-            background: linear-gradient(to bottom, transparent, var(--brand-400) 40%, var(--brand-400) 60%, transparent);
-            margin-bottom: var(--space-8);
-        }
-
-        .diag-closing-text {
-            font-family: var(--font-display);
-            font-size: clamp(1.375rem, 2.4vw, 2.125rem);
-            font-weight: 400;
-            line-height: 1.5;
-            color: var(--color-text-primary);
-            letter-spacing: var(--tracking-heading);
-        }
-
-        .diag-closing-text em {
-            color: var(--brand-400);
-            font-style: italic;
-            display: block;
-        }
-
-        @media (max-width: 991px) {
-            .diag-header {
-                grid-template-columns: 1fr;
-                gap: 32px;
-                padding: 80px 5% 48px;
-            }
-
-            .diag-header-desc {
-                padding-left: 0;
-                border-left: none;
-                border-top: 1px solid var(--neutral-200);
-                padding-top: var(--space-6);
-            }
-
-            .diag-cards-grid { grid-template-columns: 1fr; }
-
-            .risk-card {
-                padding: 36px 28px 44px;
-                min-height: auto;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .risk-card { padding: 28px 20px 36px; }
-            .card-title { margin-bottom: var(--space-3); }
-            .card-body  { font-size: 13px; line-height: 1.7; }
-        }
-
-        /* ─── PLATAFORMA TABS ──────────────────────────────────────── */
-        .section-plat-tabs {
-            background-color: var(--color-bg);
-            padding: 5rem 0 8rem;
-            overflow: visible;
-            position: relative;
-        }
-
-        .plat-tabs__intro {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto 40px auto;
-        }
-
-        .plat-tabs__title {
-            font-family: var(--font-display);
-            font-size: var(--title-xl);
-            font-weight: 400;
-            line-height: var(--line-height-heading);
-            letter-spacing: var(--tracking-display);
-            color: var(--color-text-primary);
-            margin-bottom: var(--space-6);
-        }
-
-        .plat-tabs__desc {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: var(--color-text-secondary);
-            max-width: 600px;
-        }
-
-        .plat-tabs__vertical-wrapper {
-            max-width: 1280px;
-            width: 90%;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.7fr 0.8fr;
-            gap: 5rem;
-            align-items: flex-start;
-            position: relative;
-        }
-
-        .plat-tabs__left {
-            display: flex;
-            flex-direction: column;
-            gap: 15vh;
-            padding-top: 10vh;
-            padding-bottom: 20vh;
-        }
-
-        .plat-image-item {
-            height: auto;
-            width: 100%;
-            position: relative;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            background: transparent;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--neutral-200);
-        }
-
-        .plat-image-item img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        .plat-tabs__right {
-            position: sticky;
-            top: 20vh;
-            height: 60vh;
-        }
-
-        .plat-tabs__text-box {
-            background: transparent;
-            border: none;
-            border-radius: var(--radius-lg);
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .plat-text-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 48px 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-            pointer-events: none;
-        }
-
-        .plat-text-content.is-active {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        .plat-tab-title {
-            font-family: var(--font-display);
-            font-size: var(--title-m);
-            font-weight: 400;
-            line-height: var(--line-height-heading);
-            letter-spacing: var(--tracking-heading);
-            color: var(--color-text-primary);
-            margin-bottom: var(--space-6);
-        }
-
-        .plat-tab-text {
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-        }
-
-        @media (max-width: 1024px) {
-            .plat-tabs__right {
-                position: static;
-                height: auto;
-                margin-bottom: 2rem;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .plat-tabs__vertical-wrapper {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .plat-tabs__right {
-                order: -1;
-                z-index: 20;
-                display: flex;
-                align-items: center;
-            }
-
-            .plat-tabs__text-box {
-                background: var(--color-bg);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-                border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-            }
-
-            .plat-tabs__left {
-                gap: 1.5rem;
-                padding-top: 0;
-                padding-bottom: 0;
-            }
-
-            .plat-image-item {
-                height: auto;
-                min-height: 300px;
-                margin-bottom: 3rem;
-            }
-
-            .plat-text-content { padding: 40px 24px; }
-        }
-
-        /* ─── PLATAFORMA CLOSING ───────────────────────────────────── */
-        .section-plataforma__closing {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 96px 5% 128px;
-            background-color: var(--color-bg);
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-plataforma__closing-text {
-            font-family: var(--font-display);
-            font-size: clamp(1.375rem, 2.4vw, 2.125rem);
-            font-weight: 400;
-            line-height: 1.5;
-            color: var(--color-text-primary);
-            letter-spacing: var(--tracking-heading);
-        }
-
-        .section-plataforma__closing-text em {
-            color: var(--brand-400);
-            font-style: italic;
-            display: block;
-        }
-
-        /* ─── COMO FUNCIONA — rebuilt from zero ────────────────────── */
-        /*
-         * No GSAP pin. No stacked grid-row trick.
-         * 3 step rows reveal via IntersectionObserver.
-         * Follows deck's onboarding journey: Setup → Stakeholders → Dashboard
-         */
-        .section-como-funciona {
-            background: #0f172a;
-            padding: 128px 0 96px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Subtle radial glow top right — directional */
-        .section-como-funciona::before {
-            content: "";
-            position: absolute;
-            top: -15%;
-            right: -5%;
-            width: 55vw; height: 55vw;
-            background: radial-gradient(circle, rgba(127,153,245,0.06) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .cf-inner {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .cf-header {
-            max-width: 680px;
-            margin-bottom: 88px;
-        }
-
-        .cf-badge {
-            background: rgba(127,153,245,0.1) !important;
-            border-color: rgba(127,153,245,0.22) !important;
-            color: var(--brand-300) !important;
-        }
-
-        .cf-badge::before {
-            box-shadow: 0 0 8px var(--brand-400) !important;
-        }
-
-        .cf-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 3.5vw, 3.25rem);
-            font-weight: 400;
-            line-height: 1.08;
-            letter-spacing: var(--tracking-display);
-            color: #ffffff;
-            margin: 0 0 1rem;
-        }
-
-        .cf-subtitle {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: rgba(255,255,255,0.35);
-        }
-
-        .cf-steps { display: flex; flex-direction: column; }
-
-        /* ── Each step row ── */
-        .cf-step {
-            display: grid;
-            grid-template-columns: 100px 1fr auto;
-            gap: 0 3.5rem;
-            border-top: 1px solid rgba(255,255,255,0.07);
-            padding: 56px 0 64px;
-            align-items: flex-start;
-
-            /* Scroll-reveal initial state */
-            opacity: 0;
-            transform: translateY(56px);
-            transition:
-                opacity  0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .cf-step:nth-child(2) { transition-delay: 0.12s; }
-        .cf-step:nth-child(3) { transition-delay: 0.24s; }
-
-        /* Revealed state — added by IntersectionObserver */
-        .cf-step.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Ghosted number — becomes brand-tinted when revealed */
-        .cf-step-num {
-            font-family: var(--font-display);
-            font-size: clamp(3.5rem, 5vw, 5.25rem);
-            font-weight: 400;
-            line-height: 1;
-            letter-spacing: -0.04em;
-            color: rgba(255,255,255,0.05);
-            user-select: none;
-            padding-top: 6px;
-            transition: color 0.7s ease;
-        }
-
-        .cf-step.is-visible .cf-step-num {
-            color: rgba(127,153,245,0.18);
-        }
-
-        /* Step content — middle column */
-        .cf-step-content { max-width: 680px; }
-
-        .cf-step-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--font-body);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            color: var(--brand-300);
-            margin-bottom: 1.25rem;
-        }
-
-        .cf-step-label::after { content: "→"; opacity: 0.45; font-size: 11px; }
-
-        .cf-step-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-            font-weight: 400;
-            line-height: 1.12;
-            letter-spacing: var(--tracking-heading);
-            color: #ffffff;
-            margin: 0 0 1rem;
-        }
-
-        .cf-step-text {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: rgba(255,255,255,0.42);
-            max-width: 580px;
-        }
-
-        /* Right: callout tag */
-        .cf-step-callout {
-            font-family: var(--font-body);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--brand-300);
-            background: rgba(127,153,245,0.08);
-            border: 1px solid rgba(127,153,245,0.18);
-            border-radius: var(--radius-pill);
-            padding: 7px 16px;
-            white-space: nowrap;
-            align-self: flex-start;
-            margin-top: 18px;
-        }
-
-        /* ─── SECTION CARD-UP TRANSITION ────────────────────────────── */
-        /*
-         * Light section "rises over" a dark section — like a card
-         * being dealt from underneath. Use on light sections that
-         * immediately follow dark ones.
-         */
-        .section-card-up {
-            border-radius: 28px 28px 0 0;
-            margin-top: -32px;
-            position: relative;
-            z-index: 10;
-            /* Shadow sells the depth — card coming up from dark below */
-            box-shadow: 0 -24px 64px rgba(0,0,0,0.3), 0 -1px 0 rgba(255,255,255,0.06);
-        }
-
-        @media (max-width: 991px) {
-            .section-como-funciona { padding: 88px 0 72px; }
-
-            .cf-step {
-                grid-template-columns: 1fr;
-                gap: 1.25rem 0;
-                padding: 40px 0 48px;
-            }
-
-            .cf-step-num {
-                font-size: 3rem;
-                color: rgba(127,153,245,0.15) !important;
-            }
-
-            .cf-step-callout { margin-top: 1.5rem; }
-
-            .section-card-up {
-                border-radius: 20px 20px 0 0;
-                margin-top: -20px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .cf-step { padding: 32px 0 40px; }
-            .cf-header { margin-bottom: 56px; }
-        }
-
-        /* ─── DIRECTIONAL MOTIF — core visual language ──────────────── */
-        /*
-         * Arrows / directional glyphs reinforce Verta's translator authority:
-         * technical noise → executive clarity. Applied sparingly as:
-         * – "→" glyphs on role/label chips (::after)
-         * – Diagonal gradient sweeps on section backgrounds
-         * – Thin arrow-tip connectors between sections
-         * – Flowing line connectors inside cards
-         */
-
-        /* Section-to-section connector (drop between any two sections) */
-        .section-connector {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
-            pointer-events: none;
-            position: relative;
-            z-index: 5;
-            height: 88px;
-            justify-content: center;
-        }
-
-        .section-connector__line {
-            width: 1px;
-            height: 52px;
-            background: linear-gradient(to bottom, transparent 0%, var(--brand-400) 60%, var(--brand-400) 80%, transparent 100%);
-        }
-
-        .section-connector__tip {
-            width: 9px;
-            height: 9px;
-            border-right: 1.5px solid var(--brand-400);
-            border-bottom: 1.5px solid var(--brand-400);
-            transform: rotate(45deg);
-            margin-top: -5px;
-            opacity: 0.6;
-        }
-
-        /* ─── SECTION: DEFINITION — dictionary entry motif ─────────── */
-        /*
-         * Visual concept from the deck: "Verta | n. m."
-         * Verta IS the dictionary — the translator between technical
-         * risk and executive language. This section is the moment of
-         * definition: what Verta IS before the why and how.
-         */
-        .section-definition {
-            background: #080808;
-            padding: 112px 0 128px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Subtle grid texture — like aged dictionary paper, dark */
-        .section-definition::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-            background-size: 48px 48px;
-            pointer-events: none;
-        }
-
-        .def-inner {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 7rem;
-            align-items: center;
-        }
-
-        /* Giant ghosted wordmark — the "headword" of the entry */
-        .def-wordmark {
-            font-family: var(--font-display);
-            font-size: clamp(5rem, 12vw, 11rem);
-            font-weight: 400;
-            line-height: 1;
-            letter-spacing: -0.04em;
-            color: rgba(255,255,255,0.055);
-            user-select: none;
-            pointer-events: none;
-        }
-
-        /* The entry box — literal dictionary header */
-        .def-entry-box {
-            display: inline-flex;
-            align-items: baseline;
-            gap: 12px;
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: 4px;
-            padding: 10px 20px 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .def-entry-word {
-            font-family: var(--font-display);
-            font-size: 1.625rem;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            color: #ffffff;
-            line-height: 1;
-        }
-
-        .def-entry-sep {
-            font-family: var(--font-body);
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.25);
-            line-height: 1;
-        }
-
-        /* Italic serif "n. m." — genuine dictionary type feel */
-        .def-entry-type {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.45);
-            line-height: 1;
-        }
-
-        .def-pronunciation {
-            font-family: var(--font-body);
-            font-size: 12px;
-            color: rgba(255,255,255,0.28);
-            letter-spacing: 0.06em;
-            margin-bottom: 2.5rem;
-            font-style: italic;
-        }
-
-        /* Numbered definitions */
-        .def-definitions {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.75rem;
-        }
-
-        .def-item {
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-        }
-
-        .def-item-num {
-            font-family: var(--font-body);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            color: var(--brand-400);
-            flex-shrink: 0;
-            padding-top: 4px;
-        }
-
-        .def-item-text {
-            font-family: var(--font-body);
-            font-size: 1.0625rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .def-item-text strong {
-            color: rgba(255,255,255,0.9);
-            font-weight: 500;
-        }
-
-        /* Thin rule before the closing quote */
-        .def-rule {
-            width: 100%;
-            height: 1px;
-            background: rgba(255,255,255,0.07);
-            margin-bottom: 2rem;
-        }
-
-        /* Closing quote — the brand's voice, framed as usage example */
-        .def-quote {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            font-style: italic;
-            color: rgba(255,255,255,0.3);
-            line-height: 1.65;
-            padding-left: 1.25rem;
-            border-left: 2px solid var(--brand-400);
-        }
-
-        @media (max-width: 991px) {
-            .def-inner {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .def-wordmark { display: none; }
-            .section-definition { padding: 72px 0 88px; }
-        }
-
-        /* ─── SECTION: EVIDÊNCIA REAL ────────────────────────────────── */
-        .section-evidencia {
-            background: var(--neutral-900);
-            padding: 104px 0 120px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Directional diagonal sweep */
-        .section-evidencia::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(135deg, transparent 35%, rgba(127,153,245,0.04) 100%);
-            pointer-events: none;
-        }
-
-        .evidencia-inner {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .evidencia-header {
-            margin-bottom: 64px;
-            max-width: 680px;
-        }
-
-        .evidencia-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-body);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            color: var(--brand-300);
-            margin-bottom: 1.5rem;
-        }
-
-        .evidencia-eyebrow::before {
-            content: "";
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--brand-400);
-            box-shadow: 0 0 8px var(--brand-400);
-        }
-
-        .evidencia-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.875rem, 3.2vw, 2.875rem);
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: var(--tracking-display);
-            color: #ffffff;
-            margin: 0 0 1.25rem;
-        }
-
-        .evidencia-subtitle {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: var(--neutral-400);
-            max-width: 560px;
-        }
-
-        .evidencia-cases {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-        }
-
-        .case-card {
-            background: rgba(255,255,255,0.025);
-            padding: 48px 44px 52px;
-            position: relative;
-            transition: background var(--ease-fast);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .case-card:hover { background: rgba(127,153,245,0.06); }
-
-        /* Arrow appear on hover — directional motif */
-        .case-card::after {
-            content: "→";
-            position: absolute;
-            bottom: 36px;
-            right: 36px;
-            font-size: 18px;
-            color: var(--brand-400);
-            opacity: 0;
-            transform: translateX(-8px);
-            transition: opacity var(--ease-fast), transform var(--ease-fast);
-        }
-
-        .case-card:hover::after { opacity: 0.5; transform: translateX(0); }
-
-        .case-company {
-            font-family: var(--font-body);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            color: var(--brand-300);
-            margin-bottom: var(--space-3);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .case-company::before {
-            content: "";
-            width: 4px; height: 4px;
-            border-radius: 50%;
-            background: var(--brand-400);
-            flex-shrink: 0;
-        }
-
-        .case-type {
-            display: inline-block;
-            font-family: var(--font-body);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.07em;
-            text-transform: uppercase;
-            color: var(--neutral-600, #4b5563);
-            margin-bottom: var(--space-6);
-        }
-
-        .case-impact {
-            font-family: var(--font-display);
-            font-size: clamp(2.75rem, 5vw, 4.25rem);
-            font-weight: 400;
-            line-height: 1;
-            letter-spacing: -0.04em;
-            color: #ffffff;
-            margin: 0 0 var(--space-6);
-        }
-
-        .case-impact em { color: var(--brand-300); font-style: normal; }
-
-        .case-description {
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            line-height: 1.8;
-            color: var(--neutral-400);
-            margin-top: auto;
-            padding-top: var(--space-6);
-            border-top: 1px solid rgba(255,255,255,0.07);
-        }
-
-        .evidencia-footnote {
-            margin-top: 48px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            color: var(--neutral-500);
-        }
-
-        .evidencia-footnote::before {
-            content: "";
-            flex: 0 0 32px;
-            height: 1px;
-            background: var(--neutral-700);
-        }
-
-        /* ─── SECTION: POR PERSONA ───────────────────────────────────── */
-        .section-personas {
-            background: var(--neutral-50);
-            padding: 96px 0 112px;
-        }
-
-        .personas-inner {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .personas-header {
-            margin-bottom: 56px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .personas-header-left { max-width: 560px; }
-
-        .personas-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.875rem, 3.2vw, 2.875rem);
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: var(--tracking-display);
-            color: var(--neutral-900);
-            margin: 0;
-        }
-
-        .personas-desc {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: var(--neutral-500);
-            max-width: 400px;
-            margin: 0;
-        }
-
-        .personas-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .persona-card {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-xl);
-            padding: 36px 32px 40px;
-            display: flex;
-            flex-direction: column;
-            transition: box-shadow var(--ease-fast), border-color var(--ease-fast), transform var(--ease-fast);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Top accent bar — slides in on hover (directional: top → content) */
-        .persona-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--brand-400), var(--brand-300));
-            opacity: 0;
-            transition: opacity var(--ease-fast);
-        }
-
-        .persona-card:hover { box-shadow: var(--shadow-lg); border-color: var(--brand-100); transform: translateY(-3px); }
-        .persona-card:hover::before { opacity: 1; }
-
-        /* Directional arrow glyph in role label */
-        .persona-role {
-            font-family: var(--font-body);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            color: var(--brand-400);
-            margin-bottom: var(--space-4);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .persona-role::after { content: "→"; font-size: 11px; opacity: 0.55; }
-
-        .persona-name {
-            font-family: var(--font-display);
-            font-size: var(--font-size-h4);
-            font-weight: 400;
-            line-height: 1.25;
-            letter-spacing: var(--tracking-heading);
-            color: var(--neutral-900);
-            margin: 0 0 var(--space-4);
-        }
-
-        .persona-description {
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            line-height: 1.8;
-            color: var(--neutral-500);
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .persona-outcome {
-            margin-top: var(--space-8);
-            padding-top: var(--space-6);
-            border-top: 1px solid var(--neutral-100);
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            color: var(--neutral-700);
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        /* Arrow as outcome prefix — the directional "result" marker */
-        .persona-outcome::before {
-            content: "→";
-            color: var(--brand-400);
-            flex-shrink: 0;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* ─── SECTION: TRÊS PILARES ──────────────────────────────────── */
-        .section-pilares {
-            background: var(--neutral-0);
-            padding: 96px 0 112px;
-            position: relative;
-        }
-
-        .pilares-inner {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .pilares-header {
-            text-align: center;
-            max-width: 640px;
-            margin: 0 auto 72px;
-        }
-
-        .pilares-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.875rem, 3.2vw, 2.875rem);
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: var(--tracking-display);
-            color: var(--neutral-900);
-            margin: 0 0 1rem;
-        }
-
-        .pilares-desc {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: var(--neutral-500);
-            margin: 0;
-        }
-
-        .pilares-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            position: relative;
-        }
-
-        /* Arrow connectors between pillars (1→2 and 2→3) */
-        .pilares-grid::before,
-        .pilares-grid::after {
-            content: "→";
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-            color: var(--brand-300);
-            opacity: 0.35;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .pilares-grid::before { left: calc(33.33% - 10px); }
-        .pilares-grid::after  { left: calc(66.67% - 10px); }
-
-        .pilar-card {
-            background: var(--neutral-50);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-2xl);
-            padding: 48px 40px 52px;
-            position: relative;
-            transition: box-shadow var(--ease-fast), transform var(--ease-fast);
-            overflow: hidden;
-        }
-
-        .pilar-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-
-        /* Large background ordinal — ghosted, gives depth */
-        .pilar-card::before {
-            content: attr(data-num);
-            position: absolute;
-            top: -20px;
-            right: 20px;
-            font-family: var(--font-display);
-            font-size: 130px;
-            font-weight: 400;
-            line-height: 1;
-            color: var(--neutral-100);
-            pointer-events: none;
-            letter-spacing: -0.05em;
-            z-index: 0;
-        }
-
-        .pilar-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--brand-50);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--space-6);
-            position: relative;
-            z-index: 1;
-            color: var(--brand-500);
-        }
-
-        .pilar-icon svg { width: 22px; height: 22px; }
-
-        .pilar-number {
-            font-family: var(--font-body);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            color: var(--brand-400);
-            margin-bottom: var(--space-3);
-            position: relative; z-index: 1;
-            display: flex; align-items: center; gap: 6px;
-        }
-
-        .pilar-number::after { content: "→"; font-size: 11px; opacity: 0.5; }
-
-        .pilar-title {
-            font-family: var(--font-display);
-            font-size: var(--font-size-h3);
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: var(--tracking-heading);
-            color: var(--neutral-900);
-            margin: 0 0 var(--space-4);
-            position: relative; z-index: 1;
-        }
-
-        .pilar-body {
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            line-height: 1.8;
-            color: var(--neutral-500);
-            margin: 0;
-            position: relative; z-index: 1;
-        }
-
-        /* ─── SECTION: FUNDADORES ────────────────────────────────────── */
-        .section-founders {
-            background: var(--neutral-50);
-            padding: 96px 0 112px;
-            border-top: 1px solid var(--neutral-200);
-        }
-
-        .founders-inner {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .founders-header {
-            max-width: 560px;
-            margin-bottom: 64px;
-        }
-
-        .founders-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.875rem, 3.2vw, 2.875rem);
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: var(--tracking-display);
-            color: var(--neutral-900);
-            margin: 0 0 1rem;
-        }
-
-        .founders-desc {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: var(--neutral-500);
-            margin: 0;
-        }
-
-        .founders-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-
-        .founder-card {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            transition: box-shadow var(--ease-fast), transform var(--ease-fast);
-        }
-
-        .founder-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-
-        .founder-photo {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            background: var(--neutral-100);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Directional gradient overlay — bottom-to-top, frames the person */
-        .founder-photo::after {
-            content: "";
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 45%;
-            background: linear-gradient(to top, rgba(17,24,39,0.35) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .founder-photo img { width: 100%; height: 100%; object-fit: cover; }
-
-        .founder-photo-placeholder {
-            width: 80px; height: 80px;
-            background: var(--brand-50);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-display);
-            font-size: 26px;
-            font-weight: 400;
-            color: var(--brand-500);
-            border: 2px solid var(--brand-100);
-        }
-
-        .founder-info { padding: 28px 28px 32px; }
-
-        /* Arrow motif in founder role chip */
-        .founder-role {
-            font-family: var(--font-body);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            color: var(--brand-400);
-            margin-bottom: var(--space-2);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .founder-role::after { content: "→"; font-size: 11px; opacity: 0.55; }
-
-        .founder-name {
-            font-family: var(--font-display);
-            font-size: var(--font-size-h4);
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: var(--tracking-heading);
-            color: var(--neutral-900);
-            margin: 0 0 var(--space-3);
-        }
-
-        .founder-bio {
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            line-height: 1.8;
-            color: var(--neutral-500);
-            margin: 0;
-        }
-
-        /* ─── SECTION: FINAL CTA ─────────────────────────────────────── */
-        .section-final-cta {
-            background: var(--neutral-900);
-            padding: 128px 0 144px;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        /* Radial brand glow */
-        .section-final-cta::before {
-            content: "";
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80vw; height: 65vh;
-            background: radial-gradient(ellipse, rgba(127,153,245,0.11) 0%, transparent 65%);
-            pointer-events: none;
-        }
-
-        /* Directional diagonal lines — subtle structural grid */
-        .section-final-cta::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(60deg, transparent 47%, rgba(127,153,245,0.025) 47.5%, rgba(127,153,245,0.025) 48%, transparent 48.5%),
-                linear-gradient(-60deg, transparent 47%, rgba(127,153,245,0.025) 47.5%, rgba(127,153,245,0.025) 48%, transparent 48.5%);
-            pointer-events: none;
-        }
-
-        .final-cta-inner {
-            width: 90%;
-            max-width: 860px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Tagline with flanking lines — "translate" bar motif */
-        .final-cta-tagline {
-            font-family: var(--font-body);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            letter-spacing: var(--tracking-badge);
-            text-transform: uppercase;
-            color: var(--brand-300);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .final-cta-tagline::before,
-        .final-cta-tagline::after {
-            content: "";
-            flex: 0 0 40px;
-            height: 1px;
-            background: rgba(127,153,245,0.3);
-        }
-
-        .final-cta-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 3.625rem);
-            font-weight: 400;
-            line-height: 1.08;
-            letter-spacing: var(--tracking-display);
-            color: #ffffff;
-            margin: 0 0 1.5rem;
-        }
-
-        .final-cta-subtitle {
-            font-family: var(--font-body);
-            font-size: var(--font-size-body-lg);
-            line-height: var(--line-height-body);
-            color: var(--neutral-400);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-
-        .final-cta-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .final-cta-footnote {
-            font-family: var(--font-body);
-            font-size: var(--font-size-sm);
-            color: var(--neutral-500);
-        }
-
-        /* Dark-bg ghost button override for final CTA */
-        .btn--ghost-dark {
-            background: transparent;
-            color: rgba(255,255,255,0.75);
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: none;
-        }
-
-        .btn--ghost-dark:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: rgba(255,255,255,0.3);
-            color: #fff;
-            transform: translateY(-1px);
-            box-shadow: none;
-        }
-
-        /* ─── RESPONSIVE — new sections ─────────────────────────────── */
-        @media (max-width: 991px) {
-            .evidencia-cases { grid-template-columns: 1fr; }
-            .personas-grid { grid-template-columns: repeat(2, 1fr); }
-            .pilares-grid { grid-template-columns: 1fr; gap: 20px; }
-            .pilares-grid::before, .pilares-grid::after { display: none; }
-            .founders-grid { grid-template-columns: 1fr; }
-            .personas-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
-        }
-
-        @media (max-width: 600px) {
-            .personas-grid { grid-template-columns: 1fr; }
-            .case-card { padding: 32px 28px 40px; }
-            .pilar-card { padding: 36px 28px 40px; }
-            .section-evidencia { padding: 72px 0 88px; }
-            .section-personas, .section-pilares, .section-founders { padding: 64px 0 80px; }
-            .section-final-cta { padding: 88px 0 104px; }
-        }
-
-        /* ─── PARTNERS ─────────────────────────────────────────────── */
-        .section-partners {
-            background: radial-gradient(circle at top, #1c1c1c 0, #0b0b0b 60%);
-            padding: 112px 0 144px;
-            position: relative;
-            z-index: 10;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .partners-container {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .section-partners .plat-tabs__title { color: #ffffff; }
-
-        .section-partners .v-badge {
-            color: var(--brand-300);
-            border-color: rgba(127, 153, 245, 0.25);
-            background: rgba(127, 153, 245, 0.12);
-        }
-
-        .section-partners .v-badge::before { box-shadow: 0 0 8px var(--brand-400); }
-
-        .partners-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 60px 80px;
-            margin-top: 64px;
-            min-height: 60px;
-        }
-
-        .partner-logo {
-            display: none;
-            visibility: hidden;
-            opacity: 0;
-            max-height: 60px;
-            max-width: 220px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        @media (max-width: 767px) {
-            .section-partners { padding: 64px 0 80px; }
-
-            .partners-grid { gap: 40px 32px; margin-top: 40px; }
-
-            .partner-logo { max-height: 45px; max-width: 160px; }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="page-home">
 
     <nav class="nav_minimal">
         <div class="nav_container">
-            <a href="#" class="logo_verta">
+            <a href="index.html" class="logo_verta">
                 <img src="./assets/images/verta-logo.svg" alt="Verta"
                     style="height: 26px; width: auto; display: block; border-radius: 0 !important; object-fit: contain; transform: none !important;">
             </a>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
             <div class="nav_right" id="navRight">
+                <nav class="nav_links" aria-label="Menu principal">
+                    <a href="#" class="nav_link">A Verta</a>
+                    <a href="#como-funciona" class="nav_link">Como Funciona</a>
+                    <a href="#a-plataforma" class="nav_link">A Plataforma</a>
+                    <a href="#contato"      class="nav_link">Contato</a>
+                    <a href="verta-safe.html" class="nav_link" style="color: var(--brand-500); font-weight: 600;">Verta Safe</a>
+                </nav>
                 <div class="nav_actions">
-                    <a href="#" class="btn_verta">
+                    <a href="https://app.verta.digital/" target="_blank" rel="noopener" class="btn_verta">
                         <div>Acessar a plataforma</div>
                         <div style="width:16px;height:16px;flex-shrink:0;">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -2399,12 +83,12 @@
 
                 <!-- Headline — deck's core insight: language gap between tech and leadership -->
                 <h1 class="hero-title reveal delay-2">
-                    O risco digital fala técnico. Seus líderes precisam de estratégia.
+                    Riscos Digitais em Linguagem de Decisores
                 </h1>
 
                 <!-- Subheadline — positions Verta as the translator, not another security tool -->
                 <p class="hero-subtitle reveal delay-3">
-                    Verta converte dados complexos de risco em indicadores que CEOs, CFOs e Boards entendem — e agem sobre eles.
+                    Verta converte dados complexos de riscos digitais em indicadores que Empresários, CEOs, CFOs e Conselhos entendem — e podem agir sobre eles.
                 </p>
 
                 <!-- Word Cycler Slide -->
@@ -2415,6 +99,8 @@
                         <li>Boards e Conselheiros</li>
                         <li>Líderes de Risco</li>
                         <li>Investidores</li>
+                        <li>Empresários</li>
+                        <li>Consultores</li>
                         <li>C-Level Executivos</li>
                     </ul>
                 </div>
@@ -2448,25 +134,31 @@
                     <span class="def-entry-type">n. m.</span>
                 </div>
 
-                <p class="def-pronunciation">/ˈvɛr.ta/ &nbsp;·&nbsp; substantivo masculino &nbsp;·&nbsp; tecnologia · SaaS</p>
+                <p class="def-pronunciation">/ˈvɛr.ta/ &nbsp;·&nbsp; substantivo próprio  &nbsp;·&nbsp; tecnologia · SaaS</p>
 
                 <ol class="def-definitions">
                     <li class="def-item">
                         <span class="def-item-num">1.</span>
                         <p class="def-item-text">
-                            Plataforma SaaS que <strong>traduz dados complexos de Cibersegurança, IA e Governança de Dados</strong> em indicadores de negócio compreensíveis — para CEOs, CFOs, Boards e qualquer Decision Maker, sem dependência de intermediários técnicos.
+                            <strong>Plataforma SaaS que traduz complexidade técnica em decisões estratégicas claras,</strong>que qualquer decisor pode entender. Empresários, CEOs, CFOs, Conselhos.
                         </p>
                     </li>
                     <li class="def-item">
                         <span class="def-item-num">2.</span>
                         <p class="def-item-text">
-                            O que separa um <strong>alerta técnico ignorado</strong> de uma <strong>decisão executiva informada</strong> — antes que o risco se torne manchete, multa ou crise operacional.
+                            <strong>Estrutura de conexão entre dados, risco e ação, </strong> permitindo que organizações compreendam, comparem e gerenciem sua maturidade e exposição de forma integrada.
+                        </p>
+                    </li>
+                                        <li class="def-item">
+                        <span class="def-item-num">3.</span>
+                        <p class="def-item-text">
+                            <strong>Mecanismo de comunicação entre áreas técnicas e a liderança executiva,</strong> alinhando operações, compliance e estratégia por meio de linguagem acessível ao C-level e ao Conselho.
                         </p>
                     </li>
                     <li class="def-item">
-                        <span class="def-item-num">3.</span>
+                        <span class="def-item-num">4.</span>
                         <p class="def-item-text">
-                            Uma plataforma. <strong>Todo o risco digital.</strong> Cada Decision Maker.
+                            <strong>Entidade ou solução que organiza, mede e orienta a evolução de riscos digitais,</strong> transformando informação dispersa em inteligência acionável.
                         </p>
                     </li>
                 </ol>
@@ -2486,7 +178,7 @@
     <section class="section-evidencia">
         <div class="evidencia-inner">
             <div class="evidencia-header">
-                <div class="evidencia-eyebrow">Não é teoria — são manchetes</div>
+                <div class="eyebrow">Não é teoria — são manchetes</div>
                 <h2 class="evidencia-title">Quando risco técnico vira<br>prejuízo bilionário.</h2>
                 <p class="evidencia-subtitle">Empresas globais perderam bilhões por não conseguir transformar alertas técnicos em ação executiva a tempo. O problema não é falta de segurança — é falta de visibilidade executiva.</p>
             </div>
@@ -2518,80 +210,83 @@
         </div>
     </section>
 
+    <!-- ── Seção: Video Destaque ── -->
+    <section class="section-video-feature">
+        <div class="video-feature-inner">
+            <div class="video-feature-header">
+                <p class="eyebrow">Verta em Destaque</p>
+                <h2>O tema chegou ao palco.</h2>
+                <p>Governança de riscos digitais foi pauta no Quantum Computing Summit — e a Verta estava no centro da conversa.</p>
+            </div>
+            <div class="video-feature-player">
+                <video src="assets/images/quantumcom.mp4" controls playsinline>
+                    Seu navegador não suporta vídeo HTML5.
+                </video>
+            </div>
+        </div>
+    </section>
+
     <!-- ── Seção: Por Persona — cada decisor tem sua visão ── -->
     <section class="section-personas section-card-up">
         <div class="personas-inner">
             <div class="personas-header">
                 <div class="personas-header-left">
                     <p class="eyebrow">Feito para quem decide</p>
-                    <h2 class="personas-title">Uma plataforma para toda<br>a liderança — não só o CISO.</h2>
+                    <h2 class="personas-title">Uma plataforma para toda<br>a liderança — não apenas técnicos.</h2>
                 </div>
                 <p class="personas-desc">Cada Decision Maker tem uma visão personalizada do risco, no nível de detalhe que precisa para agir com confiança.</p>
             </div>
 
             <div class="personas-grid">
                 <div class="persona-card">
-                    <div class="persona-role">CEO</div>
+                    <div class="persona-role">CEOs e Empresários</div>
                     <h3 class="persona-name">Visão estratégica de risco</h3>
-                    <p class="persona-description">Exposição estratégica e reputacional em tempo real. Risco digital na linguagem de negócio, sem intermediários técnicos no caminho.</p>
-                    <div class="persona-outcome">Decisões de estratégia e M&amp;A com contexto de risco integrado.</div>
+                    <p class="persona-description">Exposição estratégica e reputacional em tempo real. Riscos digitais na linguagem de negócios.</p>
+                    <div class="persona-outcome">Decisões de estratégia com contexto de risco integrado.</div>
                 </div>
 
                 <div class="persona-card">
-                    <div class="persona-role">CFO</div>
+                    <div class="persona-role">Investidores e CFOs</div>
                     <h3 class="persona-name">Impacto financeiro mensurável</h3>
-                    <p class="persona-description">Risco financeiro, compliance e custo potencial de incidentes quantificados. Sem precisar traduzir relatórios técnicos.</p>
-                    <div class="persona-outcome">Provisionamento e alocação de capital informados por risco real.</div>
+                    <p class="persona-description">Risco financeiro, de continuidade e compliance. Sem precisar traduzir relatórios técnicos.</p>
+                    <div class="persona-outcome">Provisionamento e alocação de capital informados. Clareza em Investimentos, M&A e Diligências.</div>
                 </div>
 
                 <div class="persona-card">
-                    <div class="persona-role">Board</div>
-                    <h3 class="persona-name">Governança consolidada</h3>
-                    <p class="persona-description">Visibilidade unificada para reporte regulatório e responsabilidade fiduciária. O que o board precisa assinar — com contexto.</p>
-                    <div class="persona-outcome">Reporte a comitês e auditores com dados estruturados e rastreáveis.</div>
+                    <div class="persona-role">Conselhos</div>
+                    <h3 class="persona-name">Governança e entendimento consolidados</h3>
+                    <p class="persona-description">Visibilidade unificada de uma ou múltiplas entidades.</p>
+                    <div class="persona-outcome">Reportes com dados estruturados e rastreáveis.</div>
                 </div>
 
                 <div class="persona-card">
-                    <div class="persona-role">CISO</div>
-                    <h3 class="persona-name">Alcance sem aumentar equipe</h3>
-                    <p class="persona-description">Automação de coleta, análise e reporte. Sua equipe comunica risco para toda a liderança sem trabalho manual adicional.</p>
-                    <div class="persona-outcome">Menos tempo em apresentações. Mais tempo em proteção real.</div>
+                    <div class="persona-role">Líderes técnicos e Consultores</div>
+                    <h3 class="persona-name">Governança e comunicação consolidados</h3>
+                    <p class="persona-description">Automação de coleta, análise e reporte. Comunicação de risco para toda a liderança sem trabalho manual adicional.</p>
+                    <div class="persona-outcome">Menos tempo em apresentações. Mais tempo em ações concretas.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── Conector direcional entre seções ── -->
-    <div class="section-connector" aria-hidden="true">
-        <div class="section-connector__line"></div>
-        <div class="section-connector__tip"></div>
-    </div>
-
     <!-- ── Segunda Dobra: Header + Cards ── -->
 
     <section class="section-diagnostico" id="diagnostico">
-
-        <!-- A linha divisória no topo -->
-        <div class="divider-sticky-wrap" id="dividerWrap">
-            <div class="divider-container">
-                <canvas id="dividerCanvas"></canvas>
-            </div>
-        </div>
 
         <div id="diagnostico-content">
 
             <!-- Header horizontal: Alinhado ao grid de 3 colunas -->
             <div class="diag-header">
                 <div class="diag-header-left">
-                    <p class="section-label v-badge">O Diagnóstico</p>
+                    <p class="eyebrow">O Diagnóstico</p>
                     <h1 class="diag-header-title">
-                        O risco digital virou pauta de board.<br>
+                        O risco digital virou pauta de conselhos.<br>
                         A linguagem ainda não chegou lá.
                     </h1>
                 </div>
                 <div class="diag-header-right">
                     <p class="diag-header-desc">
-                        Ameaças digitais se tornaram questão central de estratégia de negócio. Mas CEOs, CFOs e Boards ainda carecem de visibilidade direta — dependendo de intermediários técnicos para entender um risco que é deles.
+                        Ameaças digitais se tornaram questão central de estratégia de negócio. Mas CEOs, CFOs e Conselhos ainda carecem de visibilidade direta — dependendo de intermediários técnicos para entender um risco que é deles.
                     </p>
                 </div>
             </div>
@@ -2603,22 +298,19 @@
                     <div class="risk-card">
                         <span class="card-number">01</span>
                         <h3 class="card-title">Fragmentado</h3>
-                        <p class="card-body">Risco técnico, impacto financeiro, regulação e reputação são analisados em
-                            silos — raramente integrados na mesma leitura estratégica.</p>
+                        <p class="card-body">Risco técnico, impacto financeiro, regulação, reputação e terceiros são analisados em silos — raramente integrados na mesma leitura estratégica.</p>
                     </div>
 
                     <div class="risk-card">
                         <span class="card-number">02</span>
                         <h3 class="card-title">Reativo</h3>
-                        <p class="card-body">O risco entra na pauta quando vira incidente ou pressão regulatória — não
-                            como variável contínua da estratégia de negócio.</p>
+                        <p class="card-body">O risco entra na pauta quando vira incidente ou pressão regulatória — não como variável contínua da estratégia de negócio.</p>
                     </div>
 
                     <div class="risk-card">
                         <span class="card-number">03</span>
                         <h3 class="card-title">Assimétrico</h3>
-                        <p class="card-body">Quem analisa domina a técnica. Quem decide precisa de contexto. Entre um e
-                            outro, a clareza se perde.</p>
+                        <p class="card-body">Quem analisa domina a técnica. Quem decide precisa de contexto. Entre um e outro, a clareza se perde.</p>
                     </div>
 
                 </div>
@@ -2642,9 +334,8 @@
         <div class="cf-inner">
 
             <div class="cf-header">
-                <p class="v-badge cf-badge">Como funciona</p>
-                <h2 class="cf-title">Da configuração ao<br>contexto executivo.</h2>
-                <p class="cf-subtitle">Três etapas. Sem longos projetos de implementação.</p>
+                <p class="eyebrow">Como funciona</p>
+                <h2 class="cf-title">Da configuração ao contexto executivo em apenas três etapas.</h2>
             </div>
 
             <div class="cf-steps">
@@ -2652,9 +343,9 @@
                 <div class="cf-step">
                     <span class="cf-step-num">01</span>
                     <div class="cf-step-content">
-                        <span class="cf-step-label">Setup do cliente</span>
+                        <span class="cf-step-label">Setup</span>
                         <h3 class="cf-step-title">Conecta. Aprende. Calibra.</h3>
-                        <p class="cf-step-text">A Verta se integra ao ambiente da organização, mapeia os ativos digitais e define o perfil de risco. Sem longos projetos — os primeiros indicadores chegam em dias, não meses.</p>
+                        <p class="cf-step-text">A Verta se integra ao ambiente da organização de maneira não invasiva, mapeia entendimentos, situação e regras dos riscos digitais e define o perfil de risco. Visão própria ou de terceiros, sem longos projetos — os primeiros indicadores chegam em horas ou dias, não meses.</p>
                     </div>
                     <div class="cf-step-callout">Em dias, não meses</div>
                 </div>
@@ -2662,9 +353,9 @@
                 <div class="cf-step">
                     <span class="cf-step-num">02</span>
                     <div class="cf-step-content">
-                        <span class="cf-step-label">Configuração de stakeholders</span>
+                        <span class="cf-step-label">Stakeholders</span>
                         <h3 class="cf-step-title">Cada líder recebe a visão que precisa.</h3>
-                        <p class="cf-step-text">CEO, CFO, Board, CISO — cada perfil vê o risco na dimensão que importa para sua função. A Verta entrega contexto personalizado, não o mesmo relatório técnico para todos.</p>
+                        <p class="cf-step-text">Executivos, Conselho, Líderes técnicos ou Terceiros - cada perfil vê o risco na dimensão que importa para sua função. A Verta entrega contexto personalizado, não o mesmo relatório técnico para todos.</p>
                     </div>
                     <div class="cf-step-callout">Visão por papel</div>
                 </div>
@@ -2673,7 +364,7 @@
                     <span class="cf-step-num">03</span>
                     <div class="cf-step-content">
                         <span class="cf-step-label">Dashboard em operação</span>
-                        <h3 class="cf-step-title">Risco contínuo. Decisão informada.</h3>
+                        <h3 class="cf-step-title">Risco entendido. Decisão informada.</h3>
                         <p class="cf-step-text">A plataforma monitora, traduz e atualiza automaticamente — para que cada liderança chegue a cada reunião com o contexto certo sobre o que mudou, o que importa e o que exige decisão.</p>
                     </div>
                     <div class="cf-step-callout">Monitoramento contínuo</div>
@@ -2688,8 +379,8 @@
         <div class="pilares-inner">
             <div class="pilares-header">
                 <p class="eyebrow" style="justify-content: center;">Por que a Verta é diferente</p>
-                <h2 class="pilares-title">Não é mais uma ferramenta de segurança. É a infraestrutura de inteligência de risco da organização.</h2>
-                <p class="pilares-desc">Três princípios que separam a Verta de qualquer solução de cybersecurity tradicional.</p>
+                <h2 class="pilares-title">Não é mais uma ferramenta. É a infraestrutura de inteligência de riscos digitais da organização.</h2>
+                <p class="pilares-desc">Três princípios que separam a Verta de qualquer solução tradicional.</p>
             </div>
 
             <div class="pilares-grid">
@@ -2704,7 +395,7 @@
                     </div>
                     <span class="pilar-number">Democratização</span>
                     <h3 class="pilar-title">Risco legível para qualquer líder</h3>
-                    <p class="pilar-body">Qualquer Decision Maker acessa insights de risco digital sem depender de tradução técnica. CEO, CFO, Board — cada um com a visão certa, no momento certo.</p>
+                    <p class="pilar-body">Qualquer decisor, interno ou externo, acessa insights de riscos digitais sem depender de tradução técnica. Seja interno, do grupo ou de terceiros — cada um com a visão certa, no momento certo.</p>
                 </div>
 
                 <div class="pilar-card" data-num="2">
@@ -2717,7 +408,7 @@
                     </div>
                     <span class="pilar-number">Automação</span>
                     <h3 class="pilar-title">Menos trabalho manual, mais inteligência</h3>
-                    <p class="pilar-body">Coleta, análise e reporte automáticos. Sua equipe de segurança faz mais com menos — sem relatórios manuais, sem planilhas paralelas, sem retrabalho.</p>
+                    <p class="pilar-body">Coleta, análise e reporte automatizados. Sua equipe faz mais com menos e seus terceiros conseguem engajar de maneira escalável— sem relatórios manuais, sem planilhas paralelas, sem retrabalho.</p>
                 </div>
 
                 <div class="pilar-card" data-num="3">
@@ -2730,29 +421,60 @@
                     </div>
                     <span class="pilar-number">Alcance</span>
                     <h3 class="pilar-title">Uma plataforma para toda a organização</h3>
-                    <p class="pilar-body">Do CISO ao board, passando pelo jurídico e financeiro. Uma única fonte de verdade sobre risco digital — sem fragmentação, sem silos, sem versões paralelas.</p>
+                    <p class="pilar-body">Da Liderança técnica ao Conselho ou de Terceiros a Executivos, jurídico ou financeiro. Uma única fonte de verdade sobre riscos digitais — sem fragmentação, sem silos, sem versões paralelas.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── Conector direcional ── -->
-    <div class="section-connector" aria-hidden="true">
-        <div class="section-connector__line"></div>
-        <div class="section-connector__tip"></div>
-    </div>
+    <!-- ── Seção: Depoimento ── -->
+    <section class="section-quote">
+        <div class="quote-inner">
+            <span class="quote-mark" aria-hidden="true">"</span>
+            <div class="quote-track">
+                <!-- Depoimento 1 -->
+                <div class="quote-item">
+                    <p class="quote-text">A Verta nos deu clareza de onde estávamos e em que precisávamos investir, para evoluir e nos proteger. Agora sabemos exatamente por onde temos de ir e que tipo de soluções precisamos contratar.</p>
+                    <div class="quote-author">
+                        <img src="assets/images/testimonials/victor-urano.jpg" alt="Victor Urano" class="quote-avatar" loading="lazy">
+                        <div class="quote-author-info">
+                            <strong>Victor Urano</strong>
+                            <span>Co-founder — Pluggy</span>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                    ── ADICIONAR DEPOIMENTO ──────────────────────────────────
+                    Copie o bloco abaixo e cole antes deste comentário.
+                    Com 2+ itens: dots e auto-rotate (6s) ligam automaticamente.
+                    Swipe mobile já funciona.
+
+                    <div class="quote-item">
+                        <p class="quote-text">Texto do depoimento aqui.</p>
+                        <div class="quote-author">
+                            <img src="assets/images/testimonials/FOTO.jpg" alt="Nome" class="quote-avatar" loading="lazy">
+                            <div class="quote-author-info">
+                                <strong>Nome Sobrenome</strong>
+                                <span>Cargo — Empresa</span>
+                            </div>
+                        </div>
+                    </div>
+                    ─────────────────────────────────────────────────────────
+                -->
+            </div>
+            <div class="quote-dots" id="quoteDots"></div>
+        </div>
+    </section>
 
     <!-- SEÇÃO — A PLATAFORMA HORIZONTAL TABS -->
-    <section class="section section-plat-tabs">
+    <section class="section section-plat-tabs" id="a-plataforma">
         <div class="plat-tabs__intro">
-            <p class="section-label v-badge">A Plataforma</p>
+            <p class="eyebrow">A Plataforma</p>
             <h1 class="plat-tabs__title">
-                Uma visão que o board<br>nunca teve antes.
+                Uma única plataforma. Todos os Riscos Digitais. Para qualquer Decisor.
             </h1>
             <p class="plat-tabs__desc">
-                Risco, impacto financeiro, maturidade e regulação
-                reunidos em uma única leitura estratégica — contínua,
-                mensurável e orientada à decisão.
+                Risco, impacto financeiro, maturidade e regulação reunidos em uma única leitura estratégica — clara, contínua, mensurável e orientada à decisão.
             </p>
         </div>
 
@@ -2773,23 +495,19 @@
                 <div class="plat-tabs__text-box">
                     <div class="plat-text-content is-active">
                         <h1 class="plat-tab-title">Risco com valor. Decisão com clareza.</h1>
-                        <p class="plat-tab-text">A Verta traduz exposição técnica em impacto financeiro mensurável. O
-                            board visualiza, em tempo real, o potencial de perda, o nível de maturidade e a
-                            probabilidade de um ataque bem-sucedido — sem depender de relatórios intermediários.</p>
+                        <p class="plat-tab-text">Exposição técnica em impacto financeiro mensurável, o potencial de perda, o nível de maturidade e a probabilidade de um ataque ser bem-sucedido — sem depender de relatórios intermediários.</p>
                     </div>
 
                     <div class="plat-text-content">
-                        <h1 class="plat-tab-title">Cada dimensão de risco.<br> Uma única leitura.</h1>
-                        <p class="plat-tab-text">Ransomware, Insider, DDoS, Terceiros — cada vetor avaliado
-                            individualmente, com benchmark global e contextualizado para a realidade da organização. O
-                            conselho não vê fragmentos. Vê o quadro completo.</p>
+                        <h1 class="plat-tab-title">Cada dimensão de risco de cada vertical (IA, Dados, Ciber).
+Uma única leitura.
+</h1>
+                        <p class="plat-tab-text">Cada vetor avaliado individualmente, com benchmark global e contextualizado para a realidade da organização.</p>
                     </div>
 
                     <div class="plat-text-content">
-                        <h1 class="plat-tab-title">Do risco atual à resiliência estratégica.</h1>
-                        <p class="plat-tab-text">A Verta projeta a evolução da postura de segurança. O board enxerga não
-                            só o estágio de maturidade atual, mas o risco reduzido e o ganho financeiro obtido a cada
-                            nova fase do plano de ação.</p>
+                        <h1 class="plat-tab-title">Do risco atual à resiliência estratégica. O que fazer com a informação.</h1>
+                        <p class="plat-tab-text">Plano de ação interativo, com simulações, impacto financeiro e fases de implementação. Sua equipe, consultores ou mesmo terceiros podem usar para evoluir com as informações.</p>
                     </div>
                 </div>
             </div>
@@ -2803,100 +521,67 @@
                 <em>A Verta mede. Contextualiza. Direciona.</em>
             </p>
         </div>
-        <!-- SEÇÃO — PARCEIROS -->
-        <section class="section section-partners">
-            <div class="partners-container">
-                <div class="reveal delay-1">
-                    <p class="section-label v-badge" style="margin-left: auto; margin-right: auto; width: fit-content;">
-                        Ecossistema</p>
-                    <h1 class="plat-tabs__title">Parceiros Estratégicos</h1>
-                </div>
-                <div class="partners-grid">
-                    <img src="./assets/images/p-logo-Alvarez-e-marsal.svg" alt="Parceiro Alvarez &amp; Marsal"
-                        class="partner-logo">
-                    <img src="./assets/images/p-logo-bidweb.svg" alt="Parceiro Bidweb" class="partner-logo">
-                    <img src="./assets/images/p-logo-castle.svg" alt="Parceiro Castle" class="partner-logo">
-                    <img src="./assets/images/p-logo-elytron.svg" alt="Parceiro Elytron" class="partner-logo">
-                    <img src="./assets/images/p-logo-security-first.svg" alt="Parceiro Security First"
-                        class="partner-logo">
-
-                    <img src="./assets/images/p-logo-tao.svg" alt="Parceiro TAO" class="partner-logo">
-                    <img src="./assets/images/p-logo-urbano-vitalino-vermelha.svg" alt="Parceiro Urbano Vitalino"
-                        class="partner-logo">
-                    <img src="./assets/images/p-logo-Alvarez-e-marsal.svg" alt="Parceiro Alvarez &amp; Marsal"
-                        class="partner-logo">
-                    <img src="./assets/images/p-logo-bidweb.svg" alt="Parceiro Bidweb" class="partner-logo">
-                    <img src="./assets/images/p-logo-castle.svg" alt="Parceiro Castle" class="partner-logo">
-                </div>
-            </div>
-        </section>
     </section><!-- /section-plat-tabs -->
-    <!-- ── Seção: Fundadores ── -->
-    <section class="section-founders section-card-up">
-        <div class="founders-inner">
-            <div class="founders-header">
-                <p class="eyebrow">Quem construiu a Verta</p>
-                <h2 class="founders-title">Fundadores com profundidade real no problema.</h2>
-                <p class="founders-desc">A Verta foi construída por quem viveu a assimetria entre risco técnico e decisão executiva — de dentro das organizações.</p>
+
+    <!-- SEÇÃO — PARCEIROS -->
+    <section class="section section-partners">
+        <div class="partners-container">
+            <div class="reveal delay-1">
+                <p class="eyebrow" style="justify-content: center;">Ecossistema</p>
+                <h1 class="plat-tabs__title">Parceiros Estratégicos e Clientes</h1>
             </div>
-
-            <div class="founders-grid">
-                <div class="founder-card">
-                    <div class="founder-photo">
-                        <div class="founder-photo-placeholder">RS</div>
-                    </div>
-                    <div class="founder-info">
-                        <div class="founder-role">CEO &amp; Co-Founder</div>
-                        <h3 class="founder-name">Rafael Sasso</h3>
-                        <p class="founder-bio">Liderou iniciativas de governança e estratégia digital em grandes organizações. Construiu a Verta para resolver o gap que viveu entre o que a TI sabe e o que o board precisa entender para agir.</p>
-                    </div>
-                </div>
-
-                <div class="founder-card">
-                    <div class="founder-photo">
-                        <div class="founder-photo-placeholder">CK</div>
-                    </div>
-                    <div class="founder-info">
-                        <div class="founder-role">CTO &amp; Co-Founder</div>
-                        <h3 class="founder-name">Cristiano Kruger</h3>
-                        <p class="founder-bio">Arquitetou a infraestrutura técnica que torna possível automatizar a tradução de dados complexos de risco em indicadores executivos acionáveis e rastreáveis em escala.</p>
-                    </div>
-                </div>
-
-                <div class="founder-card">
-                    <div class="founder-photo">
-                        <div class="founder-photo-placeholder">NS</div>
-                    </div>
-                    <div class="founder-info">
-                        <div class="founder-role">CRO &amp; Co-Founder</div>
-                        <h3 class="founder-name">Nycholas Szucko</h3>
-                        <p class="founder-bio">Background em segurança e inteligência de ameaças com visão de mercado. Estruturou o modelo de receita e expansão da Verta para escala global.</p>
-                    </div>
-                </div>
+            <div class="partners-grid">
+                <img src="./assets/images/partners/p-logo-tao.svg"                       alt="Parceiro TAO Governance"       class="partner-logo">
+                <img src="./assets/images/partners/p-logo-urbano-vitalino-vermelha.svg"  alt="Parceiro Urbano Vitalino"      class="partner-logo">
+                <img src="./assets/images/partners/p-logo-Alvarez-e-marsal.svg"          alt="Parceiro Alvarez &amp; Marsal" class="partner-logo">
+                <img src="./assets/images/partners/p-logo-bidweb.svg"                    alt="Parceiro Bidweb"               class="partner-logo">
+                <img src="./assets/images/partners/p-logo-castle.svg"                    alt="Parceiro Castle"               class="partner-logo">
+                <img src="./assets/images/partners/p-logo-elytron.svg"                   alt="Parceiro Elytron"              class="partner-logo">
+                <img src="./assets/images/partners/p-logo-security-first.svg"            alt="Parceiro Security First"       class="partner-logo">
+                <img src="./assets/images/partners/p-logo-telmex.svg"                    alt="Parceiro Telmex"               class="partner-logo">
+                <img src="./assets/images/partners/p-logo-claro.svg"                     alt="Parceiro Claro"                class="partner-logo">
+                <img src="./assets/images/partners/p-logo-embratel.svg"                  alt="Parceiro Embratel"             class="partner-logo">
+                <img src="./assets/images/partners/p-logo-m3corp.png"                    alt="Parceiro M3Corp"               class="partner-logo">
+                <img src="./assets/images/partners/p-logo-pdk-advogados.png"             alt="Parceiro PDK Advogados"        class="partner-logo">
+                <img src="./assets/images/partners/p-logo-pluggy.png"                    alt="Parceiro Pluggy"               class="partner-logo">
+                <img src="./assets/images/partners/p-logo-fti.svg"                       alt="Parceiro FTI Consulting"       class="partner-logo">
             </div>
         </div>
     </section>
 
     <!-- ── Seção: Final CTA — master tagline do deck ── -->
-    <section class="section-final-cta">
+    <section class="section-final-cta" id="contato">
         <div class="final-cta-inner">
-            <div class="final-cta-tagline">Uma plataforma. Todo o risco digital. Cada decisor.</div>
-            <h2 class="final-cta-title">O risco digital chegou ao board.<br>A clareza precisa chegar antes.</h2>
-            <p class="final-cta-subtitle">Enquanto o regulatório avança e as ameaças escalam, organizações sem visibilidade executiva sobre risco digital estão operando no escuro — e tomando decisões sem contexto.</p>
-            <div class="final-cta-actions">
-                <a href="#" class="btn_verta">
-                    Agendar conversa estratégica
-                    <div style="width:16px;height:16px;flex-shrink:0;">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
+            <div class="final-cta-tagline">Uma única plataforma. Todos os Riscos Digitais. Para qualquer Decisor.</div>
+            <h2 class="final-cta-title">Os riscos digitais fazem parte da realidade de todos os tipos de negócios agora.
+Ter clareza é uma prioridade.</h2>
+            <p class="final-cta-subtitle">Enquanto o regulatório avança e as ameaças escalam, organizações sem visibilidade executiva sobre riscos digitais estão operando no escuro — e tomando decisões sem contexto.</p>
+            <div class="final-cta-contacts">
+                <a href="mailto:Contact@verta.digital" class="contact-link">
+                    <span class="contact-link__region">Verta USA</span>
+                    <span class="contact-link__email">Contact@verta.digital</span>
                 </a>
-                <a href="#" class="btn btn--ghost-dark" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-sm);font-weight:600;text-decoration:none;cursor:pointer;transition:background var(--ease-fast),transform var(--ease-fast),border-color var(--ease-fast);background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);">Ver a plataforma</a>
+                <div class="contact-link__divider" aria-hidden="true"></div>
+                <a href="mailto:Contato@verta.digital" class="contact-link">
+                    <span class="contact-link__region">Verta Brasil</span>
+                    <span class="contact-link__email">Contato@verta.digital</span>
+                </a>
             </div>
-            <p class="final-cta-footnote">Sem compromisso. Sem jargão técnico. Apenas contexto.</p>
         </div>
     </section>
+
+    <!-- ── Footer ── -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__copy">© 2024 Verta &nbsp;·&nbsp; Verta Brasil Ltda &nbsp;·&nbsp; CNPJ 61.039.284/0001-14</span>
+            <nav class="site-footer__links" aria-label="Links legais">
+                <a href="terms-and-conditions.html">Termos de Serviço</a>
+                <span aria-hidden="true">·</span>
+                <a href="privacy-policy.html">Política de Privacidade</a>
+            </nav>
+            <a href="mailto:support@verta.digital" class="site-footer__email">support@verta.digital</a>
+        </div>
+    </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -2908,8 +593,16 @@
                     gsap.registerPlugin(ScrollTrigger);
                 }
 
+                // ── Nav Glassmorphism on scroll ─────────────────────────
+                const nav = document.querySelector('.nav_minimal');
+                if (nav) {
+                    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+                    window.addEventListener('scroll', onScroll, { passive: true });
+                    onScroll(); // run on load in case page refreshed mid-scroll
+                }
+
                 // ── Mobile Menu Toggle ──────────────────────────────────
-                const navToggle = document.getElementById('navToggle');
+                const navToggle = document.getElementById('hamburgerBtn');
                 const navRight = document.getElementById('navRight');
                 if (navToggle && navRight) {
                     navToggle.addEventListener('click', () => {
@@ -3009,100 +702,60 @@
                         .then(init).catch(init);
                 })();
 
-                // ── Linha Divisória Estagiada com Scroll ────────────────────────
+                // ── Carrossel de Depoimentos ─────────────────────────────
                 (function () {
-                    const canvas = document.getElementById('dividerCanvas');
-                    if (!canvas) return;
-                    const ctx = canvas.getContext('2d');
-                    const wrap = document.getElementById('dividerWrap');
-                    const diagContent = document.getElementById('diagnostico-content');
+                    const track = document.querySelector('.quote-track');
+                    if (!track) return;
+                    const items = Array.from(track.querySelectorAll('.quote-item'));
+                    const dotsWrap = document.getElementById('quoteDots');
+                    if (!items.length) return;
 
-                    let segments = [];
-                    function buildSegments(totalW) {
-                        const segs = [];
-                        let x = 0;
-                        while (x < totalW) {
-                            const w = 30 + Math.random() * 100;
-                            segs.push({
-                                x,
-                                w,
-                                initialChaosY: (Math.random() - 0.5) * 60,
-                                initialH: 8 + Math.random() * 24,
-                                initialOpacity: 0.3 + Math.random() * 0.7
-                            });
-                            x += w + (10 + Math.random() * 30);
-                        }
-                        return segs;
+                    let current = 0;
+                    let timer = null;
+
+                    // Dots — ocultos se só 1 item
+                    const dots = items.map((_, i) => {
+                        const btn = document.createElement('button');
+                        btn.className = 'quote-dot' + (i === 0 ? ' is-active' : '');
+                        btn.setAttribute('aria-label', 'Depoimento ' + (i + 1));
+                        btn.addEventListener('click', () => go(i));
+                        dotsWrap.appendChild(btn);
+                        return btn;
+                    });
+                    if (items.length <= 1) dotsWrap.style.display = 'none';
+
+                    function go(n) {
+                        items[current].classList.remove('is-active');
+                        dots[current].classList.remove('is-active');
+                        current = (n + items.length) % items.length;
+                        items[current].classList.add('is-active');
+                        dots[current].classList.add('is-active');
+                        resetTimer();
                     }
 
-                    function resize() {
-                        const dpr = window.devicePixelRatio || 1;
-                        const rect = canvas.getBoundingClientRect();
-                        canvas.width = rect.width * dpr;
-                        canvas.height = 140 * dpr;
-                        ctx.scale(dpr, dpr);
-                        segments = buildSegments(rect.width);
-                        update();
+                    function resetTimer() {
+                        clearInterval(timer);
+                        if (items.length > 1) timer = setInterval(() => go(current + 1), 6000);
                     }
 
-                    function getProgress() {
-                        const rect = wrap.getBoundingClientRect();
-                        const winH = window.innerHeight;
-                        // O progresso começa quando a linha surge embaixo e termina quando ela cruza o centro
-                        const start = winH;
-                        const end = winH * 0.4;
-                        const current = rect.top;
-                        return Math.min(Math.max((start - current) / (start - end), 0), 1);
+                    // Init
+                    items[0].classList.add('is-active');
+                    resetTimer();
+
+                    // Pause on hover
+                    const section = track.closest('.section-quote');
+                    if (section) {
+                        section.addEventListener('mouseenter', () => clearInterval(timer));
+                        section.addEventListener('mouseleave', resetTimer);
                     }
 
-                    function draw(p) {
-                        const rect = canvas.getBoundingClientRect();
-                        ctx.clearRect(0, 0, rect.width, 140);
-                        const centerY = 70;
-
-                        const easeP = t => t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                        const ep = easeP(Math.min(p / 0.85, 1));
-
-                        // Desenha os segmentos
-                        segments.forEach((seg, i) => {
-                            const y = centerY + seg.initialChaosY * (1 - ep);
-                            const h = seg.initialH * (1 - ep) + 1;
-                            const op = seg.initialOpacity * (1 - ep * 0.4);
-
-                            // Expansão lateral dos segmentos para fechar os gaps em 100%
-                            const widthExpansion = ep > 0.6 ? (ep - 0.6) / 0.4 : 0;
-                            const finalW = seg.w + (30 * widthExpansion); // Leve sobreposição para garantir linha sólida
-
-                            ctx.fillStyle = `rgba(127, 153, 245, ${op})`;
-                            ctx.beginPath();
-                            ctx.rect(seg.x, y - h / 2, finalW, h);
-                            ctx.fill();
-                        });
-
-                        // Caso a convergência seja total, garante uma linha sólida de ponta a ponta
-                        if (ep > 0.98) {
-                            ctx.fillStyle = "rgba(127, 153, 245, 0.6)";
-                            ctx.fillRect(0, centerY - 0.5, rect.width, 1);
-                        }
-
-                        // Revelação do conteúdo (desativada para debug)
-                        /*
-                        if (diagContent) {
-                            const contentP = Math.max((p - 0.4) / 0.6, 0);
-                            diagContent.style.opacity = contentP;
-                            diagContent.style.transform = `translateY(${(1 - contentP) * 30}px)`;
-                            diagContent.style.pointerEvents = contentP > 0.1 ? "auto" : "none";
-                        }
-                        */
-                    }
-
-                    function update() {
-                        requestAnimationFrame(() => draw(getProgress()));
-                    }
-
-                    window.addEventListener('scroll', update, { passive: true });
-                    window.addEventListener('resize', resize);
-                    resize();
+                    // Swipe
+                    let tx = 0;
+                    track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+                    track.addEventListener('touchend', e => {
+                        const dx = e.changedTouches[0].clientX - tx;
+                        if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+                    }, { passive: true });
                 })();
 
                 // ── Como Funciona — IntersectionObserver step reveal ──────
@@ -3169,7 +822,6 @@
                     const logos = gsap.utils.toArray(".partner-logo");
                     if (logos.length === 0) return;
 
-                    // Ocultar todos por segurança inicial
                     gsap.set(logos, { display: "none", autoAlpha: 0 });
 
                     const groupSize = 5;
@@ -3183,11 +835,10 @@
                         const currentLogos = logos.filter(l => l.style.display !== "none" && l.style.display !== "");
 
                         if (currentLogos.length > 0) {
-                            // Fade out o grupo atual
                             gsap.to(currentLogos, {
                                 autoAlpha: 0,
                                 y: -15,
-                                duration: 0.5,
+                                duration: 0.4,
                                 stagger: 0.05,
                                 ease: "power2.in",
                                 onComplete: () => {
@@ -3201,44 +852,31 @@
                     }
 
                     function fadeInNext() {
-                        let nextLogos = [];
+                        const nextLogos = [];
                         for (let i = 0; i < groupSize; i++) {
-                            let idx = (currentIndex + i) % logos.length;
-                            nextLogos.push(logos[idx]);
+                            nextLogos.push(logos[(currentIndex + i) % logos.length]);
                         }
-
                         currentIndex = (currentIndex + groupSize) % logos.length;
 
                         gsap.set(nextLogos, { display: "block", y: 15, autoAlpha: 0 });
                         gsap.to(nextLogos, {
-                            autoAlpha: 1, // Alterado de 0.5 para 1 (100% visível)
+                            autoAlpha: 1,
                             y: 0,
-                            duration: 0.6,
-                            stagger: 0.1,
+                            duration: 0.55,
+                            stagger: 0.08,
                             ease: "power2.out",
-                            onComplete: () => {
-                                isAnimating = false;
-                            }
+                            onComplete: () => { isAnimating = false; }
                         });
                     }
 
-                    // Adicionar hover via JS
                     logos.forEach(logo => {
-                        logo.addEventListener('mouseenter', () => {
-                            if (logo.style.display !== "none") {
-                                gsap.to(logo, { y: -4, scale: 1.05, duration: 0.3, overwrite: "auto" });
-                            }
-                        });
-                        logo.addEventListener('mouseleave', () => {
-                            if (logo.style.display !== "none") {
-                                gsap.to(logo, { y: 0, scale: 1, duration: 0.3, overwrite: "auto" });
-                            }
-                        });
+                        logo.addEventListener('mouseenter', () => gsap.to(logo, { y: -4, scale: 1.05, duration: 0.3, overwrite: "auto" }));
+                        logo.addEventListener('mouseleave', () => gsap.to(logo, { y: 0, scale: 1, duration: 0.3, overwrite: "auto" }));
                     });
 
                     ScrollTrigger.create({
                         trigger: ".section-partners",
-                        start: "top 85%",
+                        start: "top bottom",
                         once: true,
                         onEnter: () => {
                             showNextGroup();
