@@ -190,6 +190,7 @@ a:focus-visible, button:focus-visible {
 .section-como-funciona .eyebrow,
 .section-partners .eyebrow,
 .section-final-cta .eyebrow,
+.section-contact .eyebrow,
 .cta-final .eyebrow {
   color: var(--brand-300);
   border-color: rgba(127, 153, 245, 0.25);
@@ -199,6 +200,7 @@ a:focus-visible, button:focus-visible {
 .section-como-funciona .eyebrow::before,
 .section-partners .eyebrow::before,
 .section-final-cta .eyebrow::before,
+.section-contact .eyebrow::before,
 .cta-final .eyebrow::before {
   background-color: var(--brand-400);
 }
@@ -879,6 +881,7 @@ body.page-safe .reveal.is-visible { opacity: 1; transform: none !important; }
   justify-content: center;
   position: relative;
   height: 560px;
+  overflow: hidden;
 }
 .rings {
   position: absolute; inset: 0;
@@ -1232,6 +1235,7 @@ body.page-safe .reveal.is-visible { opacity: 1; transform: none !important; }
 .plat-tabs__left   { display: flex; flex-direction: column; gap: 15vh; padding-top: 10vh; padding-bottom: 20vh; }
 .plat-image-item   { height: auto; width: 100%; position: relative; border-radius: var(--radius-xl); overflow: hidden; background: transparent; box-shadow: var(--shadow-xl); border: 1px solid var(--neutral-200); }
 .plat-image-item img { width: 100%; height: auto; object-fit: contain; display: block; }
+.plat-mobile-caption { display: none; }
 .plat-tabs__right  { position: sticky; top: 20vh; height: 60vh; }
 .plat-tabs__text-box { background: transparent; border: none; border-radius: var(--radius-lg); width: 100%; height: 100%; position: relative; overflow: hidden; }
 .plat-text-content {
@@ -1531,15 +1535,289 @@ body.page-safe .reveal.is-visible { opacity: 1; transform: none !important; }
   .contact-link { padding: 0; }
 }
 
-/* — Partners (carrossel) — */
-.section-partners { background: radial-gradient(circle at top, #1c1c1c 0, #0b0b0b 60%); padding: 128px 0 160px; position: relative; z-index: 10; border-top: 1px solid rgba(255,255,255,0.04); }
+/* — Partners reel — */
+.section-partners { background: radial-gradient(circle at top, #1c1c1c 0, #0b0b0b 60%); padding: 128px 0 144px; position: relative; z-index: 10; border-top: 1px solid rgba(255,255,255,0.04); }
 .partners-container { width: 90%; max-width: 1280px; margin: 0 auto; text-align: center; }
 .section-partners .plat-tabs__title  { color: #ffffff; }
-/* section-partners eyebrow já coberto pelo bloco dark-sections acima */
-.partners-grid  { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 60px 80px; margin-top: 96px; min-height: 60px; }
-.partner-logo   { display: none; visibility: hidden; opacity: 0; max-height: 60px; max-width: 220px; width: auto; object-fit: contain; }
 
-/* ═══ 10. SEÇÕES EXCLUSIVAS — VERTA SAFE ══════════════════════ */
+.partners-reel {
+  position: relative;
+  height: 90px;
+  margin-top: 72px;
+  overflow: hidden;
+}
+.partners-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+.partners-slide.p-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.partner-logo {
+  display: block;
+  max-height: 52px;
+  max-width: 180px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.partner-logo:hover { transform: scale(1.07); opacity: 0.85; }
+
+/* ═══ 10. SEÇÃO DE CONTATO — HOME ════════════════════════════ */
+
+.section-contact {
+  background: var(--neutral-900);
+  padding: 128px 0 144px;
+  position: relative;
+  overflow: hidden;
+}
+.section-contact::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw; height: 65vh;
+  background: radial-gradient(ellipse, rgba(127,153,245,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.contact-inner {
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 6rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Left column ── */
+.contact-left .eyebrow { margin-bottom: 1.25rem; }
+.contact-left h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 1.5rem;
+}
+.contact-left h2 em { font-style: normal; color: var(--brand-400); }
+.contact-left__desc {
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body);
+  color: rgba(255,255,255,0.45);
+  margin: 0 0 3rem;
+}
+
+.contact-direct { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; }
+.contact-direct__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: 1rem;
+  display: block;
+}
+.contact-direct__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none;
+  transition: padding-left 0.25s ease;
+}
+.contact-direct__item:hover { padding-left: 8px; }
+.contact-direct__region {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.contact-direct__email {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--brand-400);
+  transition: color 0.2s;
+}
+.contact-direct__item:hover .contact-direct__email { color: var(--brand-300); }
+
+/* ── Right column: form card ── */
+.contact-form-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 2.5rem;
+  backdrop-filter: blur(12px);
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.cform-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.cform-field { display: flex; flex-direction: column; gap: 7px; }
+.cform-field--full { grid-column: 1 / -1; }
+
+.cform-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.4);
+}
+
+.cform-input,
+.cform-select {
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+}
+.cform-input::placeholder { color: rgba(255,255,255,0.2); }
+.cform-input:focus,
+.cform-select:focus {
+  border-color: rgba(127,153,245,0.6);
+  background: rgba(127,153,245,0.07);
+}
+.cform-textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+
+/* Select custom arrow */
+.cform-select-wrap { position: relative; }
+.cform-select { cursor: pointer; padding-right: 2.5rem; }
+.cform-select option { background: #1a2237; color: #fff; }
+.cform-select-arrow {
+  position: absolute;
+  right: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.35);
+  pointer-events: none;
+}
+
+/* Privacy notice */
+.cform-privacy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.65;
+  margin: 0.25rem 0 0;
+}
+.cform-privacy a { color: rgba(255,255,255,0.48); text-decoration: underline; text-underline-offset: 2px; }
+.cform-privacy a:hover { color: var(--brand-400); }
+
+/* Custom checkbox */
+.cform-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  margin-top: 0.125rem;
+}
+.cform-check input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.cform-check__box {
+  width: 17px; height: 17px;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  border-radius: 5px;
+  background: rgba(255,255,255,0.04);
+  margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cform-check input:checked + .cform-check__box {
+  background: var(--brand-500);
+  border-color: var(--brand-500);
+}
+.cform-check input:checked + .cform-check__box::after {
+  content: '';
+  display: block;
+  width: 9px; height: 5px;
+  border-left: 1.75px solid #fff;
+  border-bottom: 1.75px solid #fff;
+  transform: rotate(-45deg) translate(0px, -1px);
+}
+.cform-check__text { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+.cform-check__text a { color: rgba(255,255,255,0.6); text-decoration: underline; text-underline-offset: 2px; }
+.cform-check__text a:hover { color: var(--brand-400); }
+
+/* Submit button */
+.cform-submit {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%;
+  padding: 13px 24px;
+  margin-top: 0.25rem;
+  background: var(--brand-500);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(127,153,245,0.25);
+}
+.cform-submit:hover {
+  background: var(--brand-400);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(127,153,245,0.35);
+}
+.cform-submit:active { transform: translateY(0); }
+.cform-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+/* Success state */
+.cform-success {
+  display: flex; align-items: center; gap: 12px;
+  padding: 1.25rem 1.5rem;
+  background: rgba(16,185,129,0.09);
+  border: 1px solid rgba(16,185,129,0.22);
+  border-radius: 12px;
+  color: #10b981;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ── Mobile ── */
+@media (max-width: 991px) {
+  .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+  .section-contact { padding: 88px 0 96px; }
+}
+@media (max-width: 600px) {
+  .cform-row { grid-template-columns: 1fr; }
+  .contact-form-card { padding: 1.75rem 1.25rem; border-radius: 18px; }
+  .section-contact { padding: 72px 0 80px; }
+}
+
+/* ═══ 10b. SEÇÕES EXCLUSIVAS — VERTA SAFE ════════════════════ */
 
 /* — Stats Strip — */
 .stats-strip { background: var(--neutral-900); padding: 5rem 0; position: relative; overflow: hidden; }
@@ -1597,15 +1875,15 @@ body.page-safe .reveal.is-visible { opacity: 1; transform: none !important; }
 .process-mobile { display: none; background: #fff; padding: 5rem 0; position: relative; overflow: hidden; }
 .mobile-section-inner { max-width: 640px; margin: 0 auto; padding: 0 1.5rem; }
 .mobile-steps { display: flex; flex-direction: column; gap: 3rem; margin-top: 3rem; }
-.mobile-step-img { aspect-ratio: 4/3; background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid var(--neutral-200); box-shadow: 0 4px 24px rgba(0,0,0,.07); display: flex; align-items: center; justify-content: center; padding: 1rem; }
-.mobile-step-img img { max-height: 180px; object-fit: contain; width: 100%; }
+.mobile-step-img { background: transparent; border: none; box-shadow: none; padding: 0; display: block; border-radius: 0; overflow: visible; }
+.mobile-step-img img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
 .mobile-step-body { margin-top: 1.25rem; }
 .mobile-step-body h3 { font-family: var(--font-display); font-size: 18px; font-weight: 700; margin-bottom: 8px; }
 .mobile-step-body h3 span { color: var(--brand-400); margin-right: 8px; }
 .mobile-step-body p  { font-size: 14px; color: var(--neutral-500); line-height: 1.65; }
 
 /* — Partnership (Verta Safe) — */
-.partnership { background: #fff; padding: 0; position: relative; }
+.partnership { background: #fff; padding: 0; position: relative; overflow: hidden; }
 .section-inner { width: 90%; max-width: 1280px; margin: 0 auto; }
 .partner-sticky-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: stretch; padding-top: 7rem; padding-bottom: 7rem; }
 .partner-visual-sticky { position: sticky; top: 8rem; opacity: 0; transform: translateX(-40px) scale(0.95); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
@@ -1801,12 +2079,6 @@ footer { background: #fff; border-top: 1px solid var(--neutral-100); padding: 4.
   .diag-header-desc      { padding-left: 0; border-left: none; border-top: 1px solid var(--neutral-200); padding-top: var(--space-6); }
   .diag-cards-grid       { grid-template-columns: 1fr; }
   .risk-card             { padding: 36px 28px 44px; min-height: auto; }
-  .plat-tabs__vertical-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
-  .plat-tabs__right      { position: static; height: auto; margin-bottom: 2rem; order: -1; z-index: 20; display: flex; align-items: center; }
-  .plat-tabs__text-box   { background: var(--color-bg); box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
-  .plat-tabs__left       { gap: 1.5rem; padding-top: 0; padding-bottom: 0; }
-  .plat-image-item       { height: auto; min-height: 300px; margin-bottom: 3rem; }
-  .plat-text-content     { padding: 40px 24px; }
   .section-como-funciona { padding: 88px 0 72px; }
   .cf-step               { grid-template-columns: 1fr; gap: 1.25rem 0; padding: 40px 0 48px; }
   .cf-step-num           { font-size: 3rem; color: rgba(127,153,245,0.15) !important; }
@@ -1837,8 +2109,9 @@ footer { background: #fff; border-top: 1px solid var(--neutral-100); padding: 4.
 }
 @media (max-width: 767px) {
   .section-partners      { padding: 64px 0 80px; }
-  .partners-grid         { gap: 40px 32px; margin-top: 40px; }
-  .partner-logo          { max-height: 45px; max-width: 160px; }
+  .partners-reel         { height: 70px; margin-top: 48px; }
+  .partners-slide        { gap: 32px; }
+  .partner-logo          { max-height: 38px; max-width: 120px; }
 }
 
 /* — Verta Safe — */
@@ -1850,6 +2123,8 @@ footer { background: #fff; border-top: 1px solid var(--neutral-100); padding: 4.
   .partner-sticky-layout { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 4rem; padding-bottom: 4rem; }
   .partner-visual-sticky { position: relative; top: auto; transform: none; opacity: 1; }
   .partner-visual-sticky.is-visible { transform: none; }
+  .partner-image-col     { order: 2; }
+  .partner-content-col   { order: 1; }
   .stats-strip-inner     { flex-direction: column; gap: 2.5rem; }
   .stat-item:not(:last-child)::after { display: none; }
   .vp-grid               { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
@@ -1864,7 +2139,8 @@ footer { background: #fff; border-top: 1px solid var(--neutral-100); padding: 4.
   .testimonials-inner    { padding: 0 1.5rem; }
   .testimonials-header h2 { font-size: 30px; }
   .testimonials-grid     { display: flex; }
-  .testimonial-card      { min-height: 0; width: 300px; }
+  .testimonial-card      { min-height: 0; width: 280px; min-width: 280px; }
+  .testimonials-container::before, .testimonials-container::after { display: none; }
   .card                  { width: 280px; height: 380px; }
   .score-num             { font-size: 72px; }
   .footer-main           { flex-direction: column; align-items: flex-start; padding-bottom: 2rem; }
@@ -1879,7 +2155,13 @@ footer { background: #fff; border-top: 1px solid var(--neutral-100); padding: 4.
   h1                     { font-size: 28px; }
 }
 @media (max-width: 767px) {
-  .plat-tabs__right      { position: static; height: auto; }
+  .plat-tabs__vertical-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
+  .plat-tabs__right      { display: none; }
+  .plat-tabs__left       { gap: 2.5rem; padding-top: 0; padding-bottom: 0; }
+  .plat-image-item       { height: auto; min-height: 0; margin-bottom: 0; }
+  .plat-mobile-caption   { display: block; padding: 1.5rem 1.25rem 1.75rem; background: var(--neutral-50); border-top: 1px solid var(--neutral-100); }
+  .plat-mobile-caption h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--neutral-900); margin-bottom: 0.6rem; line-height: 1.3; letter-spacing: -0.01em; }
+  .plat-mobile-caption p  { font-size: var(--font-size-sm); color: var(--neutral-500); line-height: 1.7; }
 }
 
 /* ═══ 12. V4 DASHBOARD WIDGETS (Home hero SVG) ════════════════ */
