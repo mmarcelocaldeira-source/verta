@@ -21,7 +21,6 @@
 
 <body class="page-safe">
 
-  <!-- ═══════════ NAVBAR ═══════════ -->
   <nav class="nav_minimal" id="navbar">
     <div class="nav_container">
       <a href="index.html" class="logo_verta">
@@ -54,7 +53,6 @@
     </div>
   </nav>
 
-  <!-- ═══════════ HERO ═══════════ -->
   <section class="hero">
     <div class="gradient-sphere" aria-hidden="true"></div>
     <div class="hero-inner">
@@ -163,7 +161,6 @@
     </div>
   </section>
 
-  <!-- ═══════════ VALUE PROPS ═══════════ -->
   <section class="value-props">
     <div class="section-inner">
 
@@ -218,7 +215,6 @@
     </div>
   </section>
 
-  <!-- ═══════════ STATS STRIP ═══════════ -->
   <section class="stats-strip">
     <div class="stats-glow stats-glow-1" aria-hidden="true"></div>
     <div class="stats-glow stats-glow-2" aria-hidden="true"></div>
@@ -250,13 +246,11 @@
     </div>
   </section>
 
-  <!-- ═══════════ DEPOIMENTOS ═══════════ -->
   <section class="testimonials">
     <div class="testimonials-inner">
       <div class="testimonials-header">
         <div class="eyebrow reveal" style="--reveal-delay:0s">Vozes do Mercado</div>
         <h2 class="reveal" style="--reveal-delay:0.1s">Depoimentos</h2>
-
 
       <div class="testimonials-container">
         <div class="testimonials-grid">
@@ -270,7 +264,6 @@
               </div>
             </div>
           </article>
-          <!-- Novos depoimentos: adicionar <article class="testimonial-card"> aqui -->
         </div>
         <div class="testimonials-dots" id="testimonials-dots"></div>
       </div>
@@ -278,13 +271,11 @@
   </section>
 
 
-  <!-- ═══════════ COMO FUNCIONA — DESKTOP (sticky scroll) ═══════════ -->
   <section class="process-section" id="como-funciona">
     <div class="process-sticky">
       <div class="glow glow-bl" aria-hidden="true"></div>
       <div class="process-inner">
 
-        <!-- Esquerda: header + textos animados -->
         <div class="process-left">
           <div class="process-header">
             <div class="eyebrow">Jornada Verta</div>
@@ -322,7 +313,6 @@
           </div>
         </div>
 
-        <!-- Direita: imagens animadas -->
         <div class="process-right">
           <div class="proc-img active" data-step="0">
             <img src="assets/images/step-1.png" alt="Tela de cadastro" loading="eager">
@@ -345,7 +335,6 @@
     </div>
   </section>
 
-  <!-- ═══════════ COMO FUNCIONA — MOBILE (stacked) ═══════════ -->
   <section class="process-mobile" id="como-funciona-mobile">
     <div class="glow glow-tr" aria-hidden="true"></div>
     <div class="mobile-section-inner">
@@ -397,12 +386,10 @@
     </div>
   </section>
 
-  <!-- ═══════════ PARCEIRO ═══════════ -->
   <section class="partnership" id="sobre">
     <div class="section-inner">
       <div class="partner-sticky-layout">
 
-        <!-- ── Coluna esquerda: imagem sticky ── -->
         <div class="partner-image-col">
           <div class="partner-visual partner-visual-sticky" id="partner-visual" aria-hidden="true">
             <div class="pv-grid"></div>
@@ -448,7 +435,6 @@
           </div>
         </div>
 
-        <!-- ── Coluna direita: título sticky + conteúdo que rola ── -->
         <div class="partner-content-col">
 
           <div class="partner-content-header">
@@ -516,7 +502,6 @@
     </div>
   </section>
 
-  <!-- ═══════════ CTA FINAL ═══════════ -->
   <section class="cta-final">
     <div class="cta-grid-bg" aria-hidden="true"></div>
     <div class="cta-final-inner">
@@ -536,13 +521,11 @@
     </div>
   </section>
 
-  <!-- ═══════════ FOOTER ═══════════ -->
   <footer>
     <div class="glow glow-bc" aria-hidden="true"></div>
     <div class="section-inner">
       <div class="footer-cols">
 
-        <!-- Coluna esquerda — Verta -->
         <div class="footer-col-verta">
           <div class="footer-logo">
             <img src="assets/images/verta-logo.svg" alt="Verta" style="height:32px;width:auto;display:block;">
@@ -550,7 +533,6 @@
           <p class="footer-tagline">Entenda seu risco e fique segurado em Cibersegurança — Simples, Digital e Transparente.</p>
         </div>
 
-        <!-- Coluna direita — AKAD / Legal -->
         <div class="footer-col-legal">
           <div class="footer-ops">
             <span class="footer-ops__label">Operado por</span>
@@ -563,7 +545,6 @@
     </div>
   </footer>
 
-  <!-- Footer legal mínimo -->
   <footer class="site-footer">
     <div class="site-footer__inner">
       <span class="site-footer__copy">© 2024 Verta &nbsp;·&nbsp; Verta Brasil Ltda &nbsp;·&nbsp; CNPJ 61.039.284/0001-14</span>
@@ -577,7 +558,6 @@
   </footer>
 
   <script>
-    // ── Navbar scroll ──────────────────────────────────────────────
     const nav = document.querySelector('.nav_minimal');
     if (nav) {
       const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
@@ -585,7 +565,6 @@
       onScroll();
     }
 
-    // ── Menu mobile ────────────────────────────────────────────────
     const navToggle = document.getElementById('hamburgerBtn');
     const navRight  = document.getElementById('navRight');
     if (navToggle && navRight) {
@@ -596,7 +575,6 @@
       });
     }
 
-    // ── Card 3D tilt ───────────────────────────────────────────────
     const card = document.getElementById('hero-card');
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
@@ -610,7 +588,6 @@
       card.classList.remove('tilting');
     });
 
-    // ── Sticky scroll process ──────────────────────────────────────
     const procSection = document.getElementById('como-funciona');
     const procTexts = document.querySelectorAll('.proc-text');
     const procImgs = document.querySelectorAll('.proc-img');
@@ -648,7 +625,6 @@
 
     updateProcess();
 
-    // ── Accordion FAQ ──────────────────────────────────────────────
     document.querySelectorAll('.acc-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const isOpen = btn.getAttribute('aria-expanded') === 'true';
@@ -661,7 +637,6 @@
       });
     });
 
-    // ── Scroll reveal ──────────────────────────────────────────────
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -673,7 +648,6 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ── Partnership entrance (image from left, then content) ───────
     const partnerVisual = document.getElementById('partner-visual');
     const partnerBody   = document.getElementById('partner-scroll-body');
 
@@ -691,7 +665,6 @@
       partnerObserver.observe(partnerVisual);
     }
 
-    // ── Counter animation ──────────────────────────────────────────
     function animateCount(el) {
       const target = +el.dataset.count;
       const duration = 1800;
@@ -716,7 +689,6 @@
 
     document.querySelectorAll('.stat-count').forEach(el => countObserver.observe(el));
 
-    // ── Testimonials carousel ──────────────────────────────────────
     (function () {
       const container = document.querySelector('.testimonials-container');
       const track = document.querySelector('.testimonials-grid');
@@ -732,7 +704,7 @@
       let isDragging = false;
 
       function cardWidth() {
-        return cards[0].offsetWidth + 24; // width + gap
+        return cards[0].offsetWidth + 24;
       }
 
       function centerOffset() {
@@ -771,7 +743,6 @@
         autoTimer = null;
       }
 
-      // Build dots
       cards.forEach((_, i) => {
         const btn = document.createElement('button');
         btn.setAttribute('aria-label', `Depoimento ${i + 1}`);
@@ -779,11 +750,9 @@
         dotsWrap.appendChild(btn);
       });
 
-      // Pause on hover
       container.addEventListener('mouseenter', stopAuto);
       container.addEventListener('mouseleave', startAuto);
 
-      // Drag support
       container.addEventListener('mousedown', e => {
         isDragging = true;
         dragStartX = e.clientX;
@@ -807,7 +776,6 @@
         startAuto();
       });
 
-      // Touch support
       container.addEventListener('touchstart', e => {
         dragStartX = e.touches[0].clientX;
         dragDelta = 0;
@@ -824,7 +792,6 @@
         startAuto();
       });
 
-      // Init
       track.style.transition = 'none';
       applyState();
       requestAnimationFrame(() => {
