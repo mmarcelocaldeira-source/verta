@@ -566,6 +566,7 @@ Uma única leitura.
         <div class="contact-right">
           <div class="contact-form-card">
             <form class="contact-form" id="contactForm" novalidate>
+              <input type="hidden" name="access_key" value="ceace425-355f-48b1-a27d-a1b242be72a3">
 
               <div class="cform-field cform-field--full">
                 <label for="cf-subject" class="cform-label">O que você deseja</label>
@@ -900,31 +901,49 @@ Uma única leitura.
                             return;
                         }
 
-                        const subject  = form.subject.value;
-                        const name     = form.name.value;
-                        const email    = form.email.value;
-                        const company  = form.company.value || '—';
-                        const phone    = form.phone.value   || '—';
-                        const message  = form.message.value;
+                        const submitBtn = form.querySelector('.cform-submit');
+                        submitBtn.disabled = true;
+                        submitBtn.style.opacity = '0.6';
 
-                        const bodyText = [
-                            'Assunto: '  + subject,
-                            'Nome: '     + name,
-                            'E-mail: '   + email,
-                            'Empresa: '  + company,
-                            'Celular: '  + phone,
-                            '',
-                            'Mensagem:',
-                            message
-                        ].join('\n');
+                        const data = {
+                            access_key: 'ceace425-355f-48b1-a27d-a1b242be72a3',
+                            from_name:  'Site Verta',
+                            subject:    'Novo contato via site — ' + form.subject.value,
+                            name:       form.name.value,
+                            email:      form.email.value,
+                            empresa:    form.company.value || '—',
+                            celular:    form.phone.value   || '—',
+                            assunto:    form.subject.value,
+                            message:    form.message.value
+                        };
 
-                        const a = document.createElement('a');
-                        a.href = 'mailto:support@verta.digital'
-                            + '?subject=' + encodeURIComponent(subject)
-                            + '&body='    + encodeURIComponent(bodyText);
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
+                        fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                            body: JSON.stringify(data)
+                        })
+                        .then(function (res) { return res.json(); })
+                        .then(function (json) {
+                            if (json.success) {
+                                form.reset();
+                                submitBtn.textContent = 'Mensagem enviada ✓';
+                                submitBtn.style.opacity = '1';
+                                submitBtn.style.background = '#10b981';
+                                setTimeout(function () {
+                                    submitBtn.disabled = false;
+                                    submitBtn.textContent = 'Enviar mensagem';
+                                    submitBtn.style.background = '';
+                                }, 4000);
+                            } else {
+                                throw new Error(json.message);
+                            }
+                        })
+                        .catch(function () {
+                            submitBtn.disabled = false;
+                            submitBtn.style.opacity = '1';
+                            submitBtn.textContent = 'Erro ao enviar — tente novamente';
+                            setTimeout(function () { submitBtn.textContent = 'Enviar mensagem'; }, 3000);
+                        });
                     });
                 })();
 
