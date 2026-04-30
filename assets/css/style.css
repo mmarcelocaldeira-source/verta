@@ -1571,16 +1571,21 @@ body.page-safe .reveal.is-visible { opacity: 1; transform: none !important; }
   object-fit: contain;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
-.partner-logo[alt="Bidweb"],
+.partner-logo[alt="Bidweb"] {
+  max-height: 90px;
+}
 .partner-logo[alt="Akad"] {
-  max-height: 75px;
+  max-height: none;
+  max-width: none;
+  height: 38px;
+  width: auto;
 }
 .partner-logo[alt="Digital Mind"],
 .partner-logo[alt="Diversity on Boards"] {
-  max-height: 72px;
+  max-height: 90px;
 }
 .partner-logo[alt="Miti"] {
-  max-height: 60px;
+  max-height: 40px;
   border-radius: 0 !important;
 }
 .partner-logo:hover { transform: scale(1.07); opacity: 0.85; }
