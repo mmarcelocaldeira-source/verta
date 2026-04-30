@@ -2154,7 +2154,11 @@ footer { background: #fff; border-top: 1px solid var(--neutral-100); padding: 4.
   .hero-feature                       { font-size: 13px; }
 
   body.page-safe .card-wrapper        { height: auto; min-height: 460px; padding: 2rem 0; justify-content: center; align-items: center; overflow: hidden; }
+
+  /* badge inferior: remove translateX(-50%) que cortava na esquerda */
+  .badge-bottom                       { left: 1rem; animation: floatDownMobile 5s ease-in-out infinite 0.5s; }
 }
+@keyframes floatDownMobile { 0%,100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
 @media (max-width: 767px) {
   .plat-tabs__vertical-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
   .plat-tabs__right      { display: none; }

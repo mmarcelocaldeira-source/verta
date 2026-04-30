@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/marce/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/a4c80dbc-9c14-4262-a38c-84f7b73e1569/0361d226-7e42-4ddf-8763-6b3d53f297fb/skills/pptx/**)",
+      "Bash(python scripts/extract-text.py \"C:\\\\Users\\\\marce\\\\Desktop\\\\LP-VERTA-SAFE\\\\04-26 - Verta - Deck V3.pptx\")",
+      "Bash(python -c ' *)",
+      "Bash(pip install *)",
+      "Bash(findstr /c:\"<section\" \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\index.html\")",
+      "Bash(find /c \"<section\")",
+      "Bash(findstr /c:\"</section>\" \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\index.html\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(cat)",
+      "Read(//tmp/**)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\TESTE_LPVERTASAFE_VS_V4\\\\public\" -Recurse -Force | ForEach-Object { $_.FullName })",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\TESTE_LPVERTASAFE_VS_V4\")",
+      "PowerShell(Rename-Item -Path \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\assets\\\\images\\\\testimonials\\\\Victor Urano - Co-founder Pluggy.jpeg\" -NewName \"victor-urano.jpg\")",
+      "WebSearch",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "WebFetch(domain:www.m3corp.com.br)",
+      "WebFetch(domain:www.pdka.com.br)",
+      "WebFetch(domain:pluggy.ai)",
+      "WebFetch(domain:upload.wikimedia.org)",
+      "WebFetch(domain:www.logo.wine)",
+      "WebFetch(domain:seeklogo.com)",
+      "WebFetch(domain:brandeps.com)",
+      "WebFetch(domain:brandfetch.com)",
+      "WebFetch(domain:en.m.wikipedia.org)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\index.html\" -Encoding utf8\\) -replace 'assets/images/p-logo-', 'assets/images/partners/p-logo-' | Set-Content \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\index.html\" -Encoding utf8)",
+      "WebFetch(domain:verta.digital)",
+      "WebFetch(domain:cdn.prod.website-files.com)",
+      "Bash(grep -n \"^$\" \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\assets\\\\css\\\\style.css\")",
+      "Bash(awk -F: 'prev && \\($1 - prev == 1\\) {print prev\": \\(double blank with \" $1\"\\)\"} {prev=$1}')"
+    ]
+  }
+}
