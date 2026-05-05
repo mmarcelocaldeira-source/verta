@@ -13,16 +13,25 @@
     const hp = form.querySelector('input[name^="b_"]');
     if (!input || !btn) return;
 
-    let status = wrap.querySelector('.site-footer__newsletter-status');
+    let side = wrap.querySelector('.site-footer__newsletter-side');
+    if (!side) {
+      side = document.createElement('div');
+      side.className = 'site-footer__newsletter-side';
+      form.parentNode.insertBefore(side, form);
+      side.appendChild(form);
+    }
+
+    let status = side.querySelector('.site-footer__newsletter-status');
     if (!status) {
       status = document.createElement('p');
       status.className = 'site-footer__newsletter-status';
       status.setAttribute('role', 'status');
       status.setAttribute('aria-live', 'polite');
-      form.insertAdjacentElement('afterend', status);
+      status.hidden = true;
+      side.appendChild(status);
     }
 
-    let success = wrap.querySelector('.site-footer__newsletter-success');
+    let success = side.querySelector('.site-footer__newsletter-success');
     if (!success) {
       success = document.createElement('div');
       success.className = 'site-footer__newsletter-success';
@@ -31,91 +40,36 @@
         '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
         'stroke-width="2" stroke-linecap="square" aria-hidden="true">' +
         '<path d="M4 12l5 5L20 6"/></svg>' +
-        '<span class="site-footer__newsletter-success-text">Inscrição confirmada. Obrigado.</span>';
-      form.insertAdjacentElement('afterend', success);
+        '<span class="site-footer__newsletter-success-text">Inscrição confirmada. Obrigado!</span>';
+      side.appendChild(success);
     }
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = (input.value || '').trim();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setStatus('error', 'Informe um e-mail válido.');
+        status.textContent = 'Informe um e-mail válido.';
+        status.dataset.state = 'error';
+        status.hidden = false;
         input.focus();
         return;
       }
 
-      setStatus('loading', 'Enviando...');
       btn.disabled = true;
       input.disabled = true;
-      form.classList.add('is-loading');
+      status.hidden = true;
 
-      const url = form.action.replace('/post?', '/post-json?');
-      const cb = '__mc_cb_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
       const params = new URLSearchParams();
       params.set('EMAIL', email);
       if (hp) params.set(hp.name, '');
-      params.set('c', cb);
 
-      const script = document.createElement('script');
-      script.src = url + (url.indexOf('?') > -1 ? '&' : '?') + params.toString();
+      fetch(form.action, { method: 'POST', mode: 'no-cors', body: params }).catch(() => {});
 
-      let done = false;
-      const timeoutId = setTimeout(() => {
-        if (done) return;
-        done = true;
-        cleanup();
-        setStatus('error', 'Tempo esgotado. Tente novamente.');
-      }, 12000);
-
-      function cleanup() {
-        clearTimeout(timeoutId);
-        try { delete window[cb]; } catch (_) { window[cb] = undefined; }
-        if (script.parentNode) script.parentNode.removeChild(script);
-        btn.disabled = false;
-        input.disabled = false;
-        form.classList.remove('is-loading');
-      }
-
-      window[cb] = function (data) {
-        if (done) return;
-        done = true;
-        cleanup();
-
-        if (data && data.result === 'success') {
-          form.hidden = true;
-          status.hidden = true;
-          success.hidden = false;
-          requestAnimationFrame(() => success.classList.add('is-shown'));
-        } else {
-          setStatus('error', parseMcMsg(data && data.msg) || 'Não foi possível concluir. Tente novamente.');
-        }
-      };
-
-      script.onerror = function () {
-        if (done) return;
-        done = true;
-        cleanup();
-        setStatus('error', 'Erro de rede. Tente novamente.');
-      };
-
-      document.head.appendChild(script);
+      setTimeout(() => {
+        form.hidden = true;
+        success.hidden = false;
+        requestAnimationFrame(() => success.classList.add('is-shown'));
+      }, 600);
     });
-
-    function setStatus(state, msg) {
-      status.textContent = msg || '';
-      status.dataset.state = state;
-      status.hidden = !msg;
-    }
-  }
-
-  function parseMcMsg(raw) {
-    if (!raw) return '';
-    let s = String(raw)
-      .replace(/^\d+\s*-\s*/, '')
-      .replace(/<[^>]+>/g, '')
-      .trim();
-    if (/already subscribed/i.test(s)) s = 'Esse e-mail já está inscrito.';
-    else if (/invalid/i.test(s)) s = 'E-mail inválido.';
-    return s;
   }
 })();
