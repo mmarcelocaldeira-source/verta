@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Verta - Governança Estratégica</title>
-    <meta content="Verta - A infraestrutura para tomada de decisão estratégica no conselho e C-level."
+    <title>Verta – Gestão de Riso para uma melhor Governança Estratégica </title>
+    <meta content="Verta - Plataforma de governança de risco para decisões estratégicas orientadas por dados"
         name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
@@ -71,25 +71,16 @@
     <section class="hero">
         <div class="hero-inner">
             <div class="hero-content">
-                <div class="v-badge reveal delay-1"
-                    style="border-radius: 4px; gap: 10px; font-family: var(--font-body);">
-                    <span
-                        style="font-family: var(--font-display); font-size: 13px; letter-spacing: -0.01em; color: var(--brand-500);">Verta</span>
-                    <span style="color: var(--brand-200, #c7d4fc); opacity: 0.5; font-size: 11px;">|</span>
-                    <span
-                        style="font-family: Georgia, serif; font-style: italic; font-size: 11px; color: var(--brand-400); opacity: 0.8;">n.
-                        m.</span>
-                    <span style="color: var(--brand-200, #c7d4fc); opacity: 0.35; font-size: 11px;">·</span>
-                    <span>Tradutor de Risco Digital</span>
-                </div>
+                <div class="eyebrow">Tradutor de Risco Digital</div>
+
 
                 <h1 class="hero-title reveal delay-2">
                     Riscos Digitais em Linguagem de Decisores
                 </h1>
 
                 <p class="hero-subtitle reveal delay-3">
-                    Verta converte dados complexos de riscos digitais em indicadores que Empresários, CEOs, CFOs e
-                    Conselhos entendem — e podem agir sobre eles.
+                    Verta converte dados complexos de riscos digitais em indicadores que Empresários, C-Level,
+                    Executivos e Conselhos., podem agir sobre eles.
                 </p>
 
                 <div class="list-rotate-wrapper reveal delay-3">
@@ -107,7 +98,7 @@
             </div>
 
             <div class="hero-visual reveal delay-3">
-                <div class="hero-dashboard-svg">
+                <div class="hero-dashboard-svg" id="heroTilt">
                     <img src="./assets/images/score.svg" alt="Verta Dashboard Preview"
                         style="width: 100%; height: auto; display: block;">
                 </div>
@@ -119,7 +110,9 @@
         <div class="def-inner">
 
             <div class="def-left" aria-hidden="true">
-                <div class="def-wordmark">VERTA</div>
+                <div class="def-wordmark">
+                    <img src="./assets/images/verta-logo.svg" alt="" aria-hidden="true" class="def-wordmark-logo">
+                </div>
             </div>
 
             <div class="def-right">
@@ -127,7 +120,7 @@
                 <div class="def-entry-box">
                     <span class="def-entry-word">Verta</span>
                     <span class="def-entry-sep">|</span>
-                    <span class="def-entry-type">n. m.</span>
+                    <span class="def-entry-type">s. p.</span>
                 </div>
 
                 <p class="def-pronunciation">/ˈvɛr.ta/ &nbsp;·&nbsp; substantivo próprio &nbsp;·&nbsp; tecnologia · SaaS
@@ -180,41 +173,68 @@
     <section class="section-evidencia">
         <div class="evidencia-inner">
             <div class="evidencia-header">
-                <div class="eyebrow">Não é teoria — são manchetes</div>
+                <div class="eyebrow">Não é teoria, são manchetes</div>
                 <h2 class="evidencia-title"> Quando riscos digitais não compreendidos viram
                     prejuízo bilionário.</h2>
                 <p class="evidencia-subtitle">Empresas globais perderam bilhões por não conseguir transformar alertas
-                    técnicos em ação executiva a tempo. O problema não é falta de segurança — é falta de visibilidade e
+                    técnicos em ação executiva a tempo. O problema não é falta de segurança, é falta de visibilidade e
                     capacidade de decisão dos executivos.</p>
             </div>
 
             <div class="evidencia-carousel" id="evidenciaCarousel">
                 <div class="evidencia-track" id="evidenciaTrack">
                     <div class="case-card">
-                        <span class="case-company">Arup</span>
-                        <span class="case-type">Deepfake · Engenharia Social por IA</span>
-                        <p class="case-impact"><em>$25M</em></p>
-                        <p class="case-description">Executivos foram simulados em videochamada por IA. Sem visibilidade
-                            executiva sobre ameaças emergentes de IA, a ordem de transferência não teve contexto para
-                            ser questionada em tempo.</p>
+                        <div class="case-card__bg-number" aria-hidden="true">$25M</div>
+                        <div class="case-card__inner">
+                            <div class="case-card__top">
+                                <span class="case-company">Arup</span>
+                                <span class="case-tag">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                    Deepfake · IA
+                                </span>
+                            </div>
+                            <div class="case-card__loss">
+                                <div class="case-loss-label">Prejuízo confirmado</div>
+                                <div class="case-loss-value">$25M</div>
+                            </div>
+                            <p class="case-description">Executivos simulados em videochamada por IA. Sem visibilidade executiva sobre ameaças emergentes, a ordem de transferência não teve contexto para ser questionada em tempo.</p>
+                        </div>
                     </div>
 
                     <div class="case-card">
-                        <span class="case-company">Citi</span>
-                        <span class="case-type">Falha de Governança de Dados</span>
-                        <p class="case-impact"><em>$135.6M</em></p>
-                        <p class="case-description">Multas regulatórias por controles inadequados de gestão de dados.
-                            Uma liderança com visibilidade contínua sobre maturidade de governança teria agido antes da
-                            autuação.</p>
+                        <div class="case-card__bg-number" aria-hidden="true">$135M</div>
+                        <div class="case-card__inner">
+                            <div class="case-card__top">
+                                <span class="case-company">Citi</span>
+                                <span class="case-tag">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                    Governança de Dados
+                                </span>
+                            </div>
+                            <div class="case-card__loss">
+                                <div class="case-loss-label">Prejuízo confirmado</div>
+                                <div class="case-loss-value">$135.6M</div>
+                            </div>
+                            <p class="case-description">Multas regulatórias por controles inadequados de gestão de dados. Visibilidade contínua sobre maturidade de governança teria permitido agir antes da autuação.</p>
+                        </div>
                     </div>
 
                     <div class="case-card">
-                        <span class="case-company">Marks &amp; Spencer</span>
-                        <span class="case-type">Ransomware · Interrupção Operacional</span>
-                        <p class="case-impact"><em>£300M</em></p>
-                        <p class="case-description">Ataque de ransomware paralisou operações por semanas. O impacto
-                            tornou-se inevitável porque o board não tinha linguagem de negócio para agir
-                            preventivamente.</p>
+                        <div class="case-card__bg-number" aria-hidden="true">£300M</div>
+                        <div class="case-card__inner">
+                            <div class="case-card__top">
+                                <span class="case-company">Marks &amp; Spencer</span>
+                                <span class="case-tag">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                    Ransomware
+                                </span>
+                            </div>
+                            <div class="case-card__loss">
+                                <div class="case-loss-label">Prejuízo confirmado</div>
+                                <div class="case-loss-value">£300M</div>
+                            </div>
+                            <p class="case-description">Ransomware paralisou operações por semanas. O impacto tornou-se inevitável porque o board não tinha linguagem de negócio para agir preventivamente.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -265,7 +285,7 @@
             <div class="personas-header">
                 <div class="personas-header-left">
                     <p class="eyebrow">Feito para quem decide</p>
-                    <h2 class="personas-title">Uma plataforma para toda<br>a liderança — não apenas técnicos.</h2>
+                    <h2 class="personas-title">Uma plataforma para toda<br>a liderança não apenas para os técnicos.</h2>
                 </div>
                 <p class="personas-desc">Cada Decision Maker tem uma visão personalizada do risco, no nível de detalhe
                     que precisa para agir com confiança.</p>
@@ -309,60 +329,114 @@
 
     <section class="section-diagnostico" id="diagnostico">
 
-        <div id="diagnostico-content">
+        <div class="diag-header">
+            <p class="eyebrow">O Diagnóstico</p>
+            <h2 class="diag-header-title">
+                O risco digital virou pauta de conselhos.<br>
+                A linguagem ainda não chegou lá.
+            </h2>
+            <p class="diag-header-desc">
+                Ameaças digitais se tornaram questão central de estratégia de negócio. Mas CEOs, CFOs e Conselhos ainda
+                carecem de visibilidade direta, dependendo de intermediários técnicos para entender um risco que é
+                deles.
+            </p>
+        </div>
 
-            <div class="diag-header">
-                <div class="diag-header-left">
-                    <p class="eyebrow">O Diagnóstico</p>
-                    <h1 class="diag-header-title">
-                        O risco digital virou pauta de conselhos.<br>
-                        A linguagem ainda não chegou lá.
-                    </h1>
+        <div class="diag-stage" id="diagStage">
+            <div class="diag-pin">
+
+                <div class="diag-progress" aria-hidden="true">
+                    <span class="diag-progress-step" data-step="0">
+                        <span class="diag-progress-dot"></span>
+                        <span class="diag-progress-label">Estrutura</span>
+                    </span>
+                    <span class="diag-progress-bar"><span class="diag-progress-fill"></span></span>
+                    <span class="diag-progress-step" data-step="1">
+                        <span class="diag-progress-dot"></span>
+                        <span class="diag-progress-label">Processo</span>
+                    </span>
+                    <span class="diag-progress-bar"><span class="diag-progress-fill"></span></span>
+                    <span class="diag-progress-step" data-step="2">
+                        <span class="diag-progress-dot"></span>
+                        <span class="diag-progress-label">Linguagem</span>
+                    </span>
                 </div>
-                <div class="diag-header-right">
-                    <p class="diag-header-desc">
-                        Ameaças digitais se tornaram questão central de estratégia de negócio. Mas CEOs, CFOs e
-                        Conselhos ainda carecem de visibilidade direta — dependendo de intermediários técnicos para
-                        entender um risco que é deles.
-                    </p>
+
+                <div class="diag-rail-viewport">
+                    <div class="diag-rail">
+
+                        <article class="diag-card" data-step="0">
+                            <h3 class="diag-card-word">Fragmentado</h3>
+                            <svg class="diag-diagram diag-diagram--silos" viewBox="0 0 180 92" aria-hidden="true" focusable="false">
+                                <g data-stroke>
+                                    <rect x="6" y="44" width="22" height="40" />
+                                    <rect x="38" y="22" width="22" height="62" />
+                                    <rect x="70" y="52" width="22" height="32" />
+                                    <rect x="102" y="32" width="22" height="52" />
+                                    <rect x="134" y="40" width="22" height="44" />
+                                </g>
+                                <line x1="0" y1="89" x2="180" y2="89" data-stroke opacity="0.35" />
+                                <g data-stroke opacity="0.55">
+                                    <line x1="30" y1="89" x2="36" y2="89" />
+                                    <line x1="62" y1="89" x2="68" y2="89" />
+                                    <line x1="94" y1="89" x2="100" y2="89" />
+                                    <line x1="126" y1="89" x2="132" y2="89" />
+                                </g>
+                            </svg>
+                            <p class="diag-card-desc">Risco técnico, impacto financeiro, regulação, reputação e terceiros são analisados em silos, raramente integrados na mesma leitura estratégica.</p>
+                        </article>
+
+                        <article class="diag-card" data-step="1">
+                            <h3 class="diag-card-word">Reativo</h3>
+                            <svg class="diag-diagram diag-diagram--spike" viewBox="0 0 180 92" aria-hidden="true" focusable="false">
+                                <path class="diag-ideal" d="M4 38 Q 24 28, 44 38 T 84 38 T 124 38 T 176 38" data-stroke />
+                                <path d="M4 72 L80 72 L85 72 L90 18 L95 72 L176 72" data-stroke />
+                                <circle cx="90" cy="18" r="3" data-fill class="diag-spike" />
+                                <text x="96" y="22" data-fill class="diag-spike-label">incidente</text>
+                            </svg>
+                            <p class="diag-card-desc">O risco entra na pauta quando vira incidente ou pressão regulatória, não como variável contínua da estratégia de negócio.</p>
+                        </article>
+
+                        <article class="diag-card" data-step="2">
+                            <h3 class="diag-card-word">Assimétrico</h3>
+                            <svg class="diag-diagram diag-diagram--gap" viewBox="0 0 180 92" aria-hidden="true" focusable="false">
+                                <g class="diag-tech" data-fill>
+                                    <text x="6" y="26">CVE-2024</text>
+                                    <text x="6" y="50">SHA-256</text>
+                                    <text x="6" y="74">0x4F2A</text>
+                                </g>
+                                <g data-stroke class="diag-bridge">
+                                    <line x1="66" y1="50" x2="80" y2="50" />
+                                    <line x1="92" y1="50" x2="106" y2="50" />
+                                    <path d="M102 46 L110 50 L102 54" />
+                                </g>
+                                <g class="diag-exec" data-fill>
+                                    <text x="116" y="26">Risco</text>
+                                    <text x="116" y="52">Custo</text>
+                                    <text x="116" y="78">Decisão</text>
+                                </g>
+                            </svg>
+                            <p class="diag-card-desc">Quem analisa domina a técnica. Quem decide precisa de contexto. Entre um e outro, a clareza se perde.</p>
+                        </article>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="diag-cards-section">
-                <div class="diag-cards-grid">
-
-                    <div class="risk-card">
-                        <span class="card-number">01</span>
-                        <h3 class="card-title">Fragmentado</h3>
-                        <p class="card-body">Risco técnico, impacto financeiro, regulação, reputação e terceiros são
-                            analisados em silos — raramente integrados na mesma leitura estratégica.</p>
-                    </div>
-
-                    <div class="risk-card">
-                        <span class="card-number">02</span>
-                        <h3 class="card-title">Reativo</h3>
-                        <p class="card-body">O risco entra na pauta quando vira incidente ou pressão regulatória — não
-                            como variável contínua da estratégia de negócio.</p>
-                    </div>
-
-                    <div class="risk-card">
-                        <span class="card-number">03</span>
-                        <h3 class="card-title">Assimétrico</h3>
-                        <p class="card-body">Quem analisa domina a técnica. Quem decide precisa de contexto. Entre um e
-                            outro, a clareza se perde.</p>
-                    </div>
-
+                <div class="diag-counter" aria-live="polite">
+                    <span class="diag-counter-now">01</span>
+                    <span class="diag-counter-sep">/</span>
+                    <span class="diag-counter-total">03</span>
                 </div>
-            </div>
 
-            <div class="diag-closing" id="diagClosing">
-                <div class="diag-closing-bar"></div>
-                <p class="diag-closing-text">
-                    Dados não faltam.<br>
-                    <em>Falta a tradução que move líderes a agir.</em>
-                </p>
             </div>
+        </div>
 
+        <div class="diag-closing" id="diagClosing">
+            <div class="diag-closing-bar"></div>
+            <p class="diag-closing-text">
+                Dados não faltam.<br>
+                <em>Falta a tradução que move líderes a agir.</em>
+            </p>
         </div>
 
     </section>
@@ -384,7 +458,7 @@
                         <h3 class="cf-step-title">Conecta. Aprende. Calibra.</h3>
                         <p class="cf-step-text">A Verta se integra ao ambiente da organização de maneira não invasiva,
                             mapeia entendimentos, situação e regras dos riscos digitais e define o perfil de risco.
-                            Visão própria ou de terceiros, sem longos projetos — os primeiros indicadores chegam em
+                            Visão própria ou de terceiros, sem longos projetos; os primeiros indicadores chegam em
                             horas ou dias, não meses.</p>
                     </div>
                     <div class="cf-step-callout">Em dias, não meses</div>
@@ -407,7 +481,7 @@
                     <div class="cf-step-content">
                         <span class="cf-step-label">Dashboard em operação</span>
                         <h3 class="cf-step-title">Risco entendido. Decisão informada.</h3>
-                        <p class="cf-step-text">A plataforma monitora, traduz e atualiza automaticamente — para que cada
+                        <p class="cf-step-text">A plataforma monitora, traduz e atualiza automaticamente, para que cada
                             liderança chegue a cada reunião com o contexto certo sobre o que mudou, o que importa e o
                             que exige decisão.</p>
                     </div>
@@ -441,7 +515,7 @@
                     <span class="pilar-number">Democratização</span>
                     <h3 class="pilar-title">Risco legível para qualquer líder</h3>
                     <p class="pilar-body">Qualquer decisor, interno ou externo, acessa insights de riscos digitais sem
-                        depender de tradução técnica. Seja interno, do grupo ou de terceiros — cada um com a visão
+                        depender de tradução técnica. Seja interno, do grupo ou de terceiros, cada um com a visão
                         certa, no momento certo.</p>
                 </div>
 
@@ -474,7 +548,7 @@
                     <span class="pilar-number">Alcance</span>
                     <h3 class="pilar-title">Uma plataforma para toda a organização</h3>
                     <p class="pilar-body">Da Liderança técnica ao Conselho ou de Terceiros a Executivos, jurídico ou
-                        financeiro. Uma única fonte de verdade sobre riscos digitais — sem fragmentação, sem silos, sem
+                        financeiro. Uma única fonte de verdade sobre riscos digitais, sem fragmentação, sem silos, sem
                         versões paralelas.</p>
                 </div>
             </div>
@@ -525,7 +599,7 @@
                 Uma única plataforma. Todos os Riscos Digitais. Para qualquer Decisor.
             </h1>
             <p class="plat-tabs__desc">
-                Risco, impacto financeiro, maturidade e regulação reunidos em uma única leitura estratégica — clara,
+                Risco, impacto financeiro, maturidade e regulação reunidos em uma única leitura estratégica, clara,
                 contínua, mensurável e orientada à decisão.
             </p>
         </div>
@@ -537,7 +611,7 @@
                     <div class="plat-mobile-caption">
                         <h3>Risco com valor. Decisão com clareza.</h3>
                         <p>Exposição técnica em impacto financeiro mensurável, o potencial de perda, o nível de
-                            maturidade e a probabilidade de um ataque ser bem-sucedido — sem depender de relatórios
+                            maturidade e a probabilidade de um ataque ser bem-sucedido, sem depender de relatórios
                             intermediários.</p>
                     </div>
                 </div>
@@ -564,7 +638,7 @@
                     <div class="plat-text-content is-active">
                         <h1 class="plat-tab-title">Risco com valor. Decisão com clareza.</h1>
                         <p class="plat-tab-text">Exposição técnica em impacto financeiro mensurável, o potencial de
-                            perda, o nível de maturidade e a probabilidade de um ataque ser bem-sucedido — sem depender
+                            perda, o nível de maturidade e a probabilidade de um ataque ser bem-sucedido, sem depender
                             de relatórios intermediários.</p>
                     </div>
 
@@ -591,11 +665,13 @@
             <div class="diag-closing-bar"></div>
             <p class="section-plataforma__closing-text">
                 O que não é traduzido, não é governado.<br>
-                <em>A Verta mede. Contextualiza. Direciona.</em>
+                <em>A Verta mede e Contextualiza, mas a decisão é sua.</em>
             </p>
         </div>
     </section>
 
+    <!-- PARCEIROS — para reativar, remover as tags de comentário ao redor da section abaixo -->
+    <!--
     <section class="section section-partners">
         <div class="partners-container">
             <div class="reveal delay-1">
@@ -628,6 +704,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <section class="section-contact" id="contato">
         <div class="contact-inner">
@@ -658,18 +735,21 @@
 
                         <div class="cform-field cform-field--full">
                             <label for="cf-subject" class="cform-label">O que você deseja</label>
-                            <div class="cform-select-wrap">
-                                <select id="cf-subject" name="subject" class="cform-select" required>
+                            <div class="cform-select-wrap" data-custom-select>
+                                <select id="cf-subject" name="subject" class="cform-select cform-select--native" required>
                                     <option value="" disabled selected>Selecione uma opção</option>
                                     <option value="Quero ser parceiro">Quero ser parceiro</option>
                                     <option value="Comprar um plano">Comprar um plano</option>
+                                    <option value="Suporte">Suporte</option>
                                     <option value="Falar sobre outro assunto">Falar sobre outro assunto</option>
                                 </select>
-                                <svg class="cform-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    aria-hidden="true">
-                                    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                <button type="button" class="cform-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                                    <span class="cform-select-value" data-placeholder="true">Selecione uma opção</span>
+                                    <svg class="cform-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <ul class="cform-select-list" role="listbox" tabindex="-1"></ul>
                             </div>
                         </div>
 
@@ -734,21 +814,232 @@
 
     <footer class="site-footer">
         <div class="site-footer__inner">
-            <span class="site-footer__copy">© 2026 Verta &nbsp;·&nbsp; Verta Brasil Ltda &nbsp;·&nbsp; CNPJ
-                61.039.284/0001-14</span>
-            <nav class="site-footer__links" aria-label="Links legais">
-                <a href="terms-and-conditions.html">Termos de Serviço</a>
-                <span aria-hidden="true">·</span>
-                <a href="privacy-policy.html">Política de Privacidade</a>
-            </nav>
-            <a href="mailto:support@verta.digital" class="site-footer__email">support@verta.digital</a>
+
+            <div class="site-footer__newsletter">
+                <div class="site-footer__newsletter-text">
+                    <p class="site-footer__newsletter-eyebrow">Newsletter</p>
+                    <p class="site-footer__newsletter-title">Receba leituras sobre risco digital e governança
+                        diretamente no seu e-mail.</p>
+                </div>
+                <form class="site-footer__newsletter-form"
+                    action="https://digital.us10.list-manage.com/subscribe/post?u=732e4a4a3e8e838d38732b2cf&amp;id=1e498aed36"
+                    method="post" novalidate>
+                    <label for="mce-EMAIL" class="visually-hidden" style="position:absolute;left:-9999px;">E-mail</label>
+                    <input type="email" name="EMAIL" id="mce-EMAIL" class="site-footer__newsletter-input"
+                        placeholder="seu@email.com" required autocomplete="email">
+                    <div class="site-footer__newsletter-hp" aria-hidden="true">
+                        <input type="text" name="b_732e4a4a3e8e838d38732b2cf_1e498aed36" tabindex="-1" value="">
+                    </div>
+                    <button type="submit" class="site-footer__newsletter-btn">
+                        Inscrever
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="square" aria-hidden="true">
+                            <path d="M5 12h14M13 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <div class="site-footer__legal">
+                <span class="site-footer__copy">© 2026 Verta &nbsp;·&nbsp; Verta Brasil Ltda &nbsp;·&nbsp; CNPJ
+                    61.039.284/0001-14</span>
+                <nav class="site-footer__links" aria-label="Links legais">
+                    <a href="terms-and-conditions.html">Termos de Serviço</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="privacy-policy.html">Política de Privacidade</a>
+                </nav>
+                <a href="mailto:support@verta.digital" class="site-footer__email">support@verta.digital</a>
+            </div>
+
         </div>
     </footer>
 
+    <script src="assets/js/newsletter.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+
+            (function () {
+                const tilt = document.getElementById('heroTilt');
+                if (!tilt) return;
+                const MAX = 8;
+                let raf = null;
+                let targetX = 0, targetY = 0;
+                let currentX = 0, currentY = 0;
+
+                window.addEventListener('mousemove', e => {
+                    const rect = tilt.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+                    targetY = ((e.clientX - cx) / (window.innerWidth / 2)) * MAX;
+                    targetX = -((e.clientY - cy) / (window.innerHeight / 2)) * MAX;
+                    if (!raf) raf = requestAnimationFrame(loop);
+                });
+
+                tilt.addEventListener('mouseleave', () => {
+                    targetX = 0; targetY = 0;
+                });
+
+                function loop() {
+                    currentX += (targetX - currentX) * 0.12;
+                    currentY += (targetY - currentY) * 0.12;
+                    tilt.style.transform = `perspective(900px) rotateX(${currentX.toFixed(3)}deg) rotateY(${currentY.toFixed(3)}deg)`;
+                    if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
+                        raf = requestAnimationFrame(loop);
+                    } else {
+                        raf = null;
+                    }
+                }
+            })();
+
+            (function () {
+                const wrap = document.querySelector('[data-custom-select]');
+                if (!wrap) return;
+                const native = wrap.querySelector('.cform-select--native');
+                const trigger = wrap.querySelector('.cform-select-trigger');
+                const valueEl = wrap.querySelector('.cform-select-value');
+                const list = wrap.querySelector('.cform-select-list');
+                if (!native || !trigger || !valueEl || !list) return;
+
+                const options = Array.from(native.options).filter(o => !o.disabled);
+                list.innerHTML = options.map((o, i) =>
+                    `<li class="cform-select-option" role="option" data-value="${o.value}" data-i="${i}">${o.textContent}</li>`
+                ).join('');
+                const optEls = Array.from(list.querySelectorAll('.cform-select-option'));
+                let activeIdx = -1;
+
+                function close() {
+                    wrap.classList.remove('is-open');
+                    trigger.setAttribute('aria-expanded', 'false');
+                    activeIdx = -1;
+                    optEls.forEach(el => el.classList.remove('is-active'));
+                }
+                function open() {
+                    wrap.classList.add('is-open');
+                    trigger.setAttribute('aria-expanded', 'true');
+                    const sel = optEls.findIndex(el => el.classList.contains('is-selected'));
+                    setActive(sel >= 0 ? sel : 0);
+                }
+                function setActive(i) {
+                    activeIdx = Math.max(0, Math.min(optEls.length - 1, i));
+                    optEls.forEach((el, idx) => el.classList.toggle('is-active', idx === activeIdx));
+                    const el = optEls[activeIdx];
+                    if (el) el.scrollIntoView({ block: 'nearest' });
+                }
+                function pick(i) {
+                    const el = optEls[i];
+                    if (!el) return;
+                    native.value = el.dataset.value;
+                    valueEl.textContent = el.textContent;
+                    valueEl.removeAttribute('data-placeholder');
+                    optEls.forEach((o, idx) => o.classList.toggle('is-selected', idx === i));
+                    native.dispatchEvent(new Event('change', { bubbles: true }));
+                    close();
+                    trigger.focus();
+                }
+
+                trigger.addEventListener('click', e => {
+                    e.stopPropagation();
+                    wrap.classList.contains('is-open') ? close() : open();
+                });
+                optEls.forEach((el, i) => {
+                    el.addEventListener('mouseenter', () => setActive(i));
+                    el.addEventListener('click', e => { e.stopPropagation(); pick(i); });
+                });
+                trigger.addEventListener('keydown', e => {
+                    if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(e.key)) {
+                        e.preventDefault();
+                        if (!wrap.classList.contains('is-open')) { open(); return; }
+                    }
+                    if (e.key === 'ArrowDown') setActive(activeIdx + 1);
+                    else if (e.key === 'ArrowUp') setActive(activeIdx - 1);
+                    else if (e.key === 'Enter' || e.key === ' ') pick(activeIdx);
+                    else if (e.key === 'Escape') close();
+                });
+                document.addEventListener('click', e => {
+                    if (!wrap.contains(e.target)) close();
+                });
+            })();
+
+            (function () {
+                const section = document.getElementById('diagnostico');
+                if (!section) return;
+
+                const header = section.querySelector('.diag-header');
+                const stage = section.querySelector('.diag-stage');
+                const rail = section.querySelector('.diag-rail');
+                const cards = Array.from(section.querySelectorAll('.diag-card'));
+                const steps = Array.from(section.querySelectorAll('.diag-progress-step'));
+                const fills = Array.from(section.querySelectorAll('.diag-progress-fill'));
+                const counterNow = section.querySelector('.diag-counter-now');
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const isMobile = () => window.matchMedia('(max-width: 991px)').matches;
+
+                // Header reveal on enter
+                if (header) {
+                    if (reduceMotion) {
+                        header.classList.add('is-revealed');
+                    } else {
+                        const io = new IntersectionObserver((items) => {
+                            items.forEach(it => {
+                                if (it.isIntersecting) {
+                                    header.classList.add('is-revealed');
+                                    io.unobserve(it.target);
+                                }
+                            });
+                        }, { threshold: 0.35 });
+                        io.observe(header);
+                    }
+                }
+
+                if (!stage || !rail || !cards.length) return;
+
+                function clamp(v, a, b) { return Math.min(Math.max(v, a), b); }
+
+                let ticking = false;
+                function update() {
+                    ticking = false;
+
+                    if (isMobile()) {
+                        rail.style.transform = '';
+                        cards.forEach(c => c.classList.add('is-current'));
+                        return;
+                    }
+
+                    const stageRect = stage.getBoundingClientRect();
+                    const vh = window.innerHeight;
+                    const scrollable = stage.offsetHeight - vh;
+                    if (scrollable <= 0) return;
+
+                    const scrolled = clamp(-stageRect.top, 0, scrollable);
+                    const p = scrolled / scrollable;        // 0..1 across stage
+                    const trackP = p * (cards.length - 1);  // 0..2
+
+                    const railShift = trackP * (100 / cards.length); // 0..66.66
+                    rail.style.transform = `translate3d(${(-railShift).toFixed(3)}%, 0, 0)`;
+
+                    const idx = clamp(Math.round(trackP), 0, cards.length - 1);
+                    cards.forEach((c, i) => c.classList.toggle('is-current', i === idx));
+                    steps.forEach((s, i) => {
+                        s.classList.toggle('is-current', i === idx);
+                        s.classList.toggle('is-done', i < idx);
+                    });
+                    fills.forEach((f, i) => {
+                        const seg = clamp(trackP - i, 0, 1) * 100;
+                        f.style.width = seg.toFixed(2) + '%';
+                    });
+                    if (counterNow) counterNow.textContent = String(idx + 1).padStart(2, '0');
+                }
+
+                function onScroll() {
+                    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+                }
+
+                window.addEventListener('scroll', onScroll, { passive: true });
+                window.addEventListener('resize', update);
+                update();
+            })();
 
             if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
@@ -775,19 +1066,6 @@
                 });
             }
 
-            gsap.from('.dashboard-asset-wrapper', {
-                opacity: 0,
-                y: 18,
-                scale: 0.98,
-                duration: 0.85,
-                ease: 'power3.out',
-                delay: 0.2
-            });
-
-            gsap.fromTo('.status-dot',
-                { boxShadow: '0 0 0 0 rgba(125,220,122,.35)' },
-                { boxShadow: '0 0 0 7px rgba(125,220,122,0)', duration: 1.6, repeat: -1, ease: 'sine.out' }
-            );
 
             (function () {
                 const rail = document.getElementById("cycler_rail");

@@ -152,16 +152,45 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <span class="site-footer__copy">© 2024 Verta &nbsp;·&nbsp; Verta Brasil Ltda &nbsp;·&nbsp; CNPJ 61.039.284/0001-14</span>
-      <nav class="site-footer__links" aria-label="Links legais">
-        <a href="terms-and-conditions.html">Termos de Serviço</a>
-        <span aria-hidden="true">·</span>
-        <a href="privacy-policy.html">Política de Privacidade</a>
-      </nav>
-      <a href="mailto:support@verta.digital" class="site-footer__email">support@verta.digital</a>
+
+      <div class="site-footer__newsletter">
+        <div class="site-footer__newsletter-text">
+          <p class="site-footer__newsletter-eyebrow">Newsletter</p>
+          <p class="site-footer__newsletter-title">Receba leituras sobre risco digital e governança diretamente no seu e-mail.</p>
+        </div>
+        <form class="site-footer__newsletter-form"
+          action="https://digital.us10.list-manage.com/subscribe/post?u=732e4a4a3e8e838d38732b2cf&amp;id=1e498aed36"
+          method="post" novalidate>
+          <label for="mce-EMAIL" class="visually-hidden" style="position:absolute;left:-9999px;">E-mail</label>
+          <input type="email" name="EMAIL" id="mce-EMAIL" class="site-footer__newsletter-input"
+            placeholder="seu@email.com" required autocomplete="email">
+          <div class="site-footer__newsletter-hp" aria-hidden="true">
+            <input type="text" name="b_732e4a4a3e8e838d38732b2cf_1e498aed36" tabindex="-1" value="">
+          </div>
+          <button type="submit" class="site-footer__newsletter-btn">
+            Inscrever
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="square" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="site-footer__legal">
+        <span class="site-footer__copy">© 2024 Verta &nbsp;·&nbsp; Verta Brasil Ltda &nbsp;·&nbsp; CNPJ 61.039.284/0001-14</span>
+        <nav class="site-footer__links" aria-label="Links legais">
+          <a href="terms-and-conditions.html">Termos de Serviço</a>
+          <span aria-hidden="true">·</span>
+          <a href="privacy-policy.html">Política de Privacidade</a>
+        </nav>
+        <a href="mailto:support@verta.digital" class="site-footer__email">support@verta.digital</a>
+      </div>
+
     </div>
   </footer>
 
+  <script src="assets/js/newsletter.js" defer></script>
   <script>
     const nav = document.querySelector('.nav_minimal');
     if (nav) {
