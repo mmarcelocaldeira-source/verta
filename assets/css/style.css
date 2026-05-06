@@ -2055,11 +2055,39 @@ body.page-safe .reveal.is-visible {
   user-select: none;
 }
 
+.quote-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 2.5rem;
+}
+
 .quote-dots {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 2.5rem;
+}
+
+.quote-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--neutral-200);
+  background: transparent;
+  color: var(--neutral-500);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.quote-arrow:hover {
+  border-color: var(--brand-400);
+  color: var(--brand-400);
+  background: rgba(var(--brand-400-rgb, 0,0,0), 0.05);
 }
 
 .quote-dot {
@@ -6373,7 +6401,6 @@ footer {
   border-radius: 0;
   pointer-events: none;
   -webkit-user-drag: none;
-  user-drag: none;
 }
 
 .midia-clip__label {

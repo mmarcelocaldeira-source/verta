@@ -682,7 +682,15 @@
                 </div>
 
             </div>
-            <div class="quote-dots" id="quoteDots"></div>
+            <div class="quote-controls">
+                <button class="quote-arrow quote-arrow--prev" id="quotePrev" aria-label="Depoimento anterior">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="quote-dots" id="quoteDots"></div>
+                <button class="quote-arrow quote-arrow--next" id="quoteNext" aria-label="Próximo depoimento">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -1247,6 +1255,11 @@
 
                 items[0].classList.add('is-active');
                 resetTimer();
+
+                const prevBtn = document.getElementById('quotePrev');
+                const nextBtn = document.getElementById('quoteNext');
+                if (prevBtn) prevBtn.addEventListener('click', () => go(current - 1));
+                if (nextBtn) nextBtn.addEventListener('click', () => go(current + 1));
 
                 const section = track.closest('.section-quote');
                 if (section) {
