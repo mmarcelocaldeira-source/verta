@@ -197,7 +197,40 @@ button:focus-visible {
   flex-shrink: 0;
 }
 
-.section-evidencia .eyebrow,
+/* — Eyebrow variante alto contraste — */
+.eyebrow--contrast {
+  color: var(--brand-500);
+  border-color: rgba(127, 153, 245, 0.45);
+  background: rgba(127, 153, 245, 0.08);
+}
+
+.eyebrow--contrast::before {
+  background-color: var(--brand-500);
+  box-shadow: 0 0 6px rgba(127, 153, 245, 0.6);
+}
+
+/* variante dark (seções escuras) */
+.section-video-feature .eyebrow--contrast,
+.section-como-funciona .eyebrow--contrast,
+.section-partners .eyebrow--contrast,
+.section-final-cta .eyebrow--contrast,
+.section-contact .eyebrow--contrast,
+.cta-final .eyebrow--contrast {
+  color: #c5d1fb;
+  border-color: rgba(127, 153, 245, 0.5);
+  background: rgba(127, 153, 245, 0.12);
+}
+
+.section-video-feature .eyebrow--contrast::before,
+.section-como-funciona .eyebrow--contrast::before,
+.section-partners .eyebrow--contrast::before,
+.section-final-cta .eyebrow--contrast::before,
+.section-contact .eyebrow--contrast::before,
+.cta-final .eyebrow--contrast::before {
+  background-color: var(--brand-300);
+  box-shadow: 0 0 8px rgba(168, 184, 249, 0.7);
+}
+
 .section-video-feature .eyebrow,
 .section-como-funciona .eyebrow,
 .section-partners .eyebrow,
@@ -208,7 +241,6 @@ button:focus-visible {
   border-color: rgba(127, 153, 245, 0.25);
 }
 
-.section-evidencia .eyebrow::before,
 .section-video-feature .eyebrow::before,
 .section-como-funciona .eyebrow::before,
 .section-partners .eyebrow::before,
@@ -4185,7 +4217,7 @@ body.page-safe .reveal.is-visible {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 2px;
+  gap: 6px;
 }
 
 .stat-suffix {
@@ -4911,7 +4943,7 @@ body.page-safe .reveal.is-visible {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--neutral-400);
+  color: var(--neutral-600);
   flex-shrink: 0;
   max-width: 48%;
 }
@@ -5714,7 +5746,7 @@ footer {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: var(--neutral-400);
+  color: var(--neutral-600);
 }
 
 .footer-ops__name {
@@ -5726,7 +5758,7 @@ footer {
 
 .footer-legal {
   font-size: 13px;
-  color: var(--neutral-400);
+  color: var(--neutral-600);
   line-height: 1.65;
   font-weight: 400;
 }
