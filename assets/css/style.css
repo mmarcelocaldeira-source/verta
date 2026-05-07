@@ -3650,10 +3650,10 @@ body.page-safe .reveal.is-visible {
   left: 0;
   right: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 48px 80px;
+  gap: 48px 56px;
   opacity: 0;
   transition: opacity 1.6s ease;
   pointer-events: none;
@@ -5962,6 +5962,12 @@ footer {
 
   .cf-header {
     margin-bottom: 56px;
+  }
+}
+
+@media (max-width: 991px) {
+  .partners-slide {
+    flex-wrap: wrap;
   }
 }
 
