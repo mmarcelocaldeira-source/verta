@@ -1733,14 +1733,14 @@ body.page-safe .reveal.is-visible {
 }
 
 .diag-progress-step.is-current .diag-progress-dot {
-  background: var(--brand-500);
-  border-color: var(--brand-500);
+  background: var(--brand-400);
+  border-color: var(--brand-400);
   transform: scale(1.45);
 }
 
 .diag-progress-step.is-done .diag-progress-dot {
-  background: var(--brand-500);
-  border-color: var(--brand-500);
+  background: var(--brand-400);
+  border-color: var(--brand-400);
 }
 
 .diag-progress-label {
@@ -1758,7 +1758,7 @@ body.page-safe .reveal.is-visible {
 
 .diag-progress-step.is-current .diag-progress-label,
 .diag-progress-step.is-done .diag-progress-label {
-  color: var(--brand-700);
+  color: var(--brand-400);
 }
 
 .diag-progress-bar {
@@ -1822,7 +1822,7 @@ body.page-safe .reveal.is-visible {
 }
 
 .diag-card.is-current .diag-card-word {
-  color: var(--brand-700);
+  color: var(--brand-400);
 }
 
 .diag-card-desc {
@@ -1847,7 +1847,7 @@ body.page-safe .reveal.is-visible {
 }
 
 .diag-card.is-current .diag-diagram {
-  color: var(--brand-500);
+  color: var(--brand-400);
 }
 
 .diag-diagram [data-stroke] {
@@ -1913,7 +1913,7 @@ body.page-safe .reveal.is-visible {
 }
 
 .diag-counter-now {
-  color: var(--brand-500);
+  color: var(--brand-400);
   font-weight: 600;
   min-width: 2ch;
   text-align: right;
@@ -2119,7 +2119,7 @@ body.page-safe .reveal.is-visible {
 .quote-arrow:hover {
   border-color: var(--brand-400);
   color: var(--brand-400);
-  background: rgba(var(--brand-400-rgb, 0,0,0), 0.05);
+  background: rgba(var(--brand-400-rgb, 0, 0, 0), 0.05);
 }
 
 .quote-dot {
@@ -6614,6 +6614,7 @@ footer {
   z-index: 3;
   will-change: transform;
 }
+
 .tprm-title {
   font-family: var(--font-display);
   font-size: var(--title-xl);
@@ -6623,6 +6624,7 @@ footer {
   margin: 12px 0 0;
   line-height: 1.08;
 }
+
 .tprm-desc {
   font-size: var(--font-size-body-lg);
   color: var(--neutral-500);
@@ -6639,46 +6641,54 @@ footer {
   top: 0;
   width: calc(100% - 80px);
   max-width: 1280px;
-  height: calc(100vh - 20px);   /* full pin height; bottom clipped by pin overflow */
+  height: calc(100vh - 20px);
+  /* full pin height; bottom clipped by pin overflow */
   background: #0a0d12;
   border-radius: 14px 14px 0 0;
-  border: 1px solid rgba(255,255,255,.10);
+  border: 1px solid rgba(255, 255, 255, .10);
   border-bottom: none;
   display: grid;
   grid-template-columns: 8.33% 1fr;
   grid-template-rows: 100%;
   overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,.04),
-    0 -10px 40px rgba(0,0,0,.4),
-    0 60px 100px -30px rgba(0,0,0,.7);
+    0 0 0 1px rgba(255, 255, 255, .04),
+    0 -10px 40px rgba(0, 0, 0, .4),
+    0 60px 100px -30px rgba(0, 0, 0, .7);
   transform: translate(-50%, 0);
   will-change: transform;
 }
 
-.tprm-img { display: block; }
+.tprm-img {
+  display: block;
+}
+
 .tprm-img--side {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top left;
 }
+
 .tprm-frame {
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 0;
   overflow: hidden;
 }
+
 .tprm-img--head-img {
   width: 100%;
   height: auto;
 }
+
 .tprm-bodyclip {
   overflow: hidden;
   position: relative;
   min-height: 0;
   padding-top: 14px;
 }
+
 .tprm-img--body {
   width: 100%;
   height: auto;
@@ -6732,5 +6742,5 @@ footer {
     align-self: center;
   }
 }
-/* ═══ /TPRM SECTION ══════════════════════════════════════ */
 
+/* ═══ /TPRM SECTION ══════════════════════════════════════ */
