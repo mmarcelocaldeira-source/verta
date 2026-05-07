@@ -1626,7 +1626,6 @@
 
                     // Cache full head height (with desc visible) and desc height — measured once
                     if (!head._fullH) {
-                        // ensure desc is fully expanded for measurement
                         var prevMax = desc ? desc.style.maxHeight : '';
                         var prevMt = desc ? desc.style.marginTop : '';
                         var prevOp = desc ? desc.style.opacity : '';
@@ -1650,7 +1649,8 @@
                     var headHCollapsed = headHFull - descH - descMargin;
 
                     var textCenterY = (pinH - headHFull) / 2;
-                    var textTopY = 36;
+                    var isLaptop = window.innerWidth >= 992 && window.innerWidth <= 1919;
+                    var textTopY = isLaptop ? 16 : 36;
 
                     var mockOffY = pinH + 40;
                     var mockNearY = textCenterY + headHFull + 24;
@@ -1659,19 +1659,16 @@
                     var headY, monY, descFade;
 
                     if (t <= A_END) {
-                        // Phase A: text centered, mockup rises from bottom to nearText
                         var pa = easeInOut(t / A_END);
                         headY = textCenterY;
                         monY = mockOffY + (mockNearY - mockOffY) * pa;
                         descFade = 0;
                     } else if (t <= B_END) {
-                        // Phase B: text rises to top; desc collapses; mockup pushed up
                         var pb = easeInOut((t - A_END) / (B_END - A_END));
                         headY = textCenterY + (textTopY - textCenterY) * pb;
                         monY = mockNearY + (mockFinalY - mockNearY) * pb;
                         descFade = pb;
                     } else {
-                        // Phase C: locked positions, inner scroll
                         headY = textTopY;
                         monY = mockFinalY;
                         descFade = 1;

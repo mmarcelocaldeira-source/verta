@@ -5965,6 +5965,29 @@ footer {
   }
 }
 
+/* Laptop / sub-1920: smaller logos + allow wrap to respect side margin */
+@media (min-width: 992px) and (max-width: 1919px) {
+  .partners-slide {
+    flex-wrap: wrap;
+    gap: 36px 40px;
+  }
+
+  .partner-logo {
+    max-height: 48px;
+    max-width: 140px;
+  }
+
+  .partner-logo[alt="BidWeb"],
+  .partner-logo[alt="Digital Mind"],
+  .partner-logo[alt="Diversity on Boards"] {
+    max-height: 70px;
+  }
+
+  .partner-logo[alt="Miti"] {
+    max-height: 32px;
+  }
+}
+
 @media (max-width: 991px) {
   .partners-slide {
     flex-wrap: wrap;
@@ -6701,15 +6724,37 @@ footer {
   will-change: transform;
 }
 
-/* Laptop screens: smaller monitor, tighter scroll zone */
-@media (min-width: 992px) and (max-width: 1399px) {
+/* Laptop / sub-1920 screens: compact nav + smaller monitor, tighter scroll zone */
+@media (min-width: 992px) and (max-width: 1919px) {
+  .nav_minimal {
+    padding: 24px 0;
+  }
+
+  .nav_minimal.scrolled {
+    padding: 12px 0;
+  }
+
+  .nav_right {
+    gap: 32px;
+  }
+
+  .nav_links {
+    gap: 20px;
+  }
+
+  .btn_verta {
+    height: 40px;
+    padding: 0 16px;
+    font-size: 13px;
+  }
+
   .tprm-zone {
     height: 420vh;
   }
 
   .tprm-monitor {
-    width: calc(100% - 120px);
-    max-width: 960px;
+    width: calc(100% - 160px);
+    max-width: 860px;
   }
 }
 
@@ -6722,16 +6767,29 @@ footer {
     position: relative;
     height: auto;
     overflow: visible;
-    padding: 48px 32px 0;
+    padding: 64px 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0;
+    gap: 40px;
   }
 
-  /* hide title/text on small screens — image only */
+  /* reset JS-driven absolute positioning */
   .tprm-head {
-    display: none !important;
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none !important;
+    width: 100%;
+    max-width: 600px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .tprm-desc {
+    opacity: 1 !important;
+    max-height: none !important;
+    margin-top: 18px !important;
   }
 
   .tprm-monitor {
@@ -6739,12 +6797,21 @@ footer {
     left: auto;
     top: auto;
     transform: none !important;
-    width: 100%;
-    max-width: 100%;
-    height: 480px;
-    margin: 0;
+    width: calc(100% + 40px);
+    max-width: 680px;
+    height: auto;
+    margin: 0 -20px;
     border-radius: 14px 14px 0 0;
     align-self: center;
+  }
+
+  /* Show full image — no inner scroll on mobile */
+  .tprm-bodyclip {
+    overflow: visible;
+  }
+
+  .tprm-img--body {
+    transform: none !important;
   }
 }
 
