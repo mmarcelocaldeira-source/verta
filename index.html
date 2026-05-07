@@ -1408,13 +1408,15 @@
 
                 function stopCycle() { clearInterval(timer); }
 
+                // First slide visible immediately, no scroll trigger needed
+                slides[0].classList.add('p-active');
+                syncHeight(slides[0]);
+
                 ScrollTrigger.create({
                     trigger: '.section-partners',
                     start: 'top 85%',
                     once: true,
                     onEnter: () => {
-                        slides[0].classList.add('p-active');
-                        syncHeight(slides[0]);
                         startCycle();
                     }
                 });
@@ -1653,7 +1655,7 @@
                     var textTopY = isLaptop ? 16 : 36;
 
                     var mockOffY = pinH + 40;
-                    var mockNearY = textCenterY + headHFull + 24;
+                    var mockNearY = textCenterY + headHFull - 40;
                     var mockFinalY = textTopY + headHCollapsed + 36;
 
                     var headY, monY, descFade;
@@ -1686,8 +1688,12 @@
                     // Phase C: inner image scroll
                     var p3 = Math.max(0, (t - B_END) / (1 - B_END));
                     var imgH = content.getBoundingClientRect().height;
-                    var boxH = box.getBoundingClientRect().height;
-                    var max = imgH - boxH;
+                    var boxRect = box.getBoundingClientRect();
+                    // Visible area of box = intersection with pin viewport (top: 0, bottom: pinH)
+                    var boxTopRel = boxRect.top - pin.getBoundingClientRect().top;
+                    var visibleBoxH = Math.min(boxRect.height, pinH - boxTopRel);
+                    // Subtract internal padding-top (14px) — image starts below it
+                    var max = imgH - (visibleBoxH - 14);
                     if (max > 0) {
                         content.style.transform = 'translate3d(0,' + (-p3 * max).toFixed(1) + 'px,0)';
                     } else {

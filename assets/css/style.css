@@ -5965,8 +5965,8 @@ footer {
   }
 }
 
-/* Laptop / sub-1920: smaller logos + allow wrap to respect side margin */
-@media (min-width: 992px) and (max-width: 1919px) {
+/* Laptop: smaller logos + allow wrap to respect side margin */
+@media (min-width: 992px) and (max-width: 1399px) {
   .partners-slide {
     flex-wrap: wrap;
     gap: 36px 40px;
@@ -6749,7 +6749,7 @@ footer {
   }
 
   .tprm-zone {
-    height: 420vh;
+    height: 540vh;
   }
 
   .tprm-monitor {
