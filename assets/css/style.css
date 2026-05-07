@@ -119,7 +119,7 @@ body {
   line-height: var(--line-height-body);
   color: var(--neutral-900);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body.page-home {
@@ -2263,7 +2263,7 @@ body.page-safe .reveal.is-visible {
 
 .plat-tab-text {
   font-family: var(--font-body);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-body);
   line-height: 1.8;
   color: var(--color-text-secondary);
 }
@@ -2575,14 +2575,41 @@ body.page-safe .reveal.is-visible {
   margin-bottom: 2rem;
 }
 
+.def-quote-block {
+  border-left: 2px solid var(--brand-400);
+  padding-left: 1.25rem;
+}
+
 .def-quote {
   font-family: var(--font-display);
   font-size: 1.375rem;
   font-style: italic;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.65;
-  padding-left: 1.25rem;
+  padding-left: 0;
+  border-left: none;
+}
+
+.def-quote-author {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.def-quote-block--light {
   border-left: 2px solid var(--brand-400);
+  padding-left: 1.25rem;
+  margin-top: 3rem;
+  display: inline-block;
+}
+
+.def-quote-author--light {
+  color: rgba(0, 0, 0, 0.35);
 }
 
 .def-quote--light {
@@ -2591,10 +2618,10 @@ body.page-safe .reveal.is-visible {
   font-style: italic;
   color: rgba(0, 0, 0, 0.75);
   line-height: 1.65;
-  padding-left: 1.25rem;
-  border-left: 2px solid var(--brand-700);
-  display: inline-block;
-  margin-top: 3rem;
+  padding-left: 0;
+  border-left: none;
+  display: block;
+  margin-top: 0;
   margin-bottom: 2rem;
 }
 
@@ -3612,20 +3639,23 @@ body.page-safe .reveal.is-visible {
 
 .partners-reel {
   position: relative;
-  height: 120px;
   margin-top: 72px;
-  overflow: hidden;
+  overflow: visible;
+  transition: min-height 0.4s ease;
 }
 
 .partners-slide {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 80px;
+  gap: 48px 80px;
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 1.6s ease;
   pointer-events: none;
 }
 
@@ -3643,7 +3673,7 @@ body.page-safe .reveal.is-visible {
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.partner-logo[alt="Bidweb"] {
+.partner-logo[alt="BidWeb"] {
   max-height: 90px;
 }
 
@@ -5941,17 +5971,16 @@ footer {
   }
 
   .partners-reel {
-    height: 70px;
     margin-top: 48px;
   }
 
   .partners-slide {
-    gap: 32px;
+    gap: 32px 48px;
   }
 
   .partner-logo {
     max-height: 38px;
-    max-width: 120px;
+    max-width: 110px;
   }
 }
 
@@ -6542,3 +6571,166 @@ footer {
     max-height: 320px;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   TPRM SECTION
+   Phases (driven by JS):
+   A. Text centered, mockup parallax up from below
+   B. Mockup pushes text up to top; paragraph collapses
+   C. Inner content scrolls within mockup
+   D. Page scroll released
+   ═══════════════════════════════════════════════════════════ */
+.section-tprm {
+  background: var(--neutral-50);
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.tprm-zone {
+  position: relative;
+  height: 540vh;
+}
+
+.tprm-pin {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 20px);
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Header text — absolute, JS controls top via translateY */
+.tprm-head {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0);
+  width: 100%;
+  max-width: 760px;
+  text-align: center;
+  padding: 0 24px;
+  z-index: 3;
+  will-change: transform;
+}
+.tprm-title {
+  font-family: var(--font-display);
+  font-size: var(--title-xl);
+  font-weight: 400;
+  letter-spacing: var(--tracking-heading);
+  color: var(--neutral-900);
+  margin: 12px 0 0;
+  line-height: 1.08;
+}
+.tprm-desc {
+  font-size: var(--font-size-body-lg);
+  color: var(--neutral-500);
+  line-height: 1.6;
+  margin-top: 18px;
+  overflow: hidden;
+  will-change: opacity, max-height, margin-top;
+}
+
+/* Monitor — absolute, JS controls top via translateY */
+.tprm-monitor {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: calc(100% - 80px);
+  max-width: 1280px;
+  height: calc(100vh - 20px);   /* full pin height; bottom clipped by pin overflow */
+  background: #0a0d12;
+  border-radius: 14px 14px 0 0;
+  border: 1px solid rgba(255,255,255,.10);
+  border-bottom: none;
+  display: grid;
+  grid-template-columns: 8.33% 1fr;
+  grid-template-rows: 100%;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04),
+    0 -10px 40px rgba(0,0,0,.4),
+    0 60px 100px -30px rgba(0,0,0,.7);
+  transform: translate(-50%, 0);
+  will-change: transform;
+}
+
+.tprm-img { display: block; }
+.tprm-img--side {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+.tprm-frame {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 0;
+  overflow: hidden;
+}
+.tprm-img--head-img {
+  width: 100%;
+  height: auto;
+}
+.tprm-bodyclip {
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+  padding-top: 14px;
+}
+.tprm-img--body {
+  width: 100%;
+  height: auto;
+  will-change: transform;
+}
+
+@media (max-width: 991px) {
+  .tprm-zone {
+    height: auto;
+  }
+
+  .tprm-pin {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: 64px 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  /* reset JS-driven absolute positioning */
+  .tprm-head {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none !important;
+    width: 100%;
+    max-width: 600px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .tprm-desc {
+    opacity: 1 !important;
+    max-height: none !important;
+    margin-top: 18px !important;
+  }
+
+  .tprm-monitor {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none !important;
+    width: calc(100% + 40px);
+    max-width: 680px;
+    height: 480px;
+    margin: 0 -20px;
+    border-radius: 14px 14px 0 0;
+    align-self: center;
+  }
+}
+/* ═══ /TPRM SECTION ══════════════════════════════════════ */
+

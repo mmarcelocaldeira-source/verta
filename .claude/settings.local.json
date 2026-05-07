@@ -32,7 +32,8 @@
       "WebFetch(domain:verta.digital)",
       "WebFetch(domain:cdn.prod.website-files.com)",
       "Bash(grep -n \"^$\" \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\assets\\\\css\\\\style.css\")",
-      "Bash(awk -F: 'prev && \\($1 - prev == 1\\) {print prev\": \\(double blank with \" $1\"\\)\"} {prev=$1}')"
+      "Bash(awk -F: 'prev && \\($1 - prev == 1\\) {print prev\": \\(double blank with \" $1\"\\)\"} {prev=$1}')",
+      "Bash(python3)"
     ]
   }
 }
