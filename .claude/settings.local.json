@@ -33,7 +33,13 @@
       "WebFetch(domain:cdn.prod.website-files.com)",
       "Bash(grep -n \"^$\" \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\assets\\\\css\\\\style.css\")",
       "Bash(awk -F: 'prev && \\($1 - prev == 1\\) {print prev\": \\(double blank with \" $1\"\\)\"} {prev=$1}')",
-      "Bash(python3)"
+      "Bash(python3)",
+      "PowerShell(if \\($LASTEXITCODE -ne 0\\) { \"not found\" })",
+      "PowerShell(winget install Gyan.FFmpeg --accept-source-agreements --accept-package-agreements --silent)",
+      "PowerShell($ff = \"C:\\\\Users\\\\marce\\\\AppData\\\\Local\\\\Microsoft\\\\WinGet\\\\Packages\\\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\\\ffmpeg-8.1.1-full_build\\\\bin\\\\ffprobe.exe\"; & $ff -v error -show_entries stream=codec_name,width,height,r_frame_rate,bit_rate -show_entries format=duration,bit_rate,size -of default \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\assets\\\\images\\\\quantumcom.mp4\")",
+      "PowerShell($ff = \"C:\\\\Users\\\\marce\\\\AppData\\\\Local\\\\Microsoft\\\\WinGet\\\\Packages\\\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\\\ffmpeg-8.1.1-full_build\\\\bin\\\\ffmpeg.exe\"; $base = \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\assets\\\\images\"; & $ff -hide_banner -loglevel error -y -i \"$base\\\\quantumcom.mp4\" -c:v libx264 -crf 22 -preset slow -tune film -profile:v high -pix_fmt yuv420p -an -movflags +faststart \"$base\\\\_optimized\\\\quantumcom.mp4\")",
+      "PowerShell($ff = \"C:\\\\Users\\\\marce\\\\AppData\\\\Local\\\\Microsoft\\\\WinGet\\\\Packages\\\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\\\ffmpeg-8.1.1-full_build\\\\bin\\\\ffmpeg.exe\"; $base = \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\assets\\\\images\"; & $ff -hide_banner -loglevel error -y -i \"$base\\\\quantumcom.mp4\" -c:v libx264 -crf 27 -preset slow -tune film -profile:v high -pix_fmt yuv420p -an -movflags +faststart \"$base\\\\_optimized\\\\quantumcom.mp4\")",
+      "PowerShell($ff = \"C:\\\\Users\\\\marce\\\\AppData\\\\Local\\\\Microsoft\\\\WinGet\\\\Packages\\\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\\\ffmpeg-8.1.1-full_build\\\\bin\\\\ffmpeg.exe\"; $base = \"C:\\\\Users\\\\marce\\\\Documents\\\\LP VERTA\\\\VERTA_PAGINA_PRINCIPAL\\\\assets\\\\images\"; & $ff -hide_banner -loglevel error -y -i \"$base\\\\quantumcom-mobile.mp4\" -c:v libx264 -crf 28 -preset slow -tune film -profile:v high -pix_fmt yuv420p -an -movflags +faststart \"$base\\\\_optimized\\\\quantumcom-mobile.mp4\")"
     ]
   }
 }

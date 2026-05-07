@@ -14,12 +14,6 @@
         href="https://fonts.googleapis.com/css2?family=Blinker:wght@300;400;600;700;900&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
 
-    <link
-        href="https://cdn.prod.website-files.com/6895a11a67e50a85e0b93804/css/rockfixmekaa.webflow.shared.8bd7c0a5a.min.css"
-        rel="stylesheet" type="text/css">
-    <link
-        href="https://cdn.prod.website-files.com/6895a11a67e50a85e0b93804/css/rockfixmekaa.webflow.6895a11a67e50a85e0b937f9-ff60340fd.min.css"
-        rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -27,7 +21,7 @@
 
     <nav class="nav_minimal">
         <div class="nav_container">
-            <a href="index.html" class="logo_verta">
+            <a href="/" class="logo_verta">
                 <img src="./assets/images/verta-logo.svg" alt="Verta"
                     style="height: 26px; width: auto; display: block; border-radius: 0 !important; object-fit: contain; transform: none !important;">
             </a>
@@ -44,7 +38,7 @@
                     <a href="#tprm" class="nav_link">TPRM</a>
                     <a href="#contato" class="nav_link">Contato</a>
                     <!-- VERTA SAFE LINK — descomentar quando for ao ar:
-                    <a href="verta-safe.html" class="nav_link" style="color: var(--brand-500); font-weight: 600;">Verta
+                    <a href="/verta-safe" class="nav_link" style="color: var(--brand-500); font-weight: 600;">Verta
                         Safe</a>
                     -->
                 </nav>
@@ -292,7 +286,7 @@
             <div class="video-reveal-sticky">
                 <video src="assets/images/quantumcom.mp4" autoplay muted loop playsinline class="vf-video-desktop">
                 </video>
-                <video src="assets/images/Quantumcom-mobile.mp4" autoplay muted loop playsinline
+                <video src="assets/images/quantumcom-mobile.mp4" autoplay muted loop playsinline
                     class="vf-video-mobile">
                 </video>
                 <div class="video-reveal-fade" aria-hidden="true"></div>
@@ -917,13 +911,13 @@
 
                         <p class="cform-privacy">Levamos a proteção de dados muito a sério. Todas as informações
                             coletadas neste formulário serão processadas de acordo com nossa <a
-                                href="privacy-policy.html">Política de Privacidade</a>.</p>
+                                href="/privacy-policy">Política de Privacidade</a>.</p>
 
                         <label class="cform-check">
                             <input type="checkbox" name="terms" required>
                             <span class="cform-check__box"></span>
                             <span class="cform-check__text">Li e concordo com os <a
-                                    href="terms-and-conditions.html">termos de uso</a></span>
+                                    href="/terms-and-conditions">termos de uso</a></span>
                         </label>
 
                         <button type="submit" class="cform-submit">
@@ -975,9 +969,9 @@
                 <span class="site-footer__copy">© 2026 Verta &nbsp;·&nbsp; Verta Brasil Ltda &nbsp;·&nbsp; CNPJ
                     61.039.284/0001-14</span>
                 <nav class="site-footer__links" aria-label="Links legais">
-                    <a href="terms-and-conditions.html">Termos de Serviço</a>
+                    <a href="/terms-and-conditions">Termos de Serviço</a>
                     <span aria-hidden="true">·</span>
-                    <a href="privacy-policy.html">Política de Privacidade</a>
+                    <a href="/privacy-policy">Política de Privacidade</a>
                 </nav>
                 <a href="mailto:support@verta.digital" class="site-footer__email">support@verta.digital</a>
             </div>
@@ -1196,6 +1190,19 @@
                     }
                 });
             }
+
+            // Clean URL when clicking in-page anchors — keeps "/" instead of "/index.html"
+            document.addEventListener('click', function (e) {
+                var a = e.target.closest('a[href^="#"]');
+                if (!a) return;
+                var hash = a.getAttribute('href');
+                if (!hash || hash === '#') return;
+                var target = document.querySelector(hash);
+                if (!target) return;
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.replaceState(null, '', '/' + hash);
+            });
 
 
             (function () {
