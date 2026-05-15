@@ -1422,7 +1422,10 @@ body.page-safe .reveal.is-visible {
 .score-num {
   font-size: 96px;
   font-weight: 800;
-  color: var(--emerald);
+  background: linear-gradient(to bottom, rgba(254, 240, 138, .8), rgba(250, 204, 21, .8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   line-height: 1;
   letter-spacing: -0.05em;
 }
@@ -1430,7 +1433,10 @@ body.page-safe .reveal.is-visible {
 .score-pct {
   font-size: 36px;
   font-weight: 800;
-  color: var(--emerald);
+  background: linear-gradient(to bottom, rgba(254, 240, 138, .8), rgba(250, 204, 21, .8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .grade-stack {
@@ -1443,8 +1449,8 @@ body.page-safe .reveal.is-visible {
 .grade-arrow {
   position: absolute;
   left: -32px;
-  top: 8px;
-  color: var(--emerald);
+  top: 96px;
+  color: #fde047;
   animation: blink 2s ease-in-out infinite;
 }
 
@@ -1477,14 +1483,19 @@ body.page-safe .reveal.is-visible {
   background: linear-gradient(to bottom, #34d399, #10b981);
   border-color: rgba(52, 211, 153, .5);
   box-shadow: 0 0 15px rgba(52, 211, 153, .2);
-  position: relative;
 }
 
-.grade-a::before {
+.grade.is-active {
+  position: relative;
+  border-color: rgba(250, 204, 21, .6);
+  box-shadow: 0 0 15px rgba(250, 204, 21, .25);
+}
+
+.grade.is-active::before {
   content: '';
   position: absolute;
   inset: -4px;
-  border: 1px dashed rgba(52, 211, 153, .5);
+  border: 1px dashed rgba(250, 204, 21, .6);
   border-radius: 12px;
 }
 
@@ -6167,6 +6178,7 @@ footer {
 
   .grade-arrow {
     left: -26px;
+    top: 76px;
   }
 
   .footer-main {
